@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import AboutCommand from './commands/AboutCommand';
 import ProjectsCommand from './commands/ProjectsCommand';
 import SkillsCommand from './commands/SkillsCommand';
