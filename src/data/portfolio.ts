@@ -102,6 +102,28 @@ Always building. Always curious.`
         "Delivered events for 360+ participants with a 91% satisfaction rate and $7K revenue above target"
       ],
       tech: ["Python", "JavaScript"]
+    },
+    {
+      title: "💻 Problem Writer",
+      company: "United Coding Tournament",
+      period: "May 2022 - May 2024",
+      responsibilities: [
+        "Created 15+ competitive programming problems for 150+ contestants",
+        "Designed algorithmic challenges covering data structures, dynamic programming, and graph theory",
+        "Collaborated with tournament organizers to ensure problem quality and difficulty balance"
+      ],
+      tech: ["Java", "Python", "Algorithm Design", "Problem Solving"]
+    },
+    {
+      title: "👨‍🏫 Python and Java Instructor",
+      company: "Ottawa Jay Learning Centre",
+      period: "Sep 2020 - Sep 2023",
+      responsibilities: [
+        "Designed and delivered comprehensive Python and Java courses for 30+ students",
+        "Proactively sought constructive feedback and adapted class content accordingly to best meet student needs",
+        "Developed curriculum covering programming fundamentals, object-oriented programming, and practical applications"
+      ],
+      tech: ["Python", "Java", "Curriculum Development", "Teaching"]
     }
   ],
   contact: {
