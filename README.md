@@ -2,6 +2,8 @@
 
 A modern, interactive terminal-style portfolio built with React and TypeScript. Experience my professional journey through a unique command-line interface that combines the nostalgia of terminal computing with modern web interactivity.
 
+**🌟 Currently live at [ethanqiu.ca](https://ethanqiu.ca)**
+
 ![Terminal Portfolio](https://img.shields.io/badge/Portfolio-Terminal%20Style-00ff00?style=for-the-badge&logo=terminal)
 ![React](https://img.shields.io/badge/React-18.x-61dafb?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?style=for-the-badge&logo=typescript)
@@ -9,19 +11,21 @@ A modern, interactive terminal-style portfolio built with React and TypeScript. 
 
 ## 🚀 Live Demo
 
-Visit the live portfolio: [ethanqiu.dev](https://your-portfolio-url.com)
+Visit the live portfolio: **[ethanqiu.ca](https://ethanqiu.ca)**
 
 > 🎯 **Tip**: Look for the "EQ" terminal favicon in your browser tab!
 
 ## ✨ Features
 
-- **🖥️ Authentic Terminal Experience**: Real command-line interface with command history and auto-completion
+- **🖥️ Authentic Terminal Experience**: Real command-line interface with command history and arrow key navigation
 - **📱 Fully Responsive**: Optimized for desktop, tablet, and mobile devices
 - **⚡ Interactive Commands**: Navigate through different sections using terminal commands
-- **🎨 Modern UI**: Clean, terminal-inspired design with smooth animations
-- **📄 Resume Integration**: Download resume directly from the terminal
-- **🔗 Quick Navigation**: Navigation bar for non-terminal users
-- **🌐 Social Links**: Direct links to GitHub, LinkedIn, and contact information
+- **🎨 Modern UI**: Clean, terminal-inspired design with smooth animations and scroll-to-top
+- **📄 Resume Integration**: View and download resume directly from the terminal
+- **🔗 Quick Navigation**: Navigation bar for non-terminal users with command shortcuts
+- **🌐 Social Links**: Direct links to GitHub, LinkedIn, and email
+- **🎯 Auto-Clear Terminal**: Each command clears previous output for focused viewing
+- **⌨️ Command History**: Use arrow keys to navigate through previous commands
 
 ## 🛠️ Tech Stack
 
@@ -29,7 +33,8 @@ Visit the live portfolio: [ethanqiu.dev](https://your-portfolio-url.com)
 - **Styling**: Styled Components, Framer Motion
 - **Build Tool**: Vite
 - **Icons**: React Icons
-- **Deployment**: Vercel (recommended)
+- **Architecture**: Modular component structure
+- **Deployment**: Custom domain hosting
 
 ## 📋 Available Commands
 
@@ -73,7 +78,7 @@ ls          # List directory contents
    ```
 
 4. **Open your browser**
-   Navigate to `http://localhost:5173`
+   Navigate to `http://localhost:5173` (or the port shown in your terminal)
 
 ## 🎯 Customization Guide
 
@@ -118,8 +123,8 @@ src/
 │   ├── TerminalInterface.tsx     # Main terminal logic
 │   └── NavBar.tsx               # Navigation bar
 ├── data/
-│   ├── portfolio.ts             # All portfolio data
-│   └── EthanQiu_Resume.pdf      # Resume file
+│   ├── portfolio.ts                    # All portfolio data
+│   └── EthanQiu_Resume_Linkedin.pdf    # Resume file
 ├── styles/
 │   └── GlobalStyles.ts          # Global styles
 └── App.tsx                      # Main app component
@@ -127,16 +132,22 @@ src/
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+This portfolio is currently hosted at **[ethanqiu.ca](https://ethanqiu.ca)**
+
+### Deployment Options
+
+#### Vercel (Recommended)
 1. Push your code to GitHub
 2. Connect your repository to Vercel
 3. Deploy with one click
+4. Configure custom domain if needed
 
-### Netlify
+#### Netlify
 1. Build the project: `npm run build`
 2. Upload the `dist` folder to Netlify
+3. Configure custom domain
 
-### GitHub Pages
+#### GitHub Pages
 1. Install gh-pages: `npm install --save-dev gh-pages`
 2. Add to package.json:
    ```json
@@ -148,13 +159,38 @@ src/
    ```
 3. Deploy: `npm run deploy`
 
-## 🎨 Screenshots
+### Build Commands
+```bash
+npm run build    # Build for production
+npm run preview  # Preview production build locally
+```
 
-### Desktop View
-![Desktop Terminal](screenshot-desktop.png)
+## 🎨 Key Features in Action
 
-### Mobile View
-![Mobile Terminal](screenshot-mobile.png)
+### Terminal Commands
+- Type `help` to see all available commands
+- Use arrow keys to navigate command history
+- Each command auto-clears and scrolls to top
+- Interactive cards with buttons and links
+
+### Navigation Options
+- **Terminal purists**: Type commands directly
+- **Quick access**: Use navigation bar buttons
+- **Mobile friendly**: Touch-optimized interface
+
+## 🏗️ Architecture Highlights
+
+### Modular Design
+- **Separate command components** for easy maintenance
+- **Centralized data** in `portfolio.ts` for quick updates
+- **Shared styled components** for consistent theming
+- **Clean separation** of concerns
+
+### Performance Features
+- **Auto-clearing terminal** reduces DOM complexity
+- **Smooth scroll animations** for polished UX
+- **Responsive design** adapts to all screen sizes
+- **Fast loading** with Vite build optimization
 
 ## 🤝 Contributing
 
