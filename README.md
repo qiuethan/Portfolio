@@ -36,23 +36,6 @@ Visit the live portfolio: **[ethanqiu.ca](https://ethanqiu.ca)**
 - **Architecture**: Modular component structure
 - **Deployment**: Custom domain hosting
 
-## 📋 Available Commands
-
-```bash
-help        # Show all available commands
-about       # Learn about me
-projects    # View my projects
-skills      # See my technical skills
-experience  # View my work experience
-contact     # Get my contact information
-resume      # Download my resume
-blog        # Read my blog posts
-clear       # Clear the terminal
-date        # Show current date
-pwd         # Show current directory
-ls          # List directory contents
-```
-
 ## 🏃‍♂️ Quick Start
 
 ### Prerequisites
