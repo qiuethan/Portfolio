@@ -18,7 +18,7 @@ Always building. Always curious.`
     {
       name: "📱 Bounce Back",
       description: "An AI-powered mental health companion app",
-      tech: ["React Native", "Firebase", "Python", "PyTorch", "Mistral", "Docker"],
+      tech: ["React Native", "Firebase", "Python", "PyTorch", "BERT", "Mistral", "Docker"],
       github: "https://github.com/qiuethan/Bounce-Back-Public",
       live: null,
       details: "A mental health companion app that supports emotional healing after breakups, grief, and difficult periods. Features AI-driven chat, mood tracking, journaling, avoidance zones, and habit-building tools."
@@ -42,7 +42,7 @@ Always building. Always curious.`
     {
       name: "🧠 Hyacinthe",
       description: "A computer-vision navigator for the visually impaired",
-      tech: ["Python", "OpenCV", "Computer Vision"],
+      tech: ["Python", "OpenCV", "YOLO", "Computer Vision"],
       github: "https://github.com/haenlonns/hyacinthe",
       live: null,
       details: "GeesehHacks 2025 project - An innovative navigation system using computer vision to assist visually impaired individuals with real-time environmental awareness and guidance."
@@ -50,7 +50,7 @@ Always building. Always curious.`
     {
       name: "🚶 Crosswalk of Shame",
       description: "Real-time object detection tool to reduce distracted walking",
-      tech: ["Python", "Jupyter Notebook", "PyTorch", "Computer Vision"],
+      tech: ["Python", "Jupyter Notebook", "PyTorch", "YOLO", "Computer Vision"],
       github: "https://github.com/emlyqi/crosswalkofshame",
       live: null,
       details: "Hack the North 2024 project - A safety-focused application that uses real-time object detection to identify and alert distracted pedestrians, promoting safer walking habits."
