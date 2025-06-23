@@ -18,7 +18,7 @@ Always building. Always curious.`
     {
       name: "📱 Bounce Back",
       description: "An AI-powered mental health companion app",
-      tech: ["React Native", "Firebase", "Python", "PyTorch", "Mistral"],
+      tech: ["React Native", "Firebase", "Python", "PyTorch", "Mistral", "Docker"],
       github: "https://github.com/qiuethan/Bounce-Back-Public",
       live: null,
       details: "A mental health companion app that supports emotional healing after breakups, grief, and difficult periods. Features AI-driven chat, mood tracking, journaling, avoidance zones, and habit-building tools."
