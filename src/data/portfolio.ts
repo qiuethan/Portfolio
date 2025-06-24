@@ -44,15 +44,15 @@ Always building. Always curious.`
       description: "A computer-vision navigator for the visually impaired",
       tech: ["Python", "OpenCV", "YOLO", "Computer Vision"],
       github: "https://github.com/haenlonns/hyacinthe",
-      live: null,
-      details: "GeesehHacks 2025 project - An innovative navigation system using computer vision to assist visually impaired individuals with real-time environmental awareness and guidance."
+      live: "https://devpost.com/software/hyacinthe",
+      details: "Winner of GeeseHacks 2025 (1st Place Overall) - An innovative navigation system using computer vision to assist visually impaired individuals with real-time environmental awareness and guidance."
     },
     {
       name: "🚶 Crosswalk of Shame",
       description: "Real-time object detection tool to reduce distracted walking",
       tech: ["Python", "Jupyter Notebook", "PyTorch", "YOLO", "Computer Vision"],
       github: "https://github.com/emlyqi/crosswalkofshame",
-      live: null,
+      live: "https://devpost.com/software/crosswalk-of-shame",
       details: "Hack the North 2024 project - A safety-focused application that uses real-time object detection to identify and alert distracted pedestrians, promoting safer walking habits."
     },
     {
@@ -60,7 +60,7 @@ Always building. Always curious.`
       description: "Blocks addictive apps and rewards healthy behavior",
       tech: ["JavaScript", "React", "Django"],
       github: "https://github.com/muwasifk/gamestoppr",
-      live: null,
+      live: "https://devpost.com/software/gamestoppr",
       details: "A browser-integrated platform designed to combat digital addiction by blocking addictive applications and gamifying healthy behavior patterns with reward systems."
     }
   ],
