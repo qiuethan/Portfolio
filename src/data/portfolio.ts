@@ -16,6 +16,14 @@ Always building. Always curious.`
   },
   projects: [
     {
+      name: "💰 RT1M - Road to $1 Million Financial Planning App",
+      description: "A comprehensive full-stack financial planning application with AI chatbot",
+      tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Firebase", "OpenAI API", "LangChain", "Vite", "Vercel"],
+      github: "https://github.com/qiuethan/RT1M",
+      live: "https://rt1m.app",
+      details: "A comprehensive financial planning app designed to help users track their journey to building $1 million in wealth. Features an intelligent AI chatbot powered by OpenAI that analyzes financial data, provides personalized advice, and updates user information through natural conversation. Includes income/expense tracking, asset/debt management, goal setting with milestones, real-time dashboard with analytics, secure authentication, and responsive design optimized for both mobile and desktop."
+    },
+    {
       name: "📱 Bounce Back",
       description: "An AI-powered mental health companion app",
       tech: ["React Native", "Firebase", "Python", "PyTorch", "BERT", "Mistral", "Docker"],
