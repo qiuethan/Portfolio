@@ -125,9 +125,6 @@ const TerminalInterface: React.FC<TerminalInterfaceProps> = ({
       '  resume     - Download my resume',
       '  blog       - Read my blog posts',
       '  clear      - Clear the terminal',
-      '  date       - Show current date',
-      '  pwd        - Show current directory',
-      '  ls         - List directory contents',
       '',
       'Type any command to get started!'
     ],
@@ -141,19 +138,7 @@ const TerminalInterface: React.FC<TerminalInterfaceProps> = ({
     clear: () => {
       // This won't be called due to special handling in executeCommand
       return [];
-    },
-    date: () => [new Date().toString()],
-    pwd: () => ['/home/ethan/portfolio'],
-    ls: () => [
-      'about.txt',
-      'projects/',
-      'skills.json',
-      'experience.md',
-      'contact.vcf',
-      'resume.pdf',
-      'blog/',
-      'README.md'
-    ]
+    }
   };
 
   const navigateToCommand = (command: string) => {
