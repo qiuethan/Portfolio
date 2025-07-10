@@ -20,13 +20,13 @@ Always building. Always curious.`
       description: "A comprehensive full-stack financial planning application with AI chatbot",
       tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Firebase", "OpenAI API", "LangChain", "Vite", "Vercel"],
       github: "https://github.com/qiuethan/RT1M",
-      live: "https://rt1m.app",
+      live: "https://rt1m.ethanqiu.ca",
       details: "A comprehensive financial planning app designed to help users track their journey to building $1 million in wealth. Features an intelligent AI chatbot powered by OpenAI that analyzes financial data, provides personalized advice, and updates user information through natural conversation. Includes income/expense tracking, asset/debt management, goal setting with milestones, real-time dashboard with analytics, secure authentication, and responsive design optimized for both mobile and desktop."
     },
     {
       name: "🛒 Shop Buddy",
       description: "An AI-powered shopping assistant that provides complete solutions with integrated product recommendations.",
-      tech: ["React 19", "TypeScript", "Vite", "Lucide React", "React Markdown", "Node.js", "Express.js", "OpenAI API", "SerpAPI", "Helmet", "CORS", "Rate Limiting"],
+      tech: ["React", "Node.js", "TypeScript", "Vite", "Express.js", "OpenAI API", "SerpAPI"],
       github: "https://github.com/qiuethan/Shop-Buddy",
       live: "https://shop-buddy.ethanqiu.ca",
       details: "Shop Buddy is an AI-powered shopping assistant that helps users solve problems by providing step-by-step solutions and smart product recommendations. It leverages OpenAI for solution generation and SerpAPI for real-time product search across multiple stores. Features include organized browsing, customizable search filters, and a modern, responsive UI. Backend is secured with Helmet, CORS, and rate limiting."

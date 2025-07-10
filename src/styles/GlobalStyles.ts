@@ -107,12 +107,6 @@ const GlobalStyles = createGlobalStyle`
   }
 
   /* Focus styles */
-  button:focus,
-  input:focus,
-  textarea:focus {
-    outline: 2px solid #00ff00;
-    outline-offset: 2px;
-  }
 `;
 
 export default GlobalStyles; 
