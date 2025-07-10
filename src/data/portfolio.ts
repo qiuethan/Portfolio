@@ -24,6 +24,14 @@ Always building. Always curious.`
       details: "A comprehensive financial planning app designed to help users track their journey to building $1 million in wealth. Features an intelligent AI chatbot powered by OpenAI that analyzes financial data, provides personalized advice, and updates user information through natural conversation. Includes income/expense tracking, asset/debt management, goal setting with milestones, real-time dashboard with analytics, secure authentication, and responsive design optimized for both mobile and desktop."
     },
     {
+      name: "🛒 Shop Buddy",
+      description: "An AI-powered shopping assistant that provides complete solutions with integrated product recommendations.",
+      tech: ["React 19", "TypeScript", "Vite", "Lucide React", "React Markdown", "Node.js", "Express.js", "OpenAI API", "SerpAPI", "Helmet", "CORS", "Rate Limiting"],
+      github: "https://github.com/qiuethan/Shop-Buddy",
+      live: "https://shop-buddy.ethanqiu.ca",
+      details: "Shop Buddy is an AI-powered shopping assistant that helps users solve problems by providing step-by-step solutions and smart product recommendations. It leverages OpenAI for solution generation and SerpAPI for real-time product search across multiple stores. Features include organized browsing, customizable search filters, and a modern, responsive UI. Backend is secured with Helmet, CORS, and rate limiting."
+    },
+    {
       name: "📱 Bounce Back",
       description: "An AI-powered mental health companion app",
       tech: ["React Native", "Firebase", "Python", "PyTorch", "BERT", "Mistral", "Docker"],
@@ -32,12 +40,12 @@ Always building. Always curious.`
       details: "A mental health companion app that supports emotional healing after breakups, grief, and difficult periods. Features AI-driven chat, mood tracking, journaling, avoidance zones, and habit-building tools."
     },
     {
-      name: "🤖 Hart House Debate Automation",
-      description: "Automates administrative tasks for Hart House Debating Club",
-      tech: ["Python", "JavaScript"],
-      github: "https://github.com/qiuethan/Hart-House-Debate-Automation",
-      live: null,
-      details: "Automation system for Canada's largest university debate club, handling payment confirmation, debater allocation, accessibility allocation, and tournament management for 360+ participants."
+      name: "🧠 Hyacinthe",
+      description: "A computer-vision navigator for the visually impaired",
+      tech: ["Python", "OpenCV", "YOLO", "Computer Vision"],
+      github: "https://github.com/haenlonns/hyacinthe",
+      live: "https://devpost.com/software/hyacinthe",
+      details: "Winner of GeeseHacks 2025 (1st Place Overall) - An innovative navigation system using computer vision to assist visually impaired individuals with real-time environmental awareness and guidance."
     },
     {
       name: "🌐 UTMIST Website",
@@ -48,12 +56,12 @@ Always building. Always curious.`
       details: "Modern website for the University of Toronto Machine Intelligence Student Team, serving 1,000+ students and researchers with event management, project showcases, and team information."
     },
     {
-      name: "🧠 Hyacinthe",
-      description: "A computer-vision navigator for the visually impaired",
-      tech: ["Python", "OpenCV", "YOLO", "Computer Vision"],
-      github: "https://github.com/haenlonns/hyacinthe",
-      live: "https://devpost.com/software/hyacinthe",
-      details: "Winner of GeeseHacks 2025 (1st Place Overall) - An innovative navigation system using computer vision to assist visually impaired individuals with real-time environmental awareness and guidance."
+      name: "🤖 Hart House Debate Automation",
+      description: "Automates administrative tasks for Hart House Debating Club",
+      tech: ["Python", "JavaScript"],
+      github: "https://github.com/qiuethan/Hart-House-Debate-Automation",
+      live: null,
+      details: "Automation system for Canada's largest university debate club, handling payment confirmation, debater allocation, accessibility allocation, and tournament management for 360+ participants."
     },
     {
       name: "🚶 Crosswalk of Shame",
