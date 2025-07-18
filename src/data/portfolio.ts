@@ -92,30 +92,31 @@ Always building. Always curious.`
       company: "General Dynamics Mission Systems–Canada",
       period: "2025 - Present",
       responsibilities: [
-        "Built and maintained Java applications used in battle planning systems, with Maven for build automation",
-        "Developed Python test automation for simulated + lab-based validation of field hardware",
-        "Collaborated in an agile team using Git and GitLab for version control, reviews, and CI/CD"
+        "Designed and developed a key plugin tool, including location configuration and support using Java Maven, PowerShell scripting, and custom installers",
+        "Built a custom application testing library in Python, increasing testing efficiency by 50%",
+        "Participated in agile sprints, PI planning, and code reviews to improve delivery speed and code quality"
       ],
-      tech: ["Java", "Python", "Maven", "GitLab", "CI/CD"]
+      tech: ["Java", "Python", "Maven", "PowerShell", "GitLab", "CI/CD"]
     },
     {
       title: "🧠 Full Stack Developer",
       company: "UofT Machine Intelligence Student Team (UTMIST)",
       period: "2025 - Present",
       responsibilities: [
-        "Built full-stack features using Django (Python) and React for dynamic, responsive apps",
-        "Developed RESTful APIs, maintained PostgreSQL-backed databases, and managed CI/CD deployments",
-        "Supported infrastructure used by 1,000+ students and researchers"
+        "Implemented full authentication system and backend endpoints using Django REST APIs and PostgreSQL",
+        "Streamlined deployment workflows with GitHub Actions CI/CD, reducing deployment errors by 90%",
+        "Supported 1,000+ students and researchers, ensuring reliable access and rapid iteration cycles"
       ],
-      tech: ["Django", "React", "PostgreSQL", "CI/CD", "Python", "JavaScript"]
+      tech: ["Django", "React", "PostgreSQL", "GitHub Actions", "Python", "JavaScript"]
     },
     {
       title: "🎙️ Tournaments Director",
       company: "Hart House Debating Club",
       period: "2024 - Present",
       responsibilities: [
-        "Led a team of 20+ organizers and improved team turnaround by 25% using Python and JS automation",
-        "Delivered events for 360+ participants with a 91% satisfaction rate and $7K revenue above target"
+        "Led a team of 20+ organizers, planning workflows that enabled 30% of deliverables to be completed early",
+        "Developed Python and JavaScript Automation Tools that reduced turnaround time on key tasks by 25%",
+        "Organized events for 360+ students, achieving a 91% satisfaction rate and exceeding revenue targets by $7,000"
       ],
       tech: ["Python", "JavaScript"]
     },
