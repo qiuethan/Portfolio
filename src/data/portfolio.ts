@@ -89,10 +89,10 @@ Always building. Always curious.`
     }
   ],
   skills: {
-    languages: ["Java", "Python", "JavaScript", "TypeScript", "C++", "PostgreSQL", "HTML5", "CSS3"],
-    frameworks: ["React", "Django", "Node.js"],
-    libraries: ["PyTorch", "TensorFlow", "Pandas", "NumPy"],
-    tools: ["Docker", "Git", "GitHub", "GitLab", "Firebase", "Google Cloud"]
+    languages: ["Java", "Python", "JavaScript", "TypeScript", "C++", "PostgreSQL", "HTML5", "CSS3", "PowerShell"],
+    frameworks: ["React", "React Native", "Django", "Node.js", "FastAPI", "Express.js", "Tailwind CSS"],
+    libraries: ["PyTorch", "TensorFlow", "Pandas", "NumPy", "Three.js", "MediaPipe", "OpenCV", "LangChain", "YOLO"],
+    tools: ["Docker", "Git", "GitHub", "GitLab", "Firebase", "Google Cloud", "Vite", "Vercel", "Maven", "GitHub Actions", "WebSockets", "Jupyter Notebook"]
   },
   experience: [
     {
