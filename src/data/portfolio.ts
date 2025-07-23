@@ -16,6 +16,14 @@ Always building. Always curious.`
   },
   projects: [
     {
+      name: "🐾 Polaris - Multiplayer CV Fitness Game",
+      description: "CV-powered open world collaborative fitness game that turns your body into the controller",
+      tech: ["React", "Three.js", "FastAPI", "WebSockets", "Python", "MediaPipe", "OpenCV", "JavaScript"],
+      github: "https://github.com/qiuethan/Polaris",
+      live: "https://devpost.com/software/polaris-vlp1wm",
+      details: "🏆 1st Place – Best Game Hack @ Hack the 6ix 2024. A web-based multiplayer fitness platformer that transforms your body into a game controller through real-time computer vision. Players physically run, jump, and crouch to control polar bear characters racing through dynamic 3D worlds. Features dual-player tracking from a single camera, real-time pose detection with MediaPipe, custom gesture recognition with confidence scoring, and a fully custom 3D game engine built in Three.js. Supports multiplayer synchronization via WebSockets with sub-300ms latency and includes procedurally generated tracks for endless gameplay."
+    },
+    {
       name: "💰 RT1M - Road to $1 Million Financial Planning App",
       description: "A comprehensive full-stack financial planning application with AI chatbot",
       tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Firebase", "OpenAI API", "LangChain", "Vite", "Vercel"],
