@@ -53,7 +53,7 @@ Always building. Always curious.`
       tech: ["Python", "OpenCV", "YOLO", "Computer Vision"],
       github: "https://github.com/haenlonns/hyacinthe",
       live: "https://devpost.com/software/hyacinthe",
-      details: "Winner of GeeseHacks 2025 (1st Place Overall) - An innovative navigation system using computer vision to assist visually impaired individuals with real-time environmental awareness and guidance."
+      details: "🏆 Winner of GeeseHacks 2025 (1st Place Overall) - An innovative navigation system using computer vision to assist visually impaired individuals with real-time environmental awareness and guidance."
     },
     {
       name: "🌐 UTMIST Website",
