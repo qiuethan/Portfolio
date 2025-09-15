@@ -16,12 +16,20 @@ Always building. Always curious.`
   },
   projects: [
     {
+      name: "🌌 Orbit - Real-Time Social Intelligence Platform",
+      description: "Real-time social intelligence platform that integrates computer vision, Whisper transcription, and LLMs to deliver instant recognition, live transcription, and context-aware follow-ups",
+      tech: ["Python", "Computer Vision", "Whisper", "LLMs", "Real-time Processing", "Groq", "Windsurf"],
+      github: "https://github.com/qiuethan/orbit",
+      live: "https://devpost.com/software/orbit-59jths",
+      details: "🏆 Winner of Best Use of Groq & Best Use of Windsurf @ Hack the North 2025. A cutting-edge social intelligence platform that combines computer vision for instant recognition, Whisper AI for live transcription, and large language models to provide context-aware follow-ups in real-time social interactions."
+    },
+    {
       name: "🐾 Polaris - Multiplayer CV Fitness Game",
       description: "CV-powered open world collaborative fitness game that turns your body into the controller",
       tech: ["React", "Three.js", "FastAPI", "WebSockets", "Python", "MediaPipe", "OpenCV", "JavaScript"],
       github: "https://github.com/qiuethan/Polaris",
       live: "https://devpost.com/software/polaris-vlp1wm",
-      details: "🏆 1st Place – Best Game Hack @ Hack the 6ix 2024. A web-based multiplayer fitness platformer that transforms your body into a game controller through real-time computer vision. Players physically run, jump, and crouch to control polar bear characters racing through dynamic 3D worlds. Features dual-player tracking from a single camera, real-time pose detection with MediaPipe, custom gesture recognition with confidence scoring, and a fully custom 3D game engine built in Three.js. Supports multiplayer synchronization via WebSockets with sub-300ms latency and includes procedurally generated tracks for endless gameplay."
+      details: "🏆 1st Place – Best Game Hack @ Hack the 6ix 2025. A web-based multiplayer fitness platformer that transforms your body into a game controller through real-time computer vision. Players physically run, jump, and crouch to control polar bear characters racing through dynamic 3D worlds. Features dual-player tracking from a single camera, real-time pose detection with MediaPipe, custom gesture recognition with confidence scoring, and a fully custom 3D game engine built in Three.js. Supports multiplayer synchronization via WebSockets with sub-300ms latency and includes procedurally generated tracks for endless gameplay."
     },
     {
       name: "💰 RT1M - Road to $1 Million Financial Planning App",
