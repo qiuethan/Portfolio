@@ -16,50 +16,60 @@ interface BlogCommandProps {
 const BlogCommand: React.FC<BlogCommandProps> = ({ onNavigate }) => {
   return (
     <div>
+      {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <h2 style={{ color: '#00ccff', margin: '0 0 0.5rem 0' }}>
-          📝 Blog Posts
-        </h2>
-        <p style={{ color: '#cccccc', margin: 0 }}>
+        <h1 style={{ color: '#58a6ff', fontSize: '1.5rem', margin: '0 0 0.5rem 0' }}>
+          Blog
+        </h1>
+        <p style={{ color: '#8b949e', margin: 0, fontSize: '0.9rem' }}>
           Thoughts on software engineering, AI, and building cool things
         </p>
       </div>
 
+      {/* Blog Posts */}
       {portfolioData.blog.map((post) => (
         <BlogPost
           key={post.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          style={{ padding: '1.5rem', marginBottom: '1.5rem' }}
         >
-          <BlogTitle>{post.title}</BlogTitle>
-          <BlogDate>{post.date}</BlogDate>
-          <BlogContent>{post.content}</BlogContent>
+          <BlogTitle style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>
+            {post.title}
+          </BlogTitle>
+          <BlogDate style={{ marginBottom: '1rem' }}>{post.date}</BlogDate>
+          <BlogContent style={{ fontSize: '0.95rem', lineHeight: '1.7' }}>
+            {post.content}
+          </BlogContent>
         </BlogPost>
       ))}
 
+      {/* Coming Soon Card */}
       <div style={{ 
         textAlign: 'center', 
-        marginTop: '2rem', 
-        padding: '1.5rem', 
-        background: '#1a1a1a', 
+        padding: '2rem', 
+        background: '#161b22', 
         borderRadius: '8px',
-        border: '1px solid #333'
+        border: '1px solid #30363d',
+        marginBottom: '1.5rem'
       }}>
-        <p style={{ color: '#00ff00', margin: '0 0 0.5rem 0', fontSize: '1rem' }}>
-          🚧 More Coming Soon!
-        </p>
-        <p style={{ color: '#aaa', margin: 0, fontSize: '0.9rem' }}>
-          I'm working on more blog posts about my projects, AI experiments, and software engineering insights. 
-          Stay tuned!
+        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚧</div>
+        <h3 style={{ color: '#58a6ff', margin: '0 0 0.5rem 0', fontSize: '1.1rem' }}>
+          More Coming Soon
+        </h3>
+        <p style={{ color: '#8b949e', margin: 0, fontSize: '0.9rem', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>
+          Working on posts about AI experiments, hackathon wins, and engineering insights
         </p>
       </div>
 
-      <ButtonContainer style={{ justifyContent: 'center', marginTop: '2rem' }}>
+      {/* CTA */}
+      <ButtonContainer style={{ justifyContent: 'center' }}>
         <ActionButton
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => onNavigate('projects')}
+          style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
         >
           🚀 View Projects
         </ActionButton>
@@ -68,6 +78,7 @@ const BlogCommand: React.FC<BlogCommandProps> = ({ onNavigate }) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => onNavigate('contact')}
+          style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
         >
           📧 Get In Touch
         </ActionButton>

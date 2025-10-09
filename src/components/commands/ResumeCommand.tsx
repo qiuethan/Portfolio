@@ -1,11 +1,8 @@
 import React from 'react';
-import { FaDownload, FaFileAlt, FaEye } from 'react-icons/fa';
+import { FaDownload, FaEye } from 'react-icons/fa';
 import { portfolioData } from '../../data/portfolio';
 import {
   InteractiveCard,
-  CardHeader,
-  CardTitle,
-  CardContent,
   ButtonContainer,
   ActionButton
 } from '../shared/StyledComponents';
@@ -32,125 +29,105 @@ const ResumeCommand: React.FC<ResumeCommandProps> = ({ onNavigate }) => {
   };
 
   return (
-    <InteractiveCard
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <CardHeader>
-        <CardTitle>
-          <FaFileAlt />
-          📄 Resume
-        </CardTitle>
-      </CardHeader>
-      
-      <CardContent>
+    <div>
+      {/* Header */}
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <h1 style={{ color: '#58a6ff', fontSize: '1.5rem', margin: '0 0 0.5rem 0' }}>
+          Resume
+        </h1>
+        <p style={{ color: '#8b949e', margin: 0, fontSize: '0.9rem' }}>
+          Download or view my resume online
+        </p>
+      </div>
+
+      {/* Quick Info Cards */}
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+        gap: '1rem', 
+        marginBottom: '2rem' 
+      }}>
+        <InteractiveCard style={{ padding: '1.25rem', textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📋</div>
+          <h4 style={{ color: '#58a6ff', margin: '0 0 0.25rem 0', fontSize: '0.9rem' }}>Current Role</h4>
+          <p style={{ color: '#d4d4d4', margin: 0, fontSize: '0.85rem' }}>
+            {portfolioData.about.role}
+          </p>
+        </InteractiveCard>
+        
+        <InteractiveCard style={{ padding: '1.25rem', textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🎓</div>
+          <h4 style={{ color: '#58a6ff', margin: '0 0 0.25rem 0', fontSize: '0.9rem' }}>Education</h4>
+          <p style={{ color: '#d4d4d4', margin: 0, fontSize: '0.85rem' }}>
+            {portfolioData.about.university}
+          </p>
+        </InteractiveCard>
+        
+        <InteractiveCard style={{ padding: '1.25rem', textAlign: 'center' }}>
+          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📍</div>
+          <h4 style={{ color: '#58a6ff', margin: '0 0 0.25rem 0', fontSize: '0.9rem' }}>Location</h4>
+          <p style={{ color: '#d4d4d4', margin: 0, fontSize: '0.85rem' }}>
+            {portfolioData.about.location}
+          </p>
+        </InteractiveCard>
+      </div>
+
+      {/* Stats Card */}
+      <InteractiveCard style={{ 
+        padding: '1.5rem', 
+        marginBottom: '1.5rem',
+        border: '1px solid #58a6ff'
+      }}>
+        <h3 style={{ 
+          color: '#58a6ff', 
+          margin: '0 0 1rem 0', 
+          textAlign: 'center',
+          fontSize: '1rem'
+        }}>
+          Quick Stats
+        </h3>
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-          gap: '1.5rem', 
-          marginBottom: '2rem' 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', 
+          gap: '1rem',
+          textAlign: 'center'
         }}>
-          <div style={{ 
-            background: '#111', 
-            padding: '1.5rem', 
-            borderRadius: '8px', 
-            border: '1px solid #333',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📋</div>
-            <h4 style={{ color: '#00ccff', margin: '0 0 0.5rem 0' }}>Current Role</h4>
-            <p style={{ color: '#cccccc', margin: 0, fontSize: '0.9rem' }}>
-              {portfolioData.about.role}
-            </p>
+          <div>
+            <div style={{ color: '#58a6ff', fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+              Experience
+            </div>
+            <div style={{ color: '#d4d4d4', fontSize: '1.1rem', fontWeight: 600 }}>
+              {portfolioData.experience.length} Roles
+            </div>
           </div>
-          
-          <div style={{ 
-            background: '#111', 
-            padding: '1.5rem', 
-            borderRadius: '8px', 
-            border: '1px solid #333',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎓</div>
-            <h4 style={{ color: '#00ccff', margin: '0 0 0.5rem 0' }}>Education</h4>
-            <p style={{ color: '#cccccc', margin: 0, fontSize: '0.9rem' }}>
-              {portfolioData.about.university}
-            </p>
+          <div>
+            <div style={{ color: '#a371f7', fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+              Projects
+            </div>
+            <div style={{ color: '#d4d4d4', fontSize: '1.1rem', fontWeight: 600 }}>
+              {portfolioData.projects.length} Built
+            </div>
           </div>
-          
-          <div style={{ 
-            background: '#111', 
-            padding: '1.5rem', 
-            borderRadius: '8px', 
-            border: '1px solid #333',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📍</div>
-            <h4 style={{ color: '#00ccff', margin: '0 0 0.5rem 0' }}>Location</h4>
-            <p style={{ color: '#cccccc', margin: 0, fontSize: '0.9rem' }}>
-              {portfolioData.about.location}
-            </p>
+          <div>
+            <div style={{ color: '#58a6ff', fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+              Technologies
+            </div>
+            <div style={{ color: '#d4d4d4', fontSize: '1.1rem', fontWeight: 600 }}>
+              {Object.values(portfolioData.skills).flat().length}+
+            </div>
           </div>
         </div>
+      </InteractiveCard>
 
-        <div style={{ 
-          background: '#1a1a1a', 
-          padding: '1.5rem', 
-          borderRadius: '8px', 
-          border: '1px solid #00ff00',
-          marginBottom: '1.5rem'
-        }}>
-          <h4 style={{ color: '#00ff00', margin: '0 0 1rem 0', textAlign: 'center' }}>
-            📄 Resume Quick Facts
-          </h4>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', 
-            gap: '1rem',
-            textAlign: 'center'
-          }}>
-            <div>
-              <strong style={{ color: '#00ccff' }}>Experience:</strong><br />
-              <span style={{ color: '#cccccc' }}>{portfolioData.experience.length}+ Roles</span>
-            </div>
-            <div>
-              <strong style={{ color: '#00ccff' }}>Projects:</strong><br />
-              <span style={{ color: '#cccccc' }}>{portfolioData.projects.length}+ Projects</span>
-            </div>
-            <div>
-              <strong style={{ color: '#00ccff' }}>Skills:</strong><br />
-              <span style={{ color: '#cccccc' }}>
-                {Object.values(portfolioData.skills).flat().length}+ Technologies
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '1rem', 
-          background: '#111', 
-          borderRadius: '6px',
-          border: '1px solid #333',
-          marginBottom: '1.5rem'
-        }}>
-          <p style={{ color: '#00ff00', margin: '0 0 0.5rem 0', fontSize: '0.9rem' }}>
-            💡 Resume Actions
-          </p>
-          <p style={{ color: '#aaa', margin: 0, fontSize: '0.8rem' }}>
-            View online or download PDF for offline viewing and printing
-          </p>
-        </div>
-      </CardContent>
-      
-      <ButtonContainer style={{ justifyContent: 'center' }}>
+      {/* Main Action Buttons */}
+      <ButtonContainer style={{ justifyContent: 'center', marginBottom: '1rem' }}>
         <ActionButton
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleView}
+          style={{ fontSize: '0.9rem', padding: '0.75rem 1.5rem' }}
         >
-          <FaEye />
+          <FaEye size={14} style={{ marginRight: '0.5rem' }} />
           View Resume
         </ActionButton>
         <ActionButton
@@ -158,30 +135,42 @@ const ResumeCommand: React.FC<ResumeCommandProps> = ({ onNavigate }) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleDownload}
+          style={{ fontSize: '0.9rem', padding: '0.75rem 1.5rem' }}
         >
-          <FaDownload />
+          <FaDownload size={14} style={{ marginRight: '0.5rem' }} />
           Download PDF
         </ActionButton>
       </ButtonContainer>
 
-      <ButtonContainer style={{ justifyContent: 'center', marginTop: '1rem' }}>
+      {/* Navigation Buttons */}
+      <ButtonContainer style={{ justifyContent: 'center' }}>
         <ActionButton
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => onNavigate('experience')}
+          style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
         >
-          💼 View Experience
+          💼 Experience
         </ActionButton>
         <ActionButton
           className="secondary"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => onNavigate('contact')}
+          onClick={() => onNavigate('projects')}
+          style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
         >
-          📧 Get In Touch
+          🚀 Projects
+        </ActionButton>
+        <ActionButton
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => onNavigate('contact')}
+          style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
+        >
+          📧 Contact
         </ActionButton>
       </ButtonContainer>
-    </InteractiveCard>
+    </div>
   );
 };
 

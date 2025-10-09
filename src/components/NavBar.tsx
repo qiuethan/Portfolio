@@ -4,14 +4,15 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const NavContainer = styled.nav`
-  background: #1a1a1a;
-  border-bottom: 2px solid #00ff00;
+  background: #161b22;
+  border-bottom: 2px solid #30363d;
   padding: 0.75rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 60px;
   z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   
   @media (max-width: 768px) {
     padding: 0.5rem 1rem;
@@ -21,7 +22,7 @@ const NavContainer = styled.nav`
 `;
 
 const Logo = styled.div`
-  color: #00ff00;
+  color: #58a6ff;
   font-weight: bold;
   font-size: 1.1rem;
   
@@ -62,8 +63,8 @@ const SocialButtons = styled.div`
 
 const SocialButton = styled(motion.a)`
   background: transparent;
-  border: 1px solid #00ccff;
-  color: #00ccff;
+  border: 1px solid #a371f7;
+  color: #a371f7;
   padding: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
@@ -75,9 +76,9 @@ const SocialButton = styled(motion.a)`
   justify-content: center;
   
   &:hover {
-    background: #00ccff;
-    color: #0a0a0a;
-    box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+    background: #a371f7;
+    color: #0d1117;
+    box-shadow: 0 0 16px rgba(163, 113, 247, 0.4);
   }
   
   @media (max-width: 1024px) {
@@ -93,8 +94,8 @@ const SocialButton = styled(motion.a)`
 
 const NavButton = styled(motion.button)`
   background: transparent;
-  border: 1px solid #00ff00;
-  color: #00ff00;
+  border: 1px solid #58a6ff;
+  color: #58a6ff;
   padding: 0.5rem 1rem;
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;
@@ -103,9 +104,9 @@ const NavButton = styled(motion.button)`
   transition: all 0.3s ease;
   
   &:hover {
-    background: #00ff00;
-    color: #0a0a0a;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    background: #58a6ff;
+    color: #0d1117;
+    box-shadow: 0 0 16px rgba(88, 166, 255, 0.4);
   }
   
   @media (max-width: 1024px) {

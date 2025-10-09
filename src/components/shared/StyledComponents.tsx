@@ -3,16 +3,16 @@ import { motion } from 'framer-motion';
 
 // Interactive Card Components
 export const InteractiveCard = styled(motion.div)`
-  background: #1a1a1a;
-  border: 1px solid #00ff00;
+  background: #161b22;
+  border: 1px solid #30363d;
   border-radius: 8px;
   padding: 1.5rem;
   margin: 1rem 0;
   transition: all 0.3s ease;
   
   &:hover {
-    border-color: #00ccff;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    border-color: #58a6ff;
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.15);
   }
 `;
 
@@ -32,7 +32,7 @@ export const CardHeader = styled.div`
 `;
 
 export const CardTitle = styled.h3`
-  color: #00ccff;
+  color: #58a6ff;
   font-size: 1.2rem;
   margin: 0;
   display: flex;
@@ -41,7 +41,7 @@ export const CardTitle = styled.h3`
 `;
 
 export const CardContent = styled.div`
-  color: #cccccc;
+  color: #d4d4d4;
   line-height: 1.6;
   margin-bottom: 1rem;
 `;
@@ -55,8 +55,8 @@ export const ButtonContainer = styled.div`
 
 export const ActionButton = styled(motion.button)`
   background: transparent;
-  border: 1px solid #00ff00;
-  color: #00ff00;
+  border: 1px solid #58a6ff;
+  color: #58a6ff;
   padding: 0.5rem 1rem;
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;
@@ -68,19 +68,19 @@ export const ActionButton = styled(motion.button)`
   gap: 0.5rem;
   
   &:hover {
-    background: #00ff00;
-    color: #0a0a0a;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    background: #58a6ff;
+    color: #0d1117;
+    box-shadow: 0 0 16px rgba(88, 166, 255, 0.4);
   }
   
   &.secondary {
-    border-color: #00ccff;
-    color: #00ccff;
+    border-color: #a371f7;
+    color: #a371f7;
     
     &:hover {
-      background: #00ccff;
-      color: #0a0a0a;
-      box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+      background: #a371f7;
+      color: #0d1117;
+      box-shadow: 0 0 16px rgba(163, 113, 247, 0.4);
     }
   }
 `;
@@ -93,8 +93,8 @@ export const TechStack = styled.div`
 `;
 
 export const TechTag = styled.span`
-  background: #00ff00;
-  color: #0a0a0a;
+  background: #388bfd;
+  color: #ffffff;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
@@ -106,10 +106,10 @@ export const OutputLine = styled.div<{ type?: 'input' | 'output' | 'error' | 'su
   color: ${props => {
     switch (props.type) {
       case 'input': return '#ffffff';
-      case 'error': return '#ff4444';
-      case 'success': return '#00ff00';
-      case 'info': return '#00ccff';
-      default: return '#cccccc';
+      case 'error': return '#f85149';
+      case 'success': return '#58a6ff';
+      case 'info': return '#58a6ff';
+      default: return '#d4d4d4';
     }
   }};
   white-space: pre-wrap;
@@ -122,7 +122,7 @@ export const SkillCategory = styled.div`
 `;
 
 export const SkillCategoryTitle = styled.h4`
-  color: #00ccff;
+  color: #58a6ff;
   margin-bottom: 1rem;
   font-size: 1.1rem;
   display: flex;
@@ -137,17 +137,18 @@ export const SkillGrid = styled.div`
 `;
 
 export const SkillItem = styled.div`
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: #161b22;
+  border: 1px solid #30363d;
   padding: 0.75rem;
   border-radius: 6px;
   text-align: center;
   transition: all 0.3s ease;
   
   &:hover {
-    border-color: #00ff00;
-    background: #222;
+    border-color: #58a6ff;
+    background: #1c2128;
     transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(88, 166, 255, 0.15);
   }
 `;
 
@@ -163,18 +164,19 @@ export const ContactItem = styled.div`
   gap: 1rem;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  background: #111;
+  background: #0d1117;
   border-radius: 6px;
-  border: 1px solid #333;
+  border: 1px solid #30363d;
   transition: all 0.3s ease;
   
   &:hover {
-    border-color: #00ff00;
+    border-color: #58a6ff;
+    background: #161b22;
   }
 `;
 
 export const ContactIcon = styled.div`
-  color: #00ccff;
+  color: #58a6ff;
   font-size: 1.2rem;
   width: 24px;
   display: flex;
@@ -187,7 +189,7 @@ export const ContactInfo = styled.div`
 `;
 
 export const ContactLabel = styled.div`
-  color: #00ff00;
+  color: #58a6ff;
   font-size: 0.8rem;
   margin-bottom: 0.25rem;
   text-transform: uppercase;
@@ -195,37 +197,38 @@ export const ContactLabel = styled.div`
 `;
 
 export const ContactValue = styled.div`
-  color: #cccccc;
+  color: #d4d4d4;
   font-size: 0.9rem;
 `;
 
 // Blog Components
 export const BlogPost = styled(motion.div)`
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: #161b22;
+  border: 1px solid #30363d;
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1rem;
   
   &:hover {
-    border-color: #00ff00;
+    border-color: #58a6ff;
+    box-shadow: 0 0 12px rgba(88, 166, 255, 0.15);
   }
 `;
 
 export const BlogTitle = styled.h3`
-  color: #00ccff;
+  color: #58a6ff;
   margin: 0 0 0.5rem 0;
   font-size: 1.2rem;
 `;
 
 export const BlogDate = styled.div`
-  color: #666;
+  color: #8b949e;
   font-size: 0.8rem;
   margin-bottom: 1rem;
 `;
 
 export const BlogContent = styled.div`
-  color: #cccccc;
+  color: #d4d4d4;
   line-height: 1.6;
   white-space: pre-wrap;
 `; 

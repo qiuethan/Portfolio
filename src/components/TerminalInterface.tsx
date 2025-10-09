@@ -11,7 +11,7 @@ import { OutputLine } from './shared/StyledComponents';
 
 const FullScreenTerminal = styled.div`
   flex: 1;
-  background: #0a0a0a;
+  background: #0d1117;
   padding: 2rem;
   overflow-y: auto;
   font-family: 'Courier New', monospace;
@@ -26,18 +26,18 @@ const FullScreenTerminal = styled.div`
 const TerminalWindow = styled.div`
   width: 100%;
   height: 100%;
-  background: #0a0a0a;
-  border: 2px solid #00ff00;
+  background: #0d1117;
+  border: 2px solid #30363d;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  box-shadow: 0 0 30px rgba(88, 166, 255, 0.15);
 `;
 
 const TerminalHeader = styled.div`
-  background: #1a1a1a;
+  background: #161b22;
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #00ff00;
+  border-bottom: 1px solid #30363d;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,7 +56,7 @@ const TerminalButton = styled.div<{ color: string }>`
 `;
 
 const TerminalTitle = styled.span`
-  color: #00ff00;
+  color: #58a6ff;
   font-size: 0.9rem;
 `;
 
@@ -76,7 +76,7 @@ const InputLine = styled.div`
 `;
 
 const Prompt = styled.span`
-  color: #00ff00;
+  color: #58a6ff;
   margin-right: 0.5rem;
   user-select: none;
 `;
@@ -89,7 +89,7 @@ const CommandInput = styled.input`
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
   flex: 1;
-  caret-color: #00ff00;
+  caret-color: #58a6ff;
 `;
 
 interface Command {
@@ -235,27 +235,20 @@ const TerminalInterface: React.FC<TerminalInterfaceProps> = ({
   // Auto-scroll to top when new command is executed
   useEffect(() => {
     if (terminalBodyRef.current) {
-      terminalBodyRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      // Small delay to ensure content is rendered before scrolling
+      setTimeout(() => {
+        terminalBodyRef.current?.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 100);
     }
   }, [commands]);
 
-  // Welcome message
+  // Welcome message and auto-load about
   useEffect(() => {
-    const welcomeCommand: Command = {
-      input: '',
-      output: [
-        'Welcome to Ethan Qiu\'s Portfolio Terminal!',
-        '',
-        'Type "help" to see available commands.',
-        'Or try: about, projects, skills, experience, resume, contact, blog',
-        ''
-      ],
-      type: 'info'
-    };
-    setCommands([welcomeCommand]);
+    // Auto-execute the about command on load
+    executeCommand('about');
   }, []);
 
   return (

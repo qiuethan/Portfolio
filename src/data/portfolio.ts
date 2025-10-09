@@ -4,15 +4,9 @@ export const portfolioData = {
     role: "Software Engineer",
     location: "Toronto/Ottawa",
     university: "University of Toronto",
-    bio: `Hi, I'm Ethan Qiu — a software engineer with a strong interest in AI.
+    bio: `Software Engineer building AI-powered solutions and leading technical teams. Currently Engineering Director at UTMIST (1,000+ members) and Project Lead at UofT Blueprint. Previously at General Dynamics Mission Systems - Canada.
 
-Right now, I'm working at General Dynamics Mission Systems - Canada and contributing to UTMIST (University of Toronto Machine Intelligence Student Team), where I get to build cool things and learn alongside some amazing people. I'm also actively developing two personal projects: *Bounce Back*, a mental health app powered by AI, and *Road to 1 Million*, a goal-tracking app designed to turn ambition into progress.
-
-What I love most about software is its power — the way a few lines of code can shape ideas, tools, and entire experiences. I'm always looking to turn real-world problems into clean, scalable solutions.
-
-Outside the terminal, I play badminton, compete in debate, and explore ideas that connect tech with people.
-
-Always building. Always curious.`
+Turning ideas into production-ready systems. Always shipping.`
   },
   projects: [
     {
@@ -106,7 +100,7 @@ Always building. Always curious.`
     {
       title: "🛡️ Software Engineer (Co-op)",
       company: "General Dynamics Mission Systems–Canada",
-      period: "2025 - Present",
+      period: "May 2025 - Aug 2025",
       responsibilities: [
         "Designed and developed a key plugin tool, including location configuration and support using Java Maven, PowerShell scripting, and custom installers",
         "Built a custom application testing library in Python, increasing testing efficiency by 50%",
@@ -115,26 +109,48 @@ Always building. Always curious.`
       tech: ["Java", "Python", "Maven", "PowerShell", "GitLab", "CI/CD"]
     },
     {
-      title: "🧠 Full Stack Developer",
-      company: "UofT Machine Intelligence Student Team (UTMIST)",
-      period: "2025 - Present",
+      title: "🤖 Engineering Director - Industry Collaborations",
+      company: "University of Toronto Machine Intelligence Student Team (UTMIST)",
+      period: "Jun 2025 - Present",
+      responsibilities: [
+        "Leading industry partnership initiatives and collaborative projects between UTMIST and external organizations",
+        "Managing engineering teams and establishing best practices for machine learning project development",
+        "Coordinating cross-functional teams to deliver high-impact AI solutions for industry partners"
+      ],
+      tech: ["Machine Learning", "Project Management", "Team Leadership", "Python"]
+    },
+    {
+      title: "🧠 Machine Learning Engineer",
+      company: "University of Toronto Machine Intelligence Student Team (UTMIST)",
+      period: "Jul 2025 - Present",
+      responsibilities: [
+        "Developing and deploying machine learning models for research and production environments",
+        "Implementing MLOps pipelines and model monitoring systems",
+        "Collaborating with research teams on cutting-edge AI projects and publications"
+      ],
+      tech: ["PyTorch", "TensorFlow", "Python", "MLOps", "Model Deployment"]
+    },
+    {
+      title: "⚙️ Software Developer - Infrastructure",
+      company: "University of Toronto Machine Intelligence Student Team (UTMIST)",
+      period: "May 2025 - Present",
       responsibilities: [
         "Implemented full authentication system and backend endpoints using Django REST APIs and PostgreSQL",
         "Streamlined deployment workflows with GitHub Actions CI/CD, reducing deployment errors by 90%",
-        "Supported 1,000+ students and researchers, ensuring reliable access and rapid iteration cycles"
+        "Built and maintained infrastructure supporting 1,000+ students and researchers"
       ],
-      tech: ["Django", "React", "PostgreSQL", "GitHub Actions", "Python", "JavaScript"]
+      tech: ["Django", "React", "PostgreSQL", "GitHub Actions", "Python", "TypeScript"]
     },
     {
-      title: "🎙️ Tournaments Director",
-      company: "Hart House Debating Club",
-      period: "2024 - Present",
+      title: "🚀 Project Lead",
+      company: "UofT Blueprint",
+      period: "Aug 2025 - Present",
       responsibilities: [
-        "Led a team of 20+ organizers, planning workflows that enabled 30% of deliverables to be completed early",
-        "Developed Python and JavaScript Automation Tools that reduced turnaround time on key tasks by 25%",
-        "Organized events for 360+ students, achieving a 91% satisfaction rate and exceeding revenue targets by $7,000"
+        "Leading end-to-end development of technical projects for non-profit organizations",
+        "Managing product roadmap and coordinating with stakeholders to deliver impactful solutions",
+        "Mentoring development teams and ensuring high code quality standards"
       ],
-      tech: ["Python", "JavaScript"]
+      tech: ["React", "Node.js", "Project Management", "Full Stack Development"]
     },
     {
       title: "💻 Problem Writer",
@@ -153,7 +169,7 @@ Always building. Always curious.`
       period: "Sep 2020 - Sep 2023",
       responsibilities: [
         "Designed and delivered comprehensive Python and Java courses for 30+ students",
-        "Proactively sought constructive feedback and adapted class content accordingly to best meet student needs",
+        "Proactively sought constructive feedback and adapted class content accordingly to best meet student needs, attaining an 85% satisfaction rate",
         "Developed curriculum covering programming fundamentals, object-oriented programming, and practical applications"
       ],
       tech: ["Python", "Java", "Curriculum Development", "Teaching"]

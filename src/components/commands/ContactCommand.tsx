@@ -3,9 +3,7 @@ import { FaEnvelope, FaGithub, FaLinkedin, FaCopy } from 'react-icons/fa';
 import { portfolioData } from '../../data/portfolio';
 import {
   ContactCard,
-  ContactItem,
   ContactIcon,
-  ContactInfo,
   ContactLabel,
   ContactValue,
   ButtonContainer,
@@ -44,83 +42,94 @@ const ContactCommand: React.FC<ContactCommandProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <ContactCard
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
+    <>
+      {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <h2 style={{ color: '#00ccff', margin: '0 0 0.5rem 0' }}>
-          📧 Get In Touch
-        </h2>
-        <p style={{ color: '#cccccc', margin: 0 }}>
-          Let's connect and build something amazing together!
+        <h1 style={{ color: '#58a6ff', fontSize: '1.5rem', margin: '0 0 0.5rem 0' }}>
+          Get In Touch
+        </h1>
+        <p style={{ color: '#8b949e', margin: 0, fontSize: '0.9rem' }}>
+          Let's connect and build something amazing together
         </p>
       </div>
 
-      {contactItems.map((item, index) => (
-        <ContactItem key={index}>
-          <ContactIcon>{item.icon}</ContactIcon>
-          <ContactInfo>
-            <ContactLabel>{item.label}</ContactLabel>
-            <ContactValue>{item.value}</ContactValue>
-          </ContactInfo>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <ActionButton
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={item.action}
-              style={{ padding: '0.5rem' }}
-            >
-              {item.label === 'Email' ? '📧' : item.label === 'GitHub' ? '🔗' : '💼'}
-            </ActionButton>
-            <ActionButton
-              className="secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => copyToClipboard(item.value)}
-              style={{ padding: '0.5rem' }}
-            >
-              <FaCopy />
-            </ActionButton>
-          </div>
-        </ContactItem>
-      ))}
-
-      <div style={{ 
-        textAlign: 'center', 
-        marginTop: '2rem', 
-        padding: '1rem', 
-        background: '#111', 
-        borderRadius: '6px',
-        border: '1px solid #333'
+      {/* Contact Cards - Sleek Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: '1rem',
+        marginBottom: '2rem'
       }}>
-        <p style={{ color: '#00ff00', margin: '0 0 0.5rem 0', fontSize: '0.9rem' }}>
-          💡 Quick Tip
-        </p>
-        <p style={{ color: '#aaa', margin: 0, fontSize: '0.8rem' }}>
-          Click the copy button to copy contact info to your clipboard!
-        </p>
+        {contactItems.map((item, index) => (
+          <ContactCard
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            style={{ padding: '1.5rem' }}
+          >
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '1rem',
+              marginBottom: '1rem'
+            }}>
+              <ContactIcon style={{ fontSize: '1.5rem' }}>{item.icon}</ContactIcon>
+              <div style={{ flex: 1 }}>
+                <ContactLabel style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>
+                  {item.label}
+                </ContactLabel>
+                <ContactValue style={{ fontSize: '0.95rem' }}>
+                  {item.value}
+                </ContactValue>
+              </div>
+            </div>
+            
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <ActionButton
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={item.action}
+                style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', flex: 1 }}
+              >
+                Open
+              </ActionButton>
+              <ActionButton
+                className="secondary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => copyToClipboard(item.value)}
+                style={{ fontSize: '0.75rem', padding: '0.5rem 1rem', flex: 1 }}
+              >
+                <FaCopy size={12} />
+                Copy
+              </ActionButton>
+            </div>
+          </ContactCard>
+        ))}
       </div>
 
-      <ButtonContainer style={{ justifyContent: 'center', marginTop: '2rem' }}>
+      {/* CTA */}
+      <ButtonContainer style={{ justifyContent: 'center' }}>
         <ActionButton
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => onNavigate('about')}
+          onClick={() => onNavigate('resume')}
+          style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
         >
-          👤 Back to About
+          📄 Download Resume
         </ActionButton>
         <ActionButton
           className="secondary"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => onNavigate('blog')}
+          onClick={() => onNavigate('projects')}
+          style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
         >
-          📝 Read Blog
+          🚀 View Projects
         </ActionButton>
       </ButtonContainer>
-    </ContactCard>
+    </>
   );
 };
 

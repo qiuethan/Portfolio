@@ -13,8 +13,8 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: 'Courier New', 'Lucida Console', Monaco, monospace;
-    background: #0a0a0a;
-    color: #00ff00;
+    background: #0d1117;
+    color: #d4d4d4;
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -23,13 +23,13 @@ const GlobalStyles = createGlobalStyle`
 
   /* Selection colors */
   ::selection {
-    background: #00ff00;
-    color: #0a0a0a;
+    background: #58a6ff;
+    color: #ffffff;
   }
 
   ::-moz-selection {
-    background: #00ff00;
-    color: #0a0a0a;
+    background: #58a6ff;
+    color: #ffffff;
   }
 
   /* Custom scrollbar */
@@ -38,16 +38,16 @@ const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+    background: #161b22;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #00ff00;
+    background: #30363d;
     border-radius: 6px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #00cc00;
+    background: #484f58;
   }
 
   /* Terminal cursor animation */
@@ -60,7 +60,7 @@ const GlobalStyles = createGlobalStyle`
     display: inline-block;
     width: 2px;
     height: 1.2em;
-    background: #00ff00;
+    background: #58a6ff;
     animation: blink 1s infinite;
     vertical-align: text-top;
   }
@@ -74,7 +74,7 @@ const GlobalStyles = createGlobalStyle`
   .typing {
     overflow: hidden;
     white-space: nowrap;
-    border-right: 2px solid #00ff00;
+    border-right: 2px solid #58a6ff;
     animation: typing 2s steps(40, end), blink 1s infinite step-end;
   }
 
@@ -96,14 +96,14 @@ const GlobalStyles = createGlobalStyle`
 
   /* Links */
   a {
-    color: #00ff00;
+    color: #58a6ff;
     text-decoration: underline;
     transition: color 0.3s ease;
   }
 
   a:hover {
-    color: #00cc00;
-    text-shadow: 0 0 5px #00ff00;
+    color: #79c0ff;
+    text-shadow: 0 0 8px rgba(88, 166, 255, 0.4);
   }
 
   /* Focus styles */

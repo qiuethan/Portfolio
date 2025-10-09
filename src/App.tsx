@@ -7,8 +7,8 @@ import GlobalStyles from './styles/GlobalStyles';
 
 const AppContainer = styled.div`
   min-height: 100vh;
-  background: #0a0a0a;
-  color: #00ff00;
+  background: #0d1117;
+  color: #d4d4d4;
   font-family: 'Courier New', monospace;
   overflow: hidden;
   display: flex;
