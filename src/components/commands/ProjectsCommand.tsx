@@ -50,7 +50,7 @@ const ProjectsCommand: React.FC<ProjectsCommandProps> = ({ onNavigate }) => {
               margin: '0 0 0.75rem 0',
               fontWeight: 600
             }}>
-              {project.name.replace(/🌌|🐾|💰|🛒|📱|🧠|🌐|🤖|🚶|🛡️/g, '').trim()}
+              {project.name.replace(/🌌|🐾|💰|🛒|📱|🧠|🌐|🤖|🚶|🛡️|🆔|🎮/g, '').trim()}
             </h3>
             
             {/* Description */}
@@ -106,16 +106,18 @@ const ProjectsCommand: React.FC<ProjectsCommandProps> = ({ onNavigate }) => {
                   Demo
                 </ActionButton>
               )}
-              <ActionButton
-                className="secondary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => window.open(project.github, '_blank')}
-                style={{ fontSize: '0.75rem', padding: '0.4rem 0.75rem', flex: 1 }}
-              >
-                <FaGithub size={10} />
-                Code
-              </ActionButton>
+              {project.github && (
+                <ActionButton
+                  className="secondary"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => window.open(project.github!, '_blank')}
+                  style={{ fontSize: '0.75rem', padding: '0.4rem 0.75rem', flex: 1 }}
+                >
+                  <FaGithub size={10} />
+                  Code
+                </ActionButton>
+              )}
             </div>
           </InteractiveCard>
         ))}

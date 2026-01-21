@@ -10,6 +10,22 @@ Turning ideas into production-ready systems. Always shipping.`
   },
   projects: [
     {
+      name: "🆔 Identity Matrix",
+      description: "Persistent multiplayer world where avatars become independent AI agents",
+      tech: ["React", "TypeScript", "Phaser 3", "Node.js", "FastAPI", "Python", "Supabase", "WebSockets", "Grok", "Gemini"],
+      github: "https://github.com/qiuethan/UofTHacks-Project",
+      live: "https://devpost.com/software/temp-sqyptg",
+      details: "🏆 Winner @ UofT Hacks 2026: A persistent multiplayer world where avatars become independent AI agents after you log off. Identity Matrix is a real-time multiplayer simulation where a user's avatar transforms into a stateful AI agent that continues to exist and interact in the virtual world even after the user logs off. The AI learns the user's personality, interests, and communication style, navigating the world, managing basic needs, and proactively seeking interactions. Features a continual learning loop, a hand-made real-time multiplayer world, and a spectator mode."
+    },
+    {
+      name: "🎮 Heimer Academy",
+      description: "AI-powered coaching that recommends champions based on your playstyle",
+      tech: ["Python", "React", "TypeScript", "FastAPI", "Amazon Bedrock", "SageMaker", "Supabase", "Riot API"],
+      github: "https://github.com/qiuethan/Rift-Rewind-Project",
+      live: "https://devpost.com/software/idk-evraiq",
+      details: "🏆 1st Place @ Rift Rewind Hackathon: AI-powered coaching that recommends champions based on your playstyle and mastery. Heimer provides personalized coaching by recommending new champions based on your playstyle using mastery data and teaching abilities by comparing them to champions you already know. Uses Amazon Bedrock and Riot API to deliver tailored insights."
+    },
+    {
       name: "🌌 Orbit - Real-Time Social Intelligence Platform",
       description: "Real-time social intelligence platform that integrates computer vision, Whisper transcription, and LLMs to deliver instant recognition, live transcription, and context-aware follow-ups",
       tech: ["Python", "Computer Vision", "Whisper", "LLMs", "Real-time Processing", "Groq", "Windsurf"],

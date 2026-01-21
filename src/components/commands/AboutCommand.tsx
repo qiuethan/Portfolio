@@ -110,7 +110,7 @@ const AboutCommand: React.FC<AboutCommandProps> = ({ onNavigate }) => {
                 margin: '0 0 0.5rem 0',
                 fontWeight: 600
               }}>
-                {project.name.replace(/🌌|🐾|💰|🛒|📱|🧠|🌐|🤖|🚶|🛡️/g, '').trim()}
+                {project.name.replace(/🌌|🐾|💰|🛒|📱|🧠|🌐|🤖|🚶|🛡️|🆔|🎮/g, '').trim()}
               </h3>
               <p style={{ 
                 color: '#d4d4d4', 
@@ -135,18 +135,20 @@ const AboutCommand: React.FC<AboutCommandProps> = ({ onNavigate }) => {
                     <FaExternalLinkAlt size={10} />
                   </ActionButton>
                 )}
-                <ActionButton
-                  as="a"
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="secondary"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{ fontSize: '0.7rem', padding: '0.3rem 0.6rem', flex: 1 }}
-                >
-                  <FaGithub size={10} />
-                </ActionButton>
+                {project.github && (
+                  <ActionButton
+                    as="a"
+                    href={project.github!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="secondary"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{ fontSize: '0.7rem', padding: '0.3rem 0.6rem', flex: 1 }}
+                  >
+                    <FaGithub size={10} />
+                  </ActionButton>
+                )}
               </div>
             </InteractiveCard>
           ))}
