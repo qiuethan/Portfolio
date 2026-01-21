@@ -15,7 +15,7 @@ Turning ideas into production-ready systems. Always shipping.`
       tech: ["React", "TypeScript", "Phaser 3", "Node.js", "FastAPI", "Python", "Supabase", "WebSockets", "Grok", "Gemini"],
       github: "https://github.com/qiuethan/UofTHacks-Project",
       live: "https://devpost.com/software/temp-sqyptg",
-      details: "🏆 Winner @ UofT Hacks 2026: A persistent multiplayer world where avatars become independent AI agents after you log off. Identity Matrix is a real-time multiplayer simulation where a user's avatar transforms into a stateful AI agent that continues to exist and interact in the virtual world even after the user logs off. The AI learns the user's personality, interests, and communication style, navigating the world, managing basic needs, and proactively seeking interactions. Features a continual learning loop, a hand-made real-time multiplayer world, and a spectator mode."
+      details: "🏆 1st Place @ UofT Hacks 2026: A persistent multiplayer world where avatars become independent AI agents after you log off. Identity Matrix is a real-time multiplayer simulation where a user's avatar transforms into a stateful AI agent that continues to exist and interact in the virtual world even after the user logs off. The AI learns the user's personality, interests, and communication style, navigating the world, managing basic needs, and proactively seeking interactions. Features a continual learning loop, a hand-made real-time multiplayer world, and a spectator mode."
     },
     {
       name: "🎮 Heimer Academy",
