@@ -8,7 +8,7 @@ import {
 } from '../shared/StyledComponents';
 
 // Import the resume PDF
-import resumePDF from '../../data/EthanQiu_Resume_Linkedin.pdf';
+import resumePDF from '../../data/Resume_EthanQiu_Portfolio.pdf';
 
 interface ResumeCommandProps {
   onNavigate: (command: string) => void;
