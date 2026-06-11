@@ -4,7 +4,7 @@ export const portfolioData = {
     role: "Software Engineer",
     location: "Toronto/Ottawa",
     university: "University of Toronto",
-    bio: `Software Engineer building AI-powered solutions and leading technical teams. Currently Engineering Director at UTMIST (1,000+ members) and Project Lead at UofT Blueprint. Previously at General Dynamics Mission Systems - Canada.
+    bio: `Software Engineer building AI-powered solutions and leading technical teams. Currently a Software Engineer Intern at Shopify. Previously Engineering Director at UTMIST (1,000+ members), Project Lead at UofT Blueprint, and at General Dynamics Mission Systems - Canada.
 
 Turning ideas into production-ready systems. Always shipping.`
   },
@@ -13,17 +13,17 @@ Turning ideas into production-ready systems. Always shipping.`
       name: "🆔 Identity Matrix",
       description: "Persistent multiplayer world where avatars become independent AI agents",
       tech: ["React", "TypeScript", "Phaser 3", "Node.js", "FastAPI", "Python", "Supabase", "WebSockets", "Grok", "Gemini"],
-      github: "https://github.com/qiuethan/UofTHacks-Project",
+      github: "https://github.com/qiuethan/Identity-Matrix",
       live: "https://devpost.com/software/temp-sqyptg",
       details: "🏆 1st Place @ UofT Hacks 2026: A persistent multiplayer world where avatars become independent AI agents after you log off. Identity Matrix is a real-time multiplayer simulation where a user's avatar transforms into a stateful AI agent that continues to exist and interact in the virtual world even after the user logs off. The AI learns the user's personality, interests, and communication style, navigating the world, managing basic needs, and proactively seeking interactions. Features a continual learning loop, a hand-made real-time multiplayer world, and a spectator mode."
     },
     {
       name: "🎮 Heimer Academy",
       description: "AI-powered coaching that recommends champions based on your playstyle",
-      tech: ["Python", "React", "TypeScript", "FastAPI", "Amazon Bedrock", "SageMaker", "Supabase", "Riot API"],
-      github: "https://github.com/qiuethan/Rift-Rewind-Project",
+      tech: ["Python", "React", "TypeScript", "FastAPI", "AWS", "Amazon Bedrock", "SageMaker", "PostgreSQL", "Supabase", "Riot API"],
+      github: "https://github.com/qiuethan/Heimer-Academy",
       live: "https://devpost.com/software/idk-evraiq",
-      details: "🏆 1st Place @ Rift Rewind Hackathon: AI-powered coaching that recommends champions based on your playstyle and mastery. Heimer provides personalized coaching by recommending new champions based on your playstyle using mastery data and teaching abilities by comparing them to champions you already know. Uses Amazon Bedrock and Riot API to deliver tailored insights."
+      details: "🏆 1st Place Overall @ Rift Rewind AWS Hackathon: AI-powered coaching that recommends champions based on your playstyle and mastery. A scalable cloud-native analytics platform built on AWS, computing metrics across 2,000+ games with distributed ML pipelines using Amazon SageMaker and Bedrock, executing 100,000+ model calls. Heimer provides personalized coaching by recommending new champions based on your playstyle using mastery data and teaching abilities by comparing them to champions you already know."
     },
     {
       name: "🌌 Orbit - Real-Time Social Intelligence Platform",
@@ -107,33 +107,44 @@ Turning ideas into production-ready systems. Always shipping.`
     }
   ],
   skills: {
-    languages: ["Java", "Python", "JavaScript", "TypeScript", "C++", "PostgreSQL", "HTML5", "CSS3", "PowerShell"],
-    frameworks: ["React", "React Native", "Django", "Node.js", "FastAPI", "Express.js", "Tailwind CSS"],
-    libraries: ["PyTorch", "TensorFlow", "Pandas", "NumPy", "Three.js", "MediaPipe", "OpenCV", "LangChain", "YOLO"],
-    tools: ["Docker", "Git", "GitHub", "GitLab", "Firebase", "Google Cloud", "Vite", "Vercel", "Maven", "GitHub Actions", "WebSockets", "Jupyter Notebook"]
+    languages: ["Python", "Java", "JavaScript", "TypeScript", "Ruby", "C/C++", "SQL", "Swift", "HTML5", "CSS3", "PowerShell"],
+    frameworks: ["React", "React Native", "Ruby on Rails", "FastAPI", "Django", "Node.js", "Express.js", "Next.js", "GraphQL", "Tailwind CSS"],
+    libraries: ["PyTorch", "TensorFlow", "XGBoost", "Pandas", "NumPy", "Three.js", "MediaPipe", "OpenCV", "LangChain", "YOLO"],
+    tools: ["AWS (S3, EC2, Lambda, SageMaker, Bedrock)", "Docker", "PostgreSQL", "Git", "GitHub", "GitLab", "Firebase", "Google Cloud", "Xcode", "Vite", "Vercel", "Maven", "GitHub Actions", "WebSockets", "Jupyter Notebook"]
   },
   experience: [
+    {
+      title: "🛍️ Software Engineer Intern",
+      company: "Shopify",
+      period: "Apr 2026 - Present",
+      responsibilities: [
+        "Shipped Shopify's new variant publishing and bulk-edit flows, resolving 10+ merchant-reported bugs and rolling out to 140,000+ stores",
+        "Built the Managed Markets publishing experience in React and GraphQL, surfacing sellability status, restriction reasons, and AI-powered explanations across 190+ countries",
+        "Architected the UI, APIs, and Sidekick AI integration for the core prototype of Shopify's agentic-commerce Product Details redesign, used by millions of merchants to manage their products"
+      ],
+      tech: ["React", "TypeScript", "GraphQL", "Ruby on Rails"]
+    },
     {
       title: "🛡️ Software Engineer (Co-op)",
       company: "General Dynamics Mission Systems–Canada",
       period: "May 2025 - Aug 2025",
       responsibilities: [
-        "Designed and developed a key plugin tool, including location configuration and support using Java Maven, PowerShell scripting, and custom installers",
-        "Built a custom application testing library in Python, increasing testing efficiency by 50%",
-        "Participated in agile sprints, PI planning, and code reviews to improve delivery speed and code quality"
+        "Spearheaded a modular Python automation framework, reducing regression runtime by 50%",
+        "Delivered internal Java and Python tooling adopted by 3 engineering teams, eliminating 8 manual test steps",
+        "Drove improvements to test coverage and reliability across 15 production PRs"
       ],
       tech: ["Java", "Python", "Maven", "PowerShell", "GitLab", "CI/CD"]
     },
     {
       title: "🤖 Engineering Director - Industry Collaborations",
       company: "University of Toronto Machine Intelligence Student Team (UTMIST)",
-      period: "Jun 2025 - Present",
+      period: "May 2025 - Apr 2026",
       responsibilities: [
-        "Leading industry partnership initiatives and collaborative projects between UTMIST and external organizations",
-        "Managing engineering teams and establishing best practices for machine learning project development",
-        "Coordinating cross-functional teams to deliver high-impact AI solutions for industry partners"
+        "Led development across 4 industry projects, coordinating 20+ developers with weekly sprint cycles",
+        "Developed an agentic credit card recommendation system using LangChain and vector databases for Flybits",
+        "Co-developed PyTorch and XGBoost models powering pricing decisions for Amicare's home care platform"
       ],
-      tech: ["Machine Learning", "Project Management", "Team Leadership", "Python"]
+      tech: ["Machine Learning", "LangChain", "PyTorch", "XGBoost", "Project Management", "Team Leadership", "Python"]
     },
     {
       title: "🧠 Machine Learning Engineer",
@@ -160,13 +171,13 @@ Turning ideas into production-ready systems. Always shipping.`
     {
       title: "🚀 Project Lead",
       company: "UofT Blueprint",
-      period: "Aug 2025 - Present",
+      period: "May 2025 - Apr 2026",
       responsibilities: [
-        "Leading end-to-end development of technical projects for non-profit organizations",
-        "Managing product roadmap and coordinating with stakeholders to deliver impactful solutions",
-        "Mentoring development teams and ensuring high code quality standards"
+        "Owned delivery of the Museum of Digital Entertainment's digital inventory platform (50,000+ artifacts), managing 10 developers and shipping first release in 6 weeks",
+        "Designed scalable REST APIs, role-based access control, and optimized PostgreSQL schemas",
+        "Established CI/CD pipelines and deployment workflows, ensuring operational reliability for partner teams"
       ],
-      tech: ["React", "Node.js", "Project Management", "Full Stack Development"]
+      tech: ["React", "Node.js", "PostgreSQL", "REST APIs", "CI/CD", "Project Management"]
     },
     {
       title: "💻 Problem Writer",
