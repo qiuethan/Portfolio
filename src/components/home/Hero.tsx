@@ -61,7 +61,19 @@ const HeroWrap = styled.header`
 
   @media (max-width: 700px) {
     grid-template-columns: 1fr;
+    gap: 28px;
     margin-bottom: 36px;
+    text-align: center;
+
+    h1,
+    .lede {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-row {
+      justify-content: center;
+    }
   }
 `;
 
@@ -121,9 +133,9 @@ const PhotoStack = styled.div`
     }
   }
 
+  /* mobile: drop the photo stack entirely and lead with the text */
   @media (max-width: 700px) {
-    height: 260px;
-    max-width: 360px;
+    display: none;
   }
 `;
 
@@ -137,10 +149,19 @@ const IdCard = styled(Glass)`
   font-size: 11.5px;
   line-height: 1.7;
   color: var(--ink);
+  text-align: left;
   transform: rotate(1deg);
 
   .clock {
     color: var(--accent);
+  }
+
+  @media (max-width: 480px) {
+    right: 0;
+    bottom: 28px;
+    padding: 9px 12px;
+    font-size: 10.5px;
+    line-height: 1.6;
   }
 `;
 

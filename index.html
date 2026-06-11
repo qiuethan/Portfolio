@@ -9,6 +9,9 @@
     <meta name="keywords" content="Software Engineer, AI, React, TypeScript, Python, Portfolio, Full Stack Developer" />
     <meta name="author" content="Ethan Qiu" />
     <meta name="theme-color" content="#e6edf5" />
+    <!-- Machine-readable entry points for agents/crawlers -->
+    <link rel="alternate" type="text/markdown" title="llms.txt" href="/llms.txt" />
+    <link rel="alternate" type="text/markdown" title="Live status (now)" href="https://now.ethanqiu.ca/now.md" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -28,6 +31,32 @@
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      Fallback for agents/crawlers that fetch HTML without running JavaScript.
+      The interactive site is a client-rendered SPA; this static block makes the
+      core facts and machine-readable sources reachable without a render pass.
+    -->
+    <noscript>
+      <main style="max-width: 720px; margin: 0 auto; padding: 40px 24px; font-family: system-ui, sans-serif; line-height: 1.6;">
+        <h1>Ethan Qiu — Software Engineer</h1>
+        <p>Toronto / Ottawa · University of Toronto. Software Engineer Intern at Shopify, building AI-powered solutions and leading technical teams.</p>
+
+        <h2>Links &amp; resume</h2>
+        <ul>
+          <li>Resume: <a href="https://ethanqiu.ca/resume.pdf">ethanqiu.ca/resume.pdf</a> — canonical resume, start here</li>
+          <li>GitHub: <a href="https://github.com/qiuethan">github.com/qiuethan</a></li>
+          <li>LinkedIn: <a href="https://linkedin.com/in/qiu-ethan">linkedin.com/in/qiu-ethan</a></li>
+          <li>Email: <a href="mailto:ethanqiu@gmail.com">ethanqiu@gmail.com</a></li>
+          <li>Overview for agents: <a href="/llms.txt">/llms.txt</a></li>
+        </ul>
+
+        <p style="margin-top: 28px; font-size: 14px; color: #525c6e;">
+          Current role, availability, and recent coding activity are auto-updated hourly at
+          <a href="https://now.ethanqiu.ca/now.md">now.ethanqiu.ca/now.md</a>
+          (<a href="https://now.ethanqiu.ca/now.json">JSON</a>) — check it for anything time-sensitive.
+        </p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
