@@ -113,7 +113,7 @@ const ROLES = [
     role: 'Software Engineer Intern',
     company: 'Shopify',
     line: 'Variant publishing and bulk-edit flows for 140,000+ stores; built the core prototype of the agentic-commerce Product Details redesign.',
-    logo: '/img/shopify.png',
+    logo: '/img/logos/shopify.png',
     data: findRole('Shopify'),
   },
   {
@@ -121,7 +121,7 @@ const ROLES = [
     role: 'Software Engineer (Co-op)',
     company: 'General Dynamics Mission Systems',
     line: 'Spearheaded a modular Python automation framework that cut regression runtime in half; tooling adopted by three engineering teams.',
-    logo: '/img/gdms.png',
+    logo: '/img/logos/gdms.png',
     data: findRole('General Dynamics'),
   },
   {
@@ -129,7 +129,7 @@ const ROLES = [
     role: 'Engineering Director, Industry',
     company: 'UTMIST',
     line: 'Led four industry projects and 20+ developers, including an agentic credit-card recommender for Flybits and pricing models for Amicare.',
-    logo: '/img/utmist.svg',
+    logo: '/img/logos/utmist.svg',
     data: findRole('Engineering Director'),
   },
   {
@@ -137,7 +137,7 @@ const ROLES = [
     role: 'Project Lead',
     company: 'UofT Blueprint',
     line: 'Shipped a 50,000-artifact inventory platform for the Museum of Digital Entertainment with 10 developers; first release in six weeks.',
-    logo: '/img/blueprint.png',
+    logo: '/img/logos/blueprint.png',
     data: findRole('UofT Blueprint'),
   },
 ];

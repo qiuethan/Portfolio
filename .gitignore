@@ -16,6 +16,13 @@ dist-ssr
 .design-reference
 ethanqiu-site.zip
 
+# Pasted/original source images at repo root (web copies live in public/img/)
+/image.png
+/IMG_*.png
+/IMG_*.jpg
+/IMG_*.HEIC
+/*.HEIC
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

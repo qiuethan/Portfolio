@@ -160,7 +160,7 @@ const Hero: React.FC = () => {
   return (
     <HeroWrap>
       <div>
-        <p className="kicker">Software Engineer · Toronto · <b>Currently @ Shopify</b></p>
+        <p className="kicker">Software Engineer · Toronto · Hopeless Romantic · <b>Currently @ Shopify</b></p>
         <h1>I commit daily,<br />even if they don&apos;t.</h1>
         <p className="lede">
           I&apos;m Ethan. I build <strong>AI tooling and full-stack systems</strong>.
@@ -175,8 +175,17 @@ const Hero: React.FC = () => {
       </div>
       <PhotoStack aria-label="Photos of Ethan and Toronto">
         <Photo className="p3" label="A hack weekend" />
-        <Photo className="p1" label={'Your photo, ideally candid\nover a headshot'} />
-        <Photo className="p2" label="Toronto, or your desk" />
+        <Photo
+          className="p1"
+          src="/img/photos/me-toronto.jpg"
+          alt="Ethan in front of the Toronto skyline"
+        />
+        <Photo
+          className="p2"
+          src="/img/photos/uoft-campus.jpg"
+          alt="King's College Circle at the University of Toronto on a winter night"
+          position="center 40%"
+        />
         <IdCard lit>
           Ethan Qiu<br />
           43.65°N, 79.38°W<br />

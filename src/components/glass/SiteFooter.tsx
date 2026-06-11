@@ -26,7 +26,6 @@ const SiteFooter: React.FC = () => (
       <a href={portfolioData.contact.github} target="_blank" rel="noopener">GitHub</a> ·{' '}
       <a href={portfolioData.contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
     </p>
-    <p>Set in Bricolage Grotesque · built by hand in Toronto</p>
   </FooterWrap>
 );
 

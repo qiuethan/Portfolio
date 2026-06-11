@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { glassCss } from './Glass';
 
-const PhotoBox = styled.div`
+const PhotoBox = styled.div<{ $position?: string }>`
   background: var(--photo-bg);
   background-image: var(--hatch);
   border: 1px solid rgba(26, 33, 48, 0.25);
@@ -14,6 +14,7 @@ const PhotoBox = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: ${({ $position }) => $position ?? 'center'};
     display: block;
   }
 
@@ -49,11 +50,13 @@ type PhotoProps = React.HTMLAttributes<HTMLDivElement> & {
   alt?: string;
   label?: string;
   caption?: string;
+  /** object-position for the image crop (e.g. "center 40%") */
+  position?: string;
 };
 
 /** Photo slot: renders the image when given, otherwise a hatched placeholder. */
-const Photo: React.FC<PhotoProps> = ({ src, alt, label, caption, ...rest }) => (
-  <PhotoBox {...rest}>
+const Photo: React.FC<PhotoProps> = ({ src, alt, label, caption, position, ...rest }) => (
+  <PhotoBox $position={position} {...rest}>
     {src ? <img src={src} alt={alt ?? ''} /> : label && <span className="slot-label">{label}</span>}
     {caption && <Caption>{caption}</Caption>}
   </PhotoBox>

@@ -131,61 +131,73 @@ const PROJECTS = [
     title: 'Identity Matrix',
     award: '1st Place · UofT Hacks 2026',
     desc: 'A persistent multiplayer world where your avatar becomes an independent AI agent after you log off.',
+    image: '/img/projects/identity-matrix.png',
   },
   {
     title: 'Heimer Academy',
     award: '1st Overall · AWS Rift Rewind',
     desc: 'AI coaching that recommends League champions from your playstyle, built on 100,000+ model calls.',
+    image: '/img/projects/heimer-academy.png',
   },
   {
     title: 'Polaris',
     award: 'Best Game Hack · Hack the 6ix',
     desc: 'A multiplayer fitness game where computer vision turns your body into the controller.',
+    image: '/img/projects/polaris.png',
   },
   {
     title: 'Orbit',
     award: 'Best of Groq & Windsurf · Hack the North',
     desc: 'Real-time social intelligence: instant recognition, live transcription, and context-aware follow-ups.',
+    image: '/img/projects/orbit.png',
   },
   {
     title: 'Hyacinthe',
     award: '1st Overall · GeeseHacks 2025',
     desc: 'A computer-vision navigator giving visually impaired users real-time environmental awareness.',
+    image: '/img/projects/hyacinthe.png',
   },
   {
     title: 'RT1M',
     award: 'Live · rt1m.ethanqiu.ca',
     desc: 'Full-stack financial planning with an AI advisor that updates your plan through conversation.',
+    image: '/img/projects/rt1m.png',
   },
   {
     title: 'Shop Buddy',
     award: 'Live · shop-buddy.ethanqiu.ca',
     desc: 'An AI shopping assistant that turns a problem into a step-by-step plan with product recommendations.',
+    image: '/img/projects/shop-buddy.png',
   },
   {
     title: 'UTMIST Website',
     award: 'Live · utmist.ca',
     desc: 'The official site for UofT’s Machine Intelligence Student Team, serving 1,000+ students and researchers.',
+    image: '/img/projects/utmist.png',
   },
   {
     title: 'Bounce Back',
     award: 'React Native · PyTorch · BERT',
     desc: 'An AI mental-health companion: chat, mood tracking, journaling, and habit-building for the hard stretches.',
+    image: '/img/projects/bounce-back.png',
   },
   {
     title: 'Hart House Debate Automation',
     award: 'Python · Automation',
     desc: 'Tournament ops for Canada’s largest university debate club: payments, allocation, and accessibility for 360+ debaters.',
+    image: '/img/projects/hart-house.png',
   },
   {
     title: 'Crosswalk of Shame',
     award: 'Hack the North 2024',
     desc: 'Real-time object detection that catches distracted pedestrians before the crosswalk does.',
+    image: '/img/projects/crosswalk.png',
   },
   {
     title: 'GameStoppr',
     award: 'React · Django',
     desc: 'Blocks the apps that eat your day and gamifies the habits that don’t.',
+    image: '/img/projects/gamestoppr.png',
   },
 ].map((entry) => ({ ...entry, data: findProject(entry.title) }));
 
@@ -213,7 +225,7 @@ const WorkSection: React.FC = () => {
             key={project.title}
             onClick={() => setSelected(page * PER_PAGE + i)}
           >
-            <Photo className="thumb" label="Screenshot" />
+            <Photo className="thumb" src={project.image} alt={`${project.title} screenshot`} label="Screenshot" />
             <p className="award">{project.award}</p>
             <p className="title">{project.title}</p>
             <p className="desc">{project.desc}</p>
@@ -244,7 +256,7 @@ const WorkSection: React.FC = () => {
       </Pager>
       {open && (
         <Modal onClose={() => setSelected(null)}>
-          <ModalImage label="Screenshot" />
+          <ModalImage src={open.image} alt={`${open.title} screenshot`} label="Screenshot" />
           <ModalKicker>{open.award}</ModalKicker>
           <ModalTitle>{open.title}</ModalTitle>
           <ModalText>{open.data?.details ?? open.desc}</ModalText>

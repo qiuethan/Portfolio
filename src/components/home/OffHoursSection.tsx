@@ -58,16 +58,35 @@ const OffHoursSection: React.FC = () => (
       <span className="note">The parts a resume leaves out</span>
     </SectionHead>
     <Collage>
-      <Photo label="A hobby, mid-action" caption="What this is, in your words" />
+      <Photo
+        src="/img/photos/debate.jpg"
+        alt="Ethan and teammates with their debate tournament awards"
+        caption="Hardware from a debate weekend"
+      />
       <NoteCard lit>
         <p className="note-title">Debate</p>
         <p className="note-body">
-          Years around Hart House debate. I ran the back office for Canada&apos;s
-          largest university club, 360+ debaters a tournament, and automated the
-          boring parts.
+          Debating since high school: two straight years at Canadian Nationals,
+          then NAUDC once I hit university. These days I run HHHS and keep Hart
+          House&apos;s tournaments turning for hundreds of debaters.
         </p>
       </NoteCard>
-      <Photo label="Somewhere you go to think" caption="Where + why it matters" />
+      <Photo label="Badminton, mid-rally" caption="On the court" />
+      <NoteCard lit>
+        <p className="note-title">Badminton</p>
+        <p className="note-body">
+          Three times a week until I tire myself out. Nowhere near varsity
+          material, but intramurals have my whole heart.
+        </p>
+      </NoteCard>
+      <NoteCard lit>
+        <p className="note-title">Travelling</p>
+        <p className="note-body">
+          Always plotting the next trip. New cities, worse sleep schedules, and a
+          camera roll I never get around to organizing.
+        </p>
+      </NoteCard>
+      <Photo label="Somewhere new" caption="Latest stamp in the passport" />
       <NoteCard lit>
         <p className="note-title">Teaching</p>
         <p className="note-body">
@@ -75,22 +94,7 @@ const OffHoursSection: React.FC = () => (
           Patience: permanently leveled up.
         </p>
       </NoteCard>
-      <NoteCard lit>
-        <p className="note-title">League, as a Dataset</p>
-        <p className="note-body">
-          I turned my League of Legends habit into Heimer Academy, an AI coach
-          that ended up winning the AWS hackathon.
-        </p>
-      </NoteCard>
-      <Photo label="Something you made or love" caption="One honest sentence" />
-      <NoteCard lit>
-        <p className="note-title">Two Cities</p>
-        <p className="note-body">
-          Split between Toronto and Ottawa. The skyline at the bottom of this
-          page is both of them, stitched together.
-        </p>
-      </NoteCard>
-      <Photo label="A hack weekend, 3am" caption="The team, mid-build" />
+      <Photo label="Teaching, in action" caption="Whiteboard mode" />
     </Collage>
   </Section>
 );
