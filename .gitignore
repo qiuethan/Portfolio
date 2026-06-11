@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Glass redesign reference (extracted from ethanqiu-site.zip)
+.design-reference
+ethanqiu-site.zip
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
