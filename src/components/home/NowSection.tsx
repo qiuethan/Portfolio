@@ -278,7 +278,7 @@ const NowSection: React.FC = () => {
         <span className="note">Sample data · auto-updates coming</span>
       </SectionHead>
       <NowGrid>
-        <FeedCard lit>
+        <FeedCard>
           <div className="chips" role="tablist" aria-label="Filter the feed">
             {FILTERS.map((f) => (
               <button
@@ -306,7 +306,7 @@ const NowSection: React.FC = () => {
           ))}
         </FeedCard>
         <SidePanel>
-          <HeatmapCard lit>
+          <HeatmapCard>
             <p className="cap">Last 12 weeks · public + private commits</p>
             <div className="map" role="img" aria-label="12 weeks of commit activity, sample data">
               {HEAT_LEVELS.map((level, i) => (
@@ -319,7 +319,7 @@ const NowSection: React.FC = () => {
               ))}
             </div>
           </HeatmapCard>
-          <StatusCard lit>
+          <StatusCard>
             <p className="cap">Currently</p>
             {CURRENTLY.map((row) => (
               <div className="row" key={row.key}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 export const glassCss = css`
@@ -22,58 +22,15 @@ export const glassCss = css`
     0 16px 40px -20px rgba(26, 33, 48, 0.35);
 `;
 
-const Surface = styled.div<{ $lit?: boolean }>`
+const Surface = styled.div`
   ${glassCss}
-
-  ${({ $lit }) =>
-    $lit &&
-    css`
-      &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: radial-gradient(
-          340px circle at var(--mx, 50%) var(--my, -40%),
-          rgba(255, 255, 255, 0.42),
-          transparent 62%
-        );
-        opacity: 0;
-        transition: opacity 0.3s;
-        pointer-events: none;
-      }
-      &:hover::after {
-        opacity: 1;
-      }
-    `}
 `;
 
 type GlassProps = React.AllHTMLAttributes<HTMLElement> & {
-  lit?: boolean;
   as?: React.ElementType;
 };
 
-/**
- * Frosted glass panel. `lit` adds a radial highlight that follows the
- * pointer (fine pointers only), matching the reference design's .glass.lit.
- */
-const Glass: React.FC<GlassProps> = ({ lit = false, ...rest }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!lit || !el || !window.matchMedia('(pointer: fine)').matches) return;
-
-    const onMove = (e: PointerEvent) => {
-      const r = el.getBoundingClientRect();
-      el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
-      el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
-    };
-    el.addEventListener('pointermove', onMove);
-    return () => el.removeEventListener('pointermove', onMove);
-  }, [lit]);
-
-  return <Surface ref={ref as React.Ref<HTMLDivElement>} $lit={lit} {...rest} />;
-};
+/** Frosted glass panel. */
+const Glass: React.FC<GlassProps> = (props) => <Surface {...props} />;
 
 export default Glass;

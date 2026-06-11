@@ -219,7 +219,6 @@ const WorkSection: React.FC = () => {
       <Gallery>
         {visible.map((project, i) => (
           <ProjectCard
-            lit
             forwardedAs="button"
             type="button"
             key={project.title}

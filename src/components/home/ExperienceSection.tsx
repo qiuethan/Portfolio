@@ -155,7 +155,6 @@ const ExperienceSection: React.FC = () => {
       <ExpGrid>
         {ROLES.map((r, i) => (
           <ExpCard
-            lit
             forwardedAs="button"
             type="button"
             key={r.company + r.role}

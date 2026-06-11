@@ -8,10 +8,8 @@ const Collage = styled.div`
   display: grid;
   gap: 16px;
   grid-template-columns: 1fr;
-
-  > * {
-    min-height: 190px;
-  }
+  /* every tile is exactly one row tall, so all cards match in size */
+  grid-auto-rows: 240px;
 
   @media (min-width: 700px) {
     grid-template-columns: repeat(2, 1fr);
@@ -35,19 +33,20 @@ const NoteCard = styled(Glass)`
   padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  overflow: hidden;
 
   .note-title {
     font-family: var(--mono);
-    font-size: 11.5px;
+    font-size: 12px;
     color: var(--accent);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .note-body {
     font-size: 13.5px;
     color: var(--ink-soft);
-    line-height: 1.55;
+    line-height: 1.6;
   }
 `;
 
@@ -63,38 +62,53 @@ const OffHoursSection: React.FC = () => (
         alt="Ethan and teammates with their debate tournament awards"
         caption="Hardware from a debate weekend"
       />
-      <NoteCard lit>
+      <NoteCard>
         <p className="note-title">Debate</p>
         <p className="note-body">
-          Debating since high school: two straight years at Canadian Nationals,
-          then NAUDC once I hit university. These days I run HHHS and keep Hart
-          House&apos;s tournaments turning for hundreds of debaters.
+          Debating since high school, with two straight years at Canadian
+          Nationals before NAUDC in university. These days I run HHHS and keep
+          Hart House&apos;s tournaments turning for hundreds of debaters every
+          season. Old habits die hard.
         </p>
       </NoteCard>
       <Photo label="Badminton, mid-rally" caption="On the court" />
-      <NoteCard lit>
+      <NoteCard>
         <p className="note-title">Badminton</p>
         <p className="note-body">
-          Three times a week until I tire myself out. Nowhere near varsity
-          material, but intramurals have my whole heart.
+          Three times a week until my legs give out. I&apos;m nowhere near
+          varsity material, but intramurals have my whole heart, and I&apos;ll
+          chase down every shuttle like it personally owes me money.
         </p>
       </NoteCard>
-      <NoteCard lit>
+      <NoteCard>
         <p className="note-title">Travelling</p>
         <p className="note-body">
-          Always plotting the next trip. New cities, worse sleep schedules, and a
-          camera roll I never get around to organizing.
+          I travel every chance I get, and I&apos;m a total sucker for cruising.
+          Give me a deck, the open ocean, and absolutely nowhere to be. A dusk
+          walk along the Seine doesn&apos;t hurt either.
         </p>
       </NoteCard>
-      <Photo label="Somewhere new" caption="Latest stamp in the passport" />
-      <NoteCard lit>
-        <p className="note-title">Teaching</p>
+      <Photo
+        src="/img/photos/travel-seine.jpg"
+        alt="A riverboat on the Seine at dusk in Paris"
+        position="center 42%"
+        caption="Dusk on the Seine, Paris"
+      />
+      <NoteCard>
+        <p className="note-title">Board Games</p>
         <p className="note-body">
-          Three years teaching Python and Java to 30+ kids back home in Ottawa.
-          Patience: permanently leveled up.
+          I collect board games, and the shelf is honestly out of control.
+          Mahjong is the house favourite, but I&apos;ll lose a whole evening to
+          anything with tiles, cards, meeples, or a board. The more rules I have
+          to explain, the happier I am.
         </p>
       </NoteCard>
-      <Photo label="Teaching, in action" caption="Whiteboard mode" />
+      <Photo
+        src="/img/photos/mahjong.jpg"
+        alt="Friends gathered around a mahjong game by the fireplace"
+        position="center 62%"
+        caption="Mahjong night"
+      />
     </Collage>
   </Section>
 );

@@ -182,11 +182,11 @@ const Hero: React.FC = () => {
         />
         <Photo
           className="p2"
-          src="/img/photos/uoft-campus.jpg"
-          alt="King's College Circle at the University of Toronto on a winter night"
-          position="center 40%"
+          src="/img/photos/cn-tower.jpg"
+          alt="The CN Tower framed between downtown Toronto towers"
+          position="center 32%"
         />
-        <IdCard lit>
+        <IdCard>
           Ethan Qiu<br />
           43.65°N, 79.38°W<br />
           <span className="clock">{time}</span> in Toronto

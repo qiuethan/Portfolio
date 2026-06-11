@@ -88,7 +88,7 @@ const NavGlass = styled(Glass)`
 `;
 
 const SiteNav: React.FC = () => (
-  <NavGlass lit forwardedAs="nav" aria-label="Main">
+  <NavGlass forwardedAs="nav" aria-label="Main">
     <Link className="wordmark" to="/">Ethan Qiu</Link>
     <div className="links">
       <a href="/#now">Now</a>
