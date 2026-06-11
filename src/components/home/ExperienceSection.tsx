@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Glass from '../glass/Glass';
-import Modal, { ModalImage, ModalKicker, ModalTitle, ModalText, ModalList, ChipRow, Chip } from '../glass/Modal';
+import Modal, { ModalKicker, ModalTitle, ModalText, ModalList, ChipRow, Chip } from '../glass/Modal';
 import { Section, SectionHead } from '../glass/primitives';
 import { portfolioData } from '../../data/portfolio';
 
@@ -23,6 +23,16 @@ const ExpCard = styled(Glass)`
   padding: 20px 24px;
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.15s;
+
+  .logo {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+  }
 
   &:hover {
     transform: translateY(-3px);
@@ -67,6 +77,32 @@ const ExpCard = styled(Glass)`
   }
 `;
 
+/* compact header: logo chip beside the role instead of a lone mark on a banner */
+const ModalHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-right: 36px;
+
+  .modal-logo {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--glass-edge);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+  }
+
+  .modal-company {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+`;
+
 // Card copy is curated; the modal pulls the full bullet list from portfolioData.
 const findRole = (fragment: string) =>
   portfolioData.experience.find((e) => e.title.includes(fragment) || e.company.includes(fragment));
@@ -77,6 +113,7 @@ const ROLES = [
     role: 'Software Engineer Intern',
     company: 'Shopify',
     line: 'Variant publishing and bulk-edit flows for 140,000+ stores; built the core prototype of the agentic-commerce Product Details redesign.',
+    logo: '/img/shopify.png',
     data: findRole('Shopify'),
   },
   {
@@ -84,6 +121,7 @@ const ROLES = [
     role: 'Software Engineer (Co-op)',
     company: 'General Dynamics Mission Systems',
     line: 'Spearheaded a modular Python automation framework that cut regression runtime in half; tooling adopted by three engineering teams.',
+    logo: '/img/gdms.png',
     data: findRole('General Dynamics'),
   },
   {
@@ -91,6 +129,7 @@ const ROLES = [
     role: 'Engineering Director, Industry',
     company: 'UTMIST',
     line: 'Led four industry projects and 20+ developers, including an agentic credit-card recommender for Flybits and pricing models for Amicare.',
+    logo: '/img/utmist.svg',
     data: findRole('Engineering Director'),
   },
   {
@@ -98,6 +137,7 @@ const ROLES = [
     role: 'Project Lead',
     company: 'UofT Blueprint',
     line: 'Shipped a 50,000-artifact inventory platform for the Museum of Digital Entertainment with 10 developers; first release in six weeks.',
+    logo: '/img/blueprint.png',
     data: findRole('UofT Blueprint'),
   },
 ];
@@ -121,6 +161,7 @@ const ExperienceSection: React.FC = () => {
             key={r.company + r.role}
             onClick={() => setSelected(i)}
           >
+            <img className="logo" src={r.logo} alt="" />
             <p className="period">{r.period}</p>
             <p className="role">{r.role}</p>
             <p className="company">{r.company}</p>
@@ -131,12 +172,14 @@ const ExperienceSection: React.FC = () => {
       </ExpGrid>
       {open && (
         <Modal onClose={() => setSelected(null)}>
-          <ModalImage label={`${open.company} photo`} />
-          <ModalKicker>{open.period}</ModalKicker>
-          <ModalTitle>{open.role}</ModalTitle>
-          <ModalText style={{ marginBottom: 10, fontWeight: 600, color: 'var(--accent)' }}>
-            {open.company}
-          </ModalText>
+          <ModalHeader>
+            <img className="modal-logo" src={open.logo} alt={`${open.company} logo`} />
+            <div>
+              <ModalKicker style={{ marginBottom: 2, paddingRight: 0 }}>{open.period}</ModalKicker>
+              <ModalTitle style={{ marginBottom: 2, paddingRight: 0 }}>{open.role}</ModalTitle>
+              <p className="modal-company">{open.company}</p>
+            </div>
+          </ModalHeader>
           {open.data ? (
             <ModalList>
               {open.data.responsibilities.map((line) => (
