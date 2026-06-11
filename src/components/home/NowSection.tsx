@@ -1,7 +1,90 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Glass from '../glass/Glass';
 import { Section, SectionHead } from '../glass/primitives';
+import { fetchNow } from '../../data/now';
+import type { NowContributions, NowData } from '../../data/now';
+
+const NowHead = styled(SectionHead)`
+  align-items: center;
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+`;
+
+const BetaPill = styled.span`
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(29, 79, 158, 0.25);
+  border-radius: 999px;
+  padding: 3px 9px;
+  line-height: 1;
+`;
+
+const InfoTip = styled.span`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: help;
+
+  .tip {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 5;
+    width: 250px;
+    padding: 11px 13px;
+    text-align: left;
+    white-space: normal;
+    font-family: var(--body);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    background: var(--glass-strong);
+    border: 1px solid var(--glass-edge);
+    border-radius: var(--radius-sm);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+    box-shadow: 0 16px 40px -20px rgba(26, 33, 48, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+    pointer-events: none;
+  }
+
+  &:hover .tip,
+  &:focus-visible .tip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+`;
 
 const NowGrid = styled.div`
   display: grid;
@@ -185,17 +268,136 @@ const StatusCard = styled(Glass)`
   }
 `;
 
-type Kind = 'shipping' | 'hacking' | 'reading' | 'leading';
+type Kind = 'shipping' | 'hacking' | 'writing';
 
-// Placeholder data until the auto-update pipeline (GitHub Action + LLM
-// summarizer) is wired up.
-const ENTRIES: Array<{
+type FeedEntry = {
+  ts: number;
   date: string;
   kind: Kind;
   body: React.ReactNode;
   src: { label: string; llm: boolean } | null;
-}> = [
+};
+
+type HeatCell = { level: number; title: string };
+type StatusRow = { key: string; val: string };
+
+const FILTERS: Array<{ key: Kind | 'all'; label: string }> = [
+  { key: 'all', label: 'Everything' },
+  { key: 'shipping', label: 'Shipping' },
+  { key: 'hacking', label: 'Hacking' },
+  { key: 'writing', label: 'Writing' },
+];
+
+const HEAT_ALPHA = [0.1, 0.32, 0.62, 1];
+const HEAT_WEEKS = 12;
+const HEAT_DAYS = HEAT_WEEKS * 7;
+
+const fmtDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { month: 'short', day: '2-digit', timeZone: 'UTC' });
+
+const clip = (s: string, n = 150) => {
+  const t = s.replace(/\s+/g, ' ').trim();
+  return t.length > n ? `${t.slice(0, n).trimEnd()}…` : t;
+};
+
+const ago = (iso: string) => {
+  const mins = Math.round((Date.now() - Date.parse(iso)) / 60000);
+  if (!Number.isFinite(mins) || mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  return `${Math.round(hrs / 24)}d ago`;
+};
+
+const countToLevel = (n: number) => (n === 0 ? 0 : n <= 3 ? 1 : n <= 8 ? 2 : 3);
+
+// --- live → view-model adapters -------------------------------------------
+
+function buildFeed(data: NowData): FeedEntry[] {
+  const projects: FeedEntry[] = data.projects
+    .filter((p) => p.pushed_at)
+    .map((p) =>
+      p.private
+        ? {
+            ts: Date.parse(p.pushed_at),
+            date: fmtDate(p.pushed_at),
+            kind: 'hacking' as const,
+            body: clip(p.summary ?? 'Private project in progress.'),
+            src: { label: 'Private repo · summarized by an LLM', llm: true },
+          }
+        : {
+            ts: Date.parse(p.pushed_at),
+            date: fmtDate(p.pushed_at),
+            kind: 'shipping' as const,
+            body: (
+              <>
+                {p.url ? (
+                  <a href={p.url} target="_blank" rel="noopener">{p.name}</a>
+                ) : (
+                  p.name
+                )}
+                {p.description ? ` — ${p.description}` : ''}
+              </>
+            ),
+            src: { label: p.language ? `Public · ${p.language}` : 'Public · GitHub', llm: false },
+          },
+    );
+
+  const writing: FeedEntry[] = data.writing.map((w) => ({
+    ts: Date.parse(w.published_at),
+    date: fmtDate(w.published_at),
+    kind: 'writing' as const,
+    body: (
+      <>
+        <a href={w.url} target="_blank" rel="noopener">{w.title}</a>
+        {w.excerpt ? ` — ${clip(w.excerpt, 120)}` : ''}
+      </>
+    ),
+    src: { label: 'Substack', llm: false },
+  }));
+
+  return [...projects, ...writing].sort((a, b) => b.ts - a.ts).slice(0, 8);
+}
+
+function buildHeat(c: NowContributions): HeatCell[] {
+  return c.calendar.slice(-HEAT_DAYS).map((d) => ({
+    level: countToLevel(d.count),
+    title: `${d.date} · ${d.count} contribution${d.count === 1 ? '' : 's'}`,
+  }));
+}
+
+function buildCurrently(data: NowData): StatusRow[] {
+  const rows: StatusRow[] = [];
+  const latest = data.projects.find((p) => p.recently_active) ?? data.projects[0];
+  if (latest) {
+    rows.push({
+      key: 'Building',
+      val: latest.private
+        ? clip(latest.summary ?? 'Something private', 90)
+        : clip(`${latest.name}${latest.description ? ` — ${latest.description}` : ''}`, 90),
+    });
+  }
+  if (data.stack?.languages.length) {
+    rows.push({ key: 'Stack', val: data.stack.languages.slice(0, 4).map((l) => l.name).join(' · ') });
+  }
+  if (data.activity?.wakatime) {
+    const wt = data.activity.wakatime;
+    rows.push({ key: 'This week', val: `${wt.total} across ${wt.projectCount} projects` });
+  }
+  if (data.writing[0]) {
+    rows.push({ key: 'Writing', val: data.writing[0].title });
+  }
+  if (data.availability) {
+    rows.push({ key: 'Open to', val: data.availability });
+  }
+  return rows;
+}
+
+// --- sample fallback (shown only if the API can't be reached) --------------
+
+const SAMPLE_FEED: FeedEntry[] = [
   {
+    ts: 0,
     date: 'Jun 08',
     kind: 'shipping',
     body: (
@@ -204,9 +406,10 @@ const ENTRIES: Array<{
         status, restriction reasons, and AI-powered explanations across 190+ countries.
       </>
     ),
-    src: { label: 'Private repo · written by an LLM', llm: true },
+    src: { label: 'Private repo · summarized by an LLM', llm: true },
   },
   {
+    ts: 0,
     date: 'Jun 04',
     kind: 'hacking',
     body: (
@@ -218,65 +421,89 @@ const ENTRIES: Array<{
     src: { label: 'Public · GitHub', llm: false },
   },
   {
-    date: 'Jun 01',
-    kind: 'reading',
-    body: <>Reading Designing Data-Intensive Applications, ch. 9. Notes coming to the writing page.</>,
-    src: null,
-  },
-  {
+    ts: 0,
     date: 'May 27',
-    kind: 'leading',
-    body: (
-      <>
-        Wrapped UTMIST&apos;s Flybits project: an agentic credit-card recommender built
-        with LangChain and vector search, one of four industry teams I coordinated.
-      </>
-    ),
-    src: { label: 'Private repo · written by an LLM', llm: true },
-  },
-  {
-    date: 'May 24',
-    kind: 'shipping',
-    body: (
-      <>
-        UofT Blueprint&apos;s inventory platform for the Museum of Digital Entertainment
-        hit production with 50,000+ artifacts catalogued.
-      </>
-    ),
-    src: { label: 'Public · GitHub', llm: false },
+    kind: 'writing',
+    body: <>The one about maturity — notes on growing up faster than the room expects.</>,
+    src: { label: 'Substack', llm: false },
   },
 ];
 
-const FILTERS: Array<{ key: Kind | 'all'; label: string }> = [
-  { key: 'all', label: 'Everything' },
-  { key: 'shipping', label: 'Shipping' },
-  { key: 'hacking', label: 'Hacking' },
-  { key: 'leading', label: 'Leading' },
-  { key: 'reading', label: 'Reading' },
-];
-
-// Deterministic sample pattern, repeated to fill 12 weeks (84 days).
+// Deterministic sample pattern, repeated to fill the grid.
 const HEAT_PATTERN = [0, 1, 2, 1, 0, 3, 2, 1, 2, 0, 1, 3, 3, 2, 1, 0, 2, 1, 3, 2, 0, 1, 2, 3, 1, 2, 0, 1];
-const HEAT_LEVELS = Array.from({ length: 84 }, (_, i) => HEAT_PATTERN[(i + (i % 5)) % HEAT_PATTERN.length]);
-const HEAT_ALPHA = [0.1, 0.3, 0.6, 1];
+const SAMPLE_HEAT: HeatCell[] = Array.from({ length: HEAT_DAYS }, (_, i) => {
+  const level = HEAT_PATTERN[(i + (i % 5)) % HEAT_PATTERN.length];
+  return { level, title: `${level * 3} commits (sample)` };
+});
 
-const CURRENTLY = [
+const SAMPLE_CURRENTLY: StatusRow[] = [
   { key: 'Building', val: 'Agentic product-details prototype @ Shopify' },
   { key: 'Hacking on', val: 'Identity Matrix v2: smarter agents, bigger world' },
-  { key: 'Reading', val: 'Designing Data-Intensive Applications, ch. 9' },
-  { key: 'In queue', val: 'Next hackathon season, already scouting teams' },
+  { key: 'Writing', val: 'The one about maturity' },
+  { key: 'Open to', val: 'Interesting opportunities and conversations' },
 ];
+
+type LoadState = 'loading' | 'live' | 'error';
 
 const NowSection: React.FC = () => {
   const [filter, setFilter] = useState<Kind | 'all'>('all');
-  const visible = ENTRIES.filter((e) => filter === 'all' || e.kind === filter);
+  const [data, setData] = useState<NowData | null>(null);
+  const [load, setLoad] = useState<LoadState>('loading');
+
+  useEffect(() => {
+    let alive = true;
+    fetchNow()
+      .then((d) => {
+        if (alive) {
+          setData(d);
+          setLoad('live');
+        }
+      })
+      .catch(() => {
+        if (alive) setLoad('error');
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const liveFeed = data ? buildFeed(data) : [];
+  const feed = liveFeed.length ? liveFeed : SAMPLE_FEED;
+  const heat = data?.contributions ? buildHeat(data.contributions) : SAMPLE_HEAT;
+  const liveCurrently = data ? buildCurrently(data) : [];
+  const currently = liveCurrently.length ? liveCurrently : SAMPLE_CURRENTLY;
+  const isLive = load === 'live' && liveFeed.length > 0;
+
+  const heatCap = data?.contributions
+    ? `Last ${HEAT_WEEKS} weeks · ${data.contributions.total_past_year.toLocaleString()} contributions this year · ${data.contributions.current_streak}-day streak`
+    : `Last ${HEAT_WEEKS} weeks · sample commit activity`;
+
+  const note =
+    load === 'loading'
+      ? 'Syncing…'
+      : isLive
+        ? `Live · synced ${ago(data!.updated)}`
+        : 'Sample data · API offline';
+
+  const visible = feed.filter((e) => filter === 'all' || e.kind === filter);
 
   return (
     <Section id="now">
-      <SectionHead>
-        <h2>Now</h2>
-        <span className="note">Sample data · auto-updates coming</span>
-      </SectionHead>
+      <NowHead>
+        <div className="title">
+          <h2>Now</h2>
+          <BetaPill>Beta</BetaPill>
+          <InfoTip tabIndex={0} role="note" aria-label="What is Now?">
+            i
+            <span className="tip">
+              A live feed of what I&apos;m shipping, hacking, and writing — auto-pulled hourly from my
+              GitHub repos, commits, and Substack. Private work is anonymized and summarized by an LLM.
+              Falls back to sample data if the API is offline.
+            </span>
+          </InfoTip>
+        </div>
+        <span className="note">{note}</span>
+      </NowHead>
       <NowGrid>
         <FeedCard>
           <div className="chips" role="tablist" aria-label="Filter the feed">
@@ -291,8 +518,8 @@ const NowSection: React.FC = () => {
               </button>
             ))}
           </div>
-          {visible.map((entry) => (
-            <div className="entry" key={entry.date}>
+          {visible.map((entry, i) => (
+            <div className="entry" key={`${entry.kind}-${entry.date}-${i}`}>
               <span className="date">{entry.date}</span>
               <div className="body">
                 {entry.body}
@@ -307,21 +534,21 @@ const NowSection: React.FC = () => {
         </FeedCard>
         <SidePanel>
           <HeatmapCard>
-            <p className="cap">Last 12 weeks · public + private commits</p>
-            <div className="map" role="img" aria-label="12 weeks of commit activity, sample data">
-              {HEAT_LEVELS.map((level, i) => (
+            <p className="cap">{heatCap}</p>
+            <div className="map" role="img" aria-label={`${HEAT_WEEKS} weeks of GitHub contributions`}>
+              {heat.map((cell, i) => (
                 <span
                   className="cell"
                   key={i}
-                  style={{ opacity: HEAT_ALPHA[level] }}
-                  title={`${level * 3} commits (sample)`}
+                  style={{ opacity: HEAT_ALPHA[cell.level] }}
+                  title={cell.title}
                 />
               ))}
             </div>
           </HeatmapCard>
           <StatusCard>
             <p className="cap">Currently</p>
-            {CURRENTLY.map((row) => (
+            {currently.map((row) => (
               <div className="row" key={row.key}>
                 <span className="key">{row.key}</span>
                 <span className="val">{row.val}</span>

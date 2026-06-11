@@ -71,7 +71,12 @@ const OffHoursSection: React.FC = () => (
           season. Old habits die hard.
         </p>
       </NoteCard>
-      <Photo label="Badminton, mid-rally" caption="On the court" />
+      <Photo
+        src="/img/photos/badminton.jpg"
+        alt="A competitive badminton doubles match in play"
+        position="center 40%"
+        caption="Three times a week"
+      />
       <NoteCard>
         <p className="note-title">Badminton</p>
         <p className="note-body">

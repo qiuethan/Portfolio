@@ -107,14 +107,17 @@ const PhotoStack = styled.div`
     }
 
     .p2 {
-      height: 240px;
-      width: 68%;
+      height: 185px;
+      width: 52%;
     }
 
     .p3 {
       display: block;
-      width: 34%;
-      height: 150px;
+      width: 120px;
+      height: 80px;
+      top: -16px;
+      left: 15%;
+      z-index: 3;
     }
   }
 
@@ -174,7 +177,11 @@ const Hero: React.FC = () => {
         </div>
       </div>
       <PhotoStack aria-label="Photos of Ethan and Toronto">
-        <Photo className="p3" label="A hack weekend" />
+        <Photo
+          className="p3"
+          src="/img/photos/doodle.jpg"
+          alt="A doodle of two friends in My Melody and Kuromi hoods making a heart"
+        />
         <Photo
           className="p1"
           src="/img/photos/me-toronto.jpg"
