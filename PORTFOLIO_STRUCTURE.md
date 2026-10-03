@@ -1,152 +1,56 @@
-# Portfolio Structure Guide
+# Portfolio structure
 
-This document explains the modular structure of your terminal portfolio and where to edit different parts.
+The site is a React app with a homepage at `/` and a full work library at `/work`. `App.tsx` selects the visual site or the structured agent view; `?view=human` and `?view=agent` override detection.
 
-## 📁 File Structure
+## Content
 
-```
-src/
-├── components/
-│   ├── commands/           # Individual command components
-│   │   ├── AboutCommand.tsx
-│   │   ├── ProjectsCommand.tsx
-│   │   ├── SkillsCommand.tsx
-│   │   ├── ExperienceCommand.tsx
-│   │   ├── ContactCommand.tsx
-│   │   ├── ResumeCommand.tsx
-│   │   └── BlogCommand.tsx
-│   ├── shared/
-│   │   └── StyledComponents.tsx  # Reusable styled components
-│   ├── TerminalInterface.tsx     # Main terminal logic
-│   └── NavBar.tsx               # Navigation bar
-├── data/
-│   └── portfolio.ts             # All portfolio data
-└── styles/
-    └── GlobalStyles.ts          # Global styles
-```
+| File | Contents |
+| --- | --- |
+| `src/data/portfolio.ts` | Bio, contact information, skills, writing, and shared data exports |
+| `src/data/projects.ts` | Public project cards and detail-dialog content |
+| `src/data/experiments.ts` | Personal experiments, including archctl and its public links |
+| `src/data/experience.ts` | Role details and home-page selection via `featured` |
+| `src/data/home.ts` | Ordered current roles, current projects, selected projects, and past roles |
+| `src/data/now.ts` | Typed client for the live Now API |
 
-## 🎯 Where to Edit What
+Update shared data instead of duplicating project or role descriptions in components. Use stable IDs for new entries. Omit unavailable project URLs rather than adding placeholders. Keep experiment descriptions suitable for the public site.
 
-### 📝 **Personal Information & Content**
-**File:** `src/data/portfolio.ts`
+## Visual site
 
-This is your main data file. Edit here to update:
-- Personal info (name, role, location, bio)
-- Projects (add/remove/edit projects)
-- Skills (programming languages, frameworks, tools)
-- Work experience
-- Contact information
-- Blog posts
+`src/pages/Home.tsx` assembles the homepage in this order: Hero → Now → Current work → Selected work → Past experience → Off Hours. `src/pages/Work.tsx` contains the full library. `src/hooks/usePageNavigation.ts` resets scroll on route changes and resolves section anchors after React mounts, accounting for Now's asynchronous height changes.
 
-### 🎨 **Visual Components**
+`src/pages/NotFound.tsx` handles unknown routes. The production build copies the app shell to `dist/404.html` for Vercel's static 404 handling. Each visual page has a keyboard skip link to `main-content`.
 
-#### Individual Command Sections
-- **About:** `src/components/commands/AboutCommand.tsx`
-- **Projects:** `src/components/commands/ProjectsCommand.tsx`
-- **Skills:** `src/components/commands/SkillsCommand.tsx`
-- **Experience:** `src/components/commands/ExperienceCommand.tsx`
-- **Contact:** `src/components/commands/ContactCommand.tsx`
-- **Resume:** `src/components/commands/ResumeCommand.tsx`
-- **Blog:** `src/components/commands/BlogCommand.tsx`
+| Component | Purpose |
+| --- | --- |
+| `glass/SiteNav.tsx` | Navigation and resume link |
+| `home/Hero.tsx` | Introduction, portrait, and primary links |
+| `home/NowSection.tsx` | Activity, contribution calendar, coding time, and status |
+| `home/CurrentWorkSection.tsx` | Shopify and VP Infrastructure, plus Misty, Mist, and UTMIST Website |
+| `home/WorkSection.tsx` | Six selected projects and the Browse all work link |
+| `home/WorkVisual.tsx` | Abstract graphics for entries without screenshots |
+| `home/ExperienceSection.tsx` | Featured past roles, excluding the current roles |
+| `work/ExperienceCards.tsx` | Shared role cards and detail dialogs |
+| `work/WorkGallery.tsx` | Shared project cards and optional pagination |
+| `work/WorkDialog.tsx` | Shared project images, details, highlights, and links |
+| `work/WorkLibrary.tsx` | Projects / Experiments tabs and the full paginated library |
+| `home/OffHoursSection.tsx` | Personal interests and photos |
+| `glass/SiteFooter.tsx` | Footer links |
 
-#### Shared Styling
-**File:** `src/components/shared/StyledComponents.tsx`
-- Button styles
-- Card layouts
-- Color schemes
-- Hover effects
+Component paths in the table are relative to `src/components/`. Shared glass surfaces, buttons, photos, and dialogs live in `src/components/glass/`. Global typography, colors, and motion preferences live in `src/styles/GlobalStyles.ts`.
 
-### ⚙️ **Terminal Functionality**
-**File:** `src/components/TerminalInterface.tsx`
-- Add new commands
-- Modify command behavior
-- Change terminal appearance
-- Update help text
+The homepage selection is Canopy, ChatGPU, Identity Matrix, Cybermetrics, Heimer Academy, and Frame, with no pagination. The library contains all 18 projects and four experiments, with six entries per page. `/work?tab=experiments` opens that tab directly; the old `/?tab=experiments#work` link redirects there. Tabs support arrow keys, Home, and End. Dialogs support Escape, trap keyboard focus, and restore focus when closed. `vercel.json` provides the app-shell fallback for direct library visits.
 
-### 🧭 **Navigation**
-**File:** `src/components/NavBar.tsx`
-- Add/remove navigation buttons
-- Update GitHub/LinkedIn links
-- Modify navbar styling
+Dialogs use a body portal and make the background app inert while open. Shared photos default to lazy loading, with an eager main portrait. Now's feed applies category filtering before its eight-entry display limit so quieter categories remain reachable.
 
-## 🚀 Quick Edit Guide
+## Structured content and assets
 
-### Adding a New Project
-1. Open `src/data/portfolio.ts`
-2. Add to the `projects` array:
-```typescript
-{
-  name: "🎯 Your Project Name",
-  description: "Brief description",
-  tech: ["React", "TypeScript", "etc"],
-  github: "https://github.com/username/repo",
-  live: "https://your-live-site.com", // or null
-  details: "Detailed description of the project"
-}
-```
+- `src/components/agent/AgentView.tsx` renders all roles, projects, experiments, and skills as text and links.
+- `index.html` contains page metadata and a no-JavaScript summary.
+- `public/llms.txt` provides crawler entry points and a dated overview.
+- `public/img/` contains project images, logos, and personal photos.
+- `public/resume.pdf` is the public resume. Keep its dated labels and the older terminal copy in `src/data/Resume_EthanQiu_Portfolio.pdf` in sync when replacing it.
 
-### Updating Your Bio
-1. Open `src/data/portfolio.ts`
-2. Edit the `about.bio` field
+The earlier terminal components and command views remain in the repository but are not mounted by `App.tsx`.
 
-### Adding a New Skill Category
-1. Open `src/data/portfolio.ts`
-2. Add to the `skills` object:
-```typescript
-skills: {
-  // existing categories...
-  newCategory: ["Skill1", "Skill2", "Skill3"]
-}
-```
-3. Open `src/components/commands/SkillsCommand.tsx`
-4. Add the new category to the `skillCategories` array
-
-### Changing Colors
-1. Open `src/components/shared/StyledComponents.tsx`
-2. Update color values:
-   - `#00ff00` - Primary green
-   - `#00ccff` - Secondary cyan
-   - `#0a0a0a` - Background black
-   - `#1a1a1a` - Card background
-
-### Updating Your Resume
-1. Replace `src/data/EthanQiu_Resume_Linkedin.pdf` with your resume
-2. Update the import path in `src/components/commands/ResumeCommand.tsx` if needed
-3. The resume will be available via the `resume` command
-
-### Adding a New Command
-1. Create a new component in `src/components/commands/`
-2. Add it to `src/components/TerminalInterface.tsx` in the `availableCommands` object
-3. Update the help text
-4. Add it to the NavBar commands array if desired
-
-## 🎨 Customization Tips
-
-### Making it Your Own
-- Update colors in `StyledComponents.tsx`
-- Change the terminal title in `TerminalInterface.tsx`
-- Modify the welcome message
-- Add your own emoji style
-- Update GitHub/LinkedIn links in `NavBar.tsx`
-
-### Performance
-- All data is loaded from `portfolio.ts` - keep it organized
-- Components are lazy-loaded for better performance
-- Styled components are reused across sections
-
-## 🔧 Development Commands
-
-```bash
-npm run dev     # Start development server
-npm run build   # Build for production
-npm run preview # Preview production build
-```
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive:
-- Desktop: Full terminal experience
-- Tablet: Optimized layouts
-- Mobile: Touch-friendly navigation
-
-All components automatically adapt to screen size using CSS media queries in the styled components. 
+See [README.md](README.md) for development commands and [the research report](research/portfolio-research-2026-10-02.md) for the content audit and sources.

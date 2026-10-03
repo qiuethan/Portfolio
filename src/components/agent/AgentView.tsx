@@ -13,7 +13,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { portfolioData } from '../../data/portfolio';
 
-const { about, contact, experience, projects, skills } = portfolioData;
+const { about, contact, experience, projects, experiments, skills } = portfolioData;
 
 const Wrap = styled.main`
   max-width: 820px;
@@ -85,17 +85,20 @@ const RESUME = 'https://ethanqiu.ca/resume.pdf';
 
 const AgentView: React.FC = () => (
   <Wrap>
-    <Banner>
+    <Banner aria-label="About the structured view">
       <strong>Agent-optimized view.</strong> Structured, text-first
       representation of Ethan Qiu's portfolio for AI agents and crawlers. The
       sections that follow — links &amp; resume, experience, projects, skills —
       are what most agents need.
       <ul>
         <li>
-          <a href={RESUME}>resume.pdf</a> — canonical resume (start here)
+          <a href={RESUME}>resume.pdf</a> — August 2026 resume snapshot; the sections below include newer work
         </li>
         <li>
           <a href="/llms.txt">/llms.txt</a> — site overview and entry points
+        </li>
+        <li>
+          <a href="/work?view=human">All work</a> — visual project and experiment library
         </li>
       </ul>
       Prefer the human-designed site? <a href="/?view=human">Switch to the
@@ -134,7 +137,7 @@ const AgentView: React.FC = () => (
           <h3>
             {job.title} — {job.company}
           </h3>
-          <p className="meta">{job.period}</p>
+          <p className="meta">{job.period}{job.team && ` · ${job.team} team`}</p>
           <ul>
             {job.responsibilities.map((r, i) => (
               <li key={i}>{r}</li>
@@ -151,6 +154,7 @@ const AgentView: React.FC = () => (
         <article key={project.name}>
           <h3>{project.name}</h3>
           <p>{project.details || project.description}</p>
+          <ul>{project.highlights.map((line) => <li key={line}>{line}</li>)}</ul>
           <p className="tech">Tech: {project.tech.join(', ')}</p>
           <p>
             {project.github && (
@@ -159,8 +163,28 @@ const AgentView: React.FC = () => (
                 {project.live ? ' · ' : ''}
               </>
             )}
-            {project.live && <a href={project.live}>Live / writeup</a>}
+            {project.live && <a href={project.live}>{project.linkLabel ?? 'Visit site'}</a>}
           </p>
+        </article>
+      ))}
+    </section>
+
+    <section>
+      <h2>Experiments</h2>
+      <p>Personal projects exploring assistants, game worlds, research, and developer tools.</p>
+      {experiments.map((experiment) => (
+        <article key={experiment.id}>
+          <h3>{experiment.name}</h3>
+          <p>{experiment.details}</p>
+          <ul>{experiment.highlights.map((line) => <li key={line}>{line}</li>)}</ul>
+          <p className="tech">Tech: {experiment.tech.join(', ')}</p>
+          {(experiment.github || experiment.live) && (
+            <p>
+              {experiment.github && <a href={experiment.github}>Source</a>}
+              {experiment.github && experiment.live && ' · '}
+              {experiment.live && <a href={experiment.live}>{experiment.linkLabel ?? 'Visit site'}</a>}
+            </p>
+          )}
         </article>
       ))}
     </section>
@@ -188,11 +212,10 @@ const AgentView: React.FC = () => (
       ))}
     </section>
 
-    <StatusNote>
-      Current role, availability, and recent coding activity are auto-updated
-      hourly at <a href="https://now.ethanqiu.ca/now.md">now.ethanqiu.ca/now.md</a>{' '}
-      (<a href="https://now.ethanqiu.ca/now.json">JSON</a>) — check it for
-      anything time-sensitive.
+    <StatusNote aria-label="Recent activity sources">
+      Recent coding activity is available through the{' '}
+      <a href="https://now.ethanqiu.ca/api">Now API</a>.
+      Sources update independently; untracked coding time is not a measure of total work.
     </StatusNote>
   </Wrap>
 );

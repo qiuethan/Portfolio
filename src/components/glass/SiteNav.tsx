@@ -3,6 +3,22 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Glass from './Glass';
 
+const SkipLink = styled.a`
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  z-index: 20;
+  transform: translate(-50%, -200%);
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:focus { transform: translate(-50%, 0); }
+`;
+
 const NavGlass = styled(Glass)`
   display: flex;
   align-items: center;
@@ -61,12 +77,12 @@ const NavGlass = styled(Glass)`
   }
 
   .links a.cta {
-    background-color: rgba(29, 79, 158, 0.66);
+    background-color: rgba(29, 79, 158, 0.96);
     background-image: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.12) 0%,
       rgba(255, 255, 255, 0.04) 45%,
-      rgba(255, 255, 255, 0.16) 100%
+      rgba(255, 255, 255, 0.08) 100%
     );
     border: 1px solid rgba(255, 255, 255, 0.55);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset;
@@ -75,29 +91,37 @@ const NavGlass = styled(Glass)`
   }
 
   .links a.cta:hover {
-    background-color: rgba(29, 79, 158, 0.82);
+    background-color: rgb(29, 79, 158);
+  }
+
+  @media (max-width: 900px) {
+    .links a { padding: 8px 10px; }
   }
 
   @media (max-width: 700px) {
     margin-bottom: 32px;
 
-    .links a:not(.cta) {
+    .links a:not(.cta):not(.work-link) {
       display: none;
     }
   }
 `;
 
 const SiteNav: React.FC = () => (
-  <NavGlass forwardedAs="nav" aria-label="Main">
-    <Link className="wordmark" to="/">Ethan Qiu</Link>
-    <div className="links">
-      <a href="/#now">Now</a>
-      <a href="/#work">Projects</a>
-      <a href="/#experience">Experience</a>
-      <a href="/#off">Off Hours</a>
-      <a className="cta" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
-    </div>
-  </NavGlass>
+  <>
+    <SkipLink href="#main-content">Skip to content</SkipLink>
+    <NavGlass forwardedAs="nav" aria-label="Main">
+      <Link className="wordmark" to="/">Ethan Qiu</Link>
+      <div className="links">
+        <Link to="/#now">Now</Link>
+        <Link to="/#current">Current</Link>
+        <Link className="work-link" to="/work">Work</Link>
+        <Link to="/#experience">Experience</Link>
+        <Link to="/#off">Off Hours</Link>
+        <a className="cta" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </NavGlass>
+  </>
 );
 
 export default SiteNav;

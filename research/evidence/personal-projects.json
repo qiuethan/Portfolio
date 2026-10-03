@@ -1,0 +1,786 @@
+{
+  "researched_at": "2026-10-02",
+  "scope": "All 22 public owned repositories inventoried, personally assigned repos deeply inspected plus public TeamCybermetrics/Cybermetrics. Hackathon repos and portfolio are delegated. No application edits or code execution; source review only.",
+  "evidence_policy": "Implemented means source is present; deployments were not systematically smoke-tested. PR/README claims are labeled. Contributor counts are snapshot counts, not effort measures.",
+  "inventory": [
+    {
+      "name": "qiuethan",
+      "html_url": "https://github.com/qiuethan/qiuethan",
+      "description": null,
+      "created_at": "2024-11-17T02:48:05Z",
+      "pushed_at": "2026-10-02T20:15:51Z",
+      "language": null,
+      "default_branch": "main",
+      "homepage": null,
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "now",
+      "html_url": "https://github.com/qiuethan/now",
+      "description": "Self-updating now page + JSON API for ethanqiu.ca",
+      "created_at": "2026-06-11T07:13:24Z",
+      "pushed_at": "2026-10-02T18:25:34Z",
+      "language": "JavaScript",
+      "default_branch": "main",
+      "homepage": "https://now-six-chi.vercel.app",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "neetcode-submissions",
+      "html_url": "https://github.com/qiuethan/neetcode-submissions",
+      "description": "My NeetCode.io problem submissions",
+      "created_at": "2026-05-31T04:28:32Z",
+      "pushed_at": "2026-08-26T23:21:24Z",
+      "language": "Python",
+      "default_branch": "main",
+      "homepage": null,
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "archctl",
+      "html_url": "https://github.com/qiuethan/archctl",
+      "description": "Enforce clean architecture patterns, dependency rules, and design principles in your codebase with powerful linting and real-time feedback.",
+      "created_at": "2025-11-29T04:14:51Z",
+      "pushed_at": "2026-02-01T21:50:39Z",
+      "language": "TypeScript",
+      "default_branch": "master",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "Portfolio",
+      "html_url": "https://github.com/qiuethan/Portfolio",
+      "description": "Personal portfolio site built with React to showcase my projects, experience, and technical skills.",
+      "created_at": "2025-06-16T02:06:57Z",
+      "pushed_at": "2026-08-12T04:27:43Z",
+      "language": "TypeScript",
+      "default_branch": "master",
+      "homepage": "https://ethanqiu.ca",
+      "fork": false,
+      "research_owner": "root agent"
+    },
+    {
+      "name": "Orbit",
+      "html_url": "https://github.com/qiuethan/Orbit",
+      "description": "🏆 Real-time social intelligence platform, winner at Hack the North 2025. Combines computer vision, Whisper, and LLMs to deliver instant recognition, live transcription, and context-aware conversation insights.",
+      "created_at": "2025-09-13T04:01:56Z",
+      "pushed_at": "2025-09-14T09:08:19Z",
+      "language": "Python",
+      "default_branch": "main",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "hackathon agent"
+    },
+    {
+      "name": "GenAI-Genesis-Project",
+      "html_url": "https://github.com/qiuethan/GenAI-Genesis-Project",
+      "description": null,
+      "created_at": "2026-03-14T05:51:18Z",
+      "pushed_at": "2026-03-15T12:51:58Z",
+      "language": "TypeScript",
+      "default_branch": "main",
+      "homepage": null,
+      "fork": false,
+      "research_owner": "hackathon agent; this is Frame"
+    },
+    {
+      "name": "Identity-Matrix",
+      "html_url": "https://github.com/qiuethan/Identity-Matrix",
+      "description": "🏆 1st Place UofTHacks 13. Multi-agent real-time world with persistent, memory-driven AI identities",
+      "created_at": "2026-01-17T04:08:09Z",
+      "pushed_at": "2026-01-18T22:33:47Z",
+      "language": "TypeScript",
+      "default_branch": "main",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "hackathon agent"
+    },
+    {
+      "name": "Heimer-Academy",
+      "html_url": "https://github.com/qiuethan/Heimer-Academy",
+      "description": "🏆1st Place Rift Rewind Hackathon (https://riftrewind.devpost.com/), AI coaching from League of Legends Data",
+      "created_at": "2025-10-18T01:57:45Z",
+      "pushed_at": "2025-11-10T21:03:09Z",
+      "language": "Python",
+      "default_branch": "main",
+      "homepage": "https://www.heimer-academy.ca/",
+      "fork": false,
+      "research_owner": "hackathon agent"
+    },
+    {
+      "name": "Polaris",
+      "html_url": "https://github.com/qiuethan/Polaris",
+      "description": "🏆 1st Place – Best Game Hack @ Hack the 6ix 2024, 🎖 Finalist – Overall Top 8",
+      "created_at": "2025-07-19T04:24:04Z",
+      "pushed_at": "2025-08-08T19:44:40Z",
+      "language": "JavaScript",
+      "default_branch": "main",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "hackathon agent"
+    },
+    {
+      "name": "RT1M",
+      "html_url": "https://github.com/qiuethan/RT1M",
+      "description": "A modern personal finance application with AI-powered conversational assistance, built to help users achieve their $1 million net worth goal through intelligent financial planning and management.",
+      "created_at": "2025-06-17T02:59:02Z",
+      "pushed_at": "2025-07-13T21:40:34Z",
+      "language": "TypeScript",
+      "default_branch": "master",
+      "homepage": "https://rt1m.app",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "Shop-Buddy",
+      "html_url": "https://github.com/qiuethan/Shop-Buddy",
+      "description": "An AI-powered shopping assistant that helps you solve problems by providing complete solutions with integrated product recommendations.",
+      "created_at": "2025-07-09T21:16:08Z",
+      "pushed_at": "2025-07-10T01:40:34Z",
+      "language": "CSS",
+      "default_branch": "master",
+      "homepage": "https://shop-buddy.ethanqiu.ca",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "Bounce-Back-Public",
+      "html_url": "https://github.com/qiuethan/Bounce-Back-Public",
+      "description": "Bounce Back – a mental health companion app (public version). Core features available; private logic removed.",
+      "created_at": "2025-06-15T21:19:15Z",
+      "pushed_at": "2025-07-04T00:29:26Z",
+      "language": "JavaScript",
+      "default_branch": "master",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "Hang",
+      "html_url": "https://github.com/qiuethan/Hang",
+      "description": "Social Media + Scheduling App. On Permanent Hiatus",
+      "created_at": "2022-05-01T02:16:47Z",
+      "pushed_at": "2023-06-10T02:24:27Z",
+      "language": "Python",
+      "default_branch": "main",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "GradPath",
+      "html_url": "https://github.com/qiuethan/GradPath",
+      "description": "GradPath Tutoring Website",
+      "created_at": "2023-06-28T21:43:54Z",
+      "pushed_at": "2023-12-03T22:39:33Z",
+      "language": "JavaScript",
+      "default_branch": "main",
+      "homepage": "https://gradpathtutoring.com",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "Face-Detection-Model",
+      "html_url": "https://github.com/qiuethan/Face-Detection-Model",
+      "description": "Face Detection Model Adapted for My System from Nicholas Renotte's Face Detection Model Tutorial with Python and Tensorflow",
+      "created_at": "2024-08-07T02:03:48Z",
+      "pushed_at": "2024-08-09T18:16:08Z",
+      "language": "Jupyter Notebook",
+      "default_branch": "main",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "AI-Notetaker",
+      "html_url": "https://github.com/qiuethan/AI-Notetaker",
+      "description": "Code to record voice and transform it into notes",
+      "created_at": "2024-06-08T19:56:36Z",
+      "pushed_at": "2024-08-06T02:56:24Z",
+      "language": "Python",
+      "default_branch": "master",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "Hart-House-Debate-Automation",
+      "html_url": "https://github.com/qiuethan/Hart-House-Debate-Automation",
+      "description": "This project automates various administrative tasks for the Hart House Debate Club, the largest university debate club in Canada. It handles payment confirmation, debater allocation, accessibility allocation, and more. Note: This project is still in development.",
+      "created_at": "2024-06-09T17:04:32Z",
+      "pushed_at": "2024-08-02T16:33:22Z",
+      "language": "Python",
+      "default_branch": "master",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "FRC-Command-Based-2023",
+      "html_url": "https://github.com/qiuethan/FRC-Command-Based-2023",
+      "description": "Command-based code for FRC 2023",
+      "created_at": "2023-08-03T21:40:35Z",
+      "pushed_at": "2023-08-03T21:40:37Z",
+      "language": "Java",
+      "default_branch": "main",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "Discord-Bots",
+      "html_url": "https://github.com/qiuethan/Discord-Bots",
+      "description": "A list of all the discord bots I've coded. Created using the now depreciated discord.py library.",
+      "created_at": "2022-09-20T23:37:52Z",
+      "pushed_at": "2022-09-20T23:41:04Z",
+      "language": "Python",
+      "default_branch": "main",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "Trace-It",
+      "html_url": "https://github.com/qiuethan/Trace-It",
+      "description": "Mini Project - Game Using Pygame",
+      "created_at": "2022-06-22T14:23:24Z",
+      "pushed_at": "2023-01-18T22:46:15Z",
+      "language": "Python",
+      "default_branch": "main",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    },
+    {
+      "name": "v2",
+      "html_url": "https://github.com/qiuethan/v2",
+      "description": "UCT Original Website Design",
+      "created_at": "2021-11-09T22:32:37Z",
+      "pushed_at": "2021-11-09T22:33:27Z",
+      "language": "JavaScript",
+      "default_branch": "master",
+      "homepage": "",
+      "fork": false,
+      "research_owner": "repository_research"
+    }
+  ],
+  "projects": [
+    {
+      "name": "archctl",
+      "priority": "high",
+      "status": "Published developer tool; active Nov 2025–Feb 2026",
+      "summary": "Architecture linter and VS Code extension for TypeScript, JavaScript, Python, and Java.",
+      "implemented": [
+        "AST-based scanners build dependency graphs and detect module imports and side-effect capabilities.",
+        "Nine rule implementations enforce allowed/forbidden layers and capabilities, context visibility, cycles, external dependencies, file placement, and dependency limits.",
+        "Clean Architecture, DDD microservices, and modular monolith templates; interactive init and rule/context/layer management.",
+        "Incremental scan cache invalidates on file/config/tsconfig changes.",
+        "Text/JSON/interactive HTML reports with architecture health/dependency graph/layer matrix.",
+        "VS Code file watcher reruns checks and maps results into inline diagnostics.",
+        "Baseline/ratchet/trend features exist but were substantially authored by contributor Raymond."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 100,
+        "raymond367_contributions": 15,
+        "note": "Counts from GitHub contributors; not effort or ownership percentages. Debt tracking PR #20 by RaymondC-tech/raymond367; Ethan reviewed/merged."
+      },
+      "verified_metrics": {
+        "npm_latest": "0.4.6",
+        "first_published": "2025-12-01",
+        "latest_published": "2026-02-01",
+        "language_count": 4,
+        "rule_implementation_count": 9
+      },
+      "not_verified": [
+        "Marketplace publication of VS Code extension; source version is 0.2.0.",
+        "Performance speedup, active users, package downloads."
+      ],
+      "conflicts": [
+        "CHANGELOG dates list 2024/Jan2025, a year before repo creation and npm releases; use API/npm timestamps.",
+        "sync and prompt commands are stubs: no documentation-sync or architecture-aware prompt-generation claim."
+      ],
+      "sources": [
+        "https://github.com/qiuethan/archctl",
+        "https://www.npmjs.com/package/archctl",
+        "https://registry.npmjs.org/archctl",
+        "https://github.com/qiuethan/archctl/tree/master/src/infrastructure/scanners",
+        "https://github.com/qiuethan/archctl/tree/master/src/infrastructure/rules",
+        "https://github.com/qiuethan/archctl/blob/master/vscode-extension/src/extension.ts",
+        "https://github.com/qiuethan/archctl/pull/20"
+      ],
+      "draft_bullets": [
+        "Built and published an architecture linter for TypeScript, JavaScript, Python, and Java, with nine rules for dependency boundaries, side effects, and circular imports.",
+        "Added a VS Code extension, cached code scans, and interactive dependency reports so architecture violations show up while you work."
+      ]
+    },
+    {
+      "name": "Cybermetrics",
+      "priority": "high",
+      "status": "Team project Sep–Dec 2025; 2025 FTL BaiT",
+      "summary": "Baseball roster analysis using team-relative z-scores and replacement simulation across five offensive metrics.",
+      "implemented": [
+        "React/TypeScript roster and lineup builders, player search, radar charts, recommendations.",
+        "FastAPI with Firebase auth/Firestore and pybaseball data; routes/services/domain/repository separation.",
+        "Recommendation service identifies weakest player, simulates same-position replacements, ranks reduction in roster weakness.",
+        "Player cache reuse, singleton dependency injection, startup cache preload.",
+        "Pytest unit/integration suites and Vitest client action tests wired into GitHub Actions."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 119,
+        "authored_prs": 17,
+        "merged_authored_prs": 15,
+        "team_members": [
+          "Ethan Qiu",
+          "Raymond Chan",
+          "Alec Jiang",
+          "Kahn Shah",
+          "Hiu Yan Kwok (Jaela)"
+        ],
+        "personal_work": [
+          "Frontend scaffold and component refactors",
+          "Persisted player management",
+          "Authentication fixes and error messages",
+          "CI pipelines",
+          "DTO/domain separation",
+          "Database caching",
+          "Large UI/routing refactor",
+          "Backend and frontend tests"
+        ],
+        "note": "Avoid presenting entire analytics algorithm as solely Ethan’s invention; primary authored PRs support engineering/testing/caching ownership."
+      },
+      "reported_metrics": [
+        {
+          "claim": "~364 to ~2 Firestore reads per recommendation, ~99.5% reduction",
+          "evidence": "Ethan-authored merged PR #164, explicit before/after modeled workload; source implements cache reuse",
+          "classification": "PR-reported workload estimate, not independently benchmarked"
+        },
+        {
+          "claim": "~1,600 players preloaded once/shared across requests",
+          "evidence": "Merged PR #170",
+          "classification": "PR-reported scale; singleton/preload implemented"
+        },
+        {
+          "claim": "Backend coverage 37.76% to 92.77%, 509 passing tests",
+          "evidence": "Merged PR #180",
+          "classification": "PR-reported historical test result; no fresh run. PR subcounts 486+40+23 do not equal 509, so omit breakdown."
+        },
+        {
+          "claim": "49 frontend action tests",
+          "evidence": "Merged PR #181: auth16 + health3 + players30",
+          "classification": "PR-reported test count, files present"
+        }
+      ],
+      "sources": [
+        "https://github.com/TeamCybermetrics/Cybermetrics",
+        "https://github.com/TeamCybermetrics/Cybermetrics/pull/164",
+        "https://github.com/TeamCybermetrics/Cybermetrics/pull/170",
+        "https://github.com/TeamCybermetrics/Cybermetrics/pull/180",
+        "https://github.com/TeamCybermetrics/Cybermetrics/pull/181",
+        "https://github.com/TeamCybermetrics/Cybermetrics/pull/173",
+        "https://github.com/TeamCybermetrics/Cybermetrics/pull/128",
+        "https://github.com/TeamCybermetrics/Cybermetrics/blob/main/server/services/recommendation_service.py"
+      ],
+      "draft_bullets": [
+        "Built roster analysis and recommendation flows in React and FastAPI, helping users find players who address their lineup’s specific weaknesses.",
+        "Cut Firestore reads from roughly 364 to 2 per recommendation by reusing a shared player cache.",
+        "Expanded backend test coverage from 37.76% to 92.77% and added 49 frontend action tests."
+      ],
+      "copy_note": "Second and third bullets use historical PR-reported metrics; suitable after user confirms they reflect their measured results. Do not imply current live benchmark."
+    },
+    {
+      "name": "RT1M",
+      "priority": "medium",
+      "status": "Personal finance prototype; Jun–Jul 2025",
+      "summary": "Dashboard plus conversational planning and financial data management.",
+      "implemented": [
+        "React/TypeScript/Vite dashboard for assets, debts, income, expenses, net worth, goals and submilestones.",
+        "Firebase Auth/Firestore/Cloud Functions.",
+        "OpenAI Assistants router handles general messages, personalized context, and plan creation.",
+        "Structured response extraction converts conversations into create/edit/delete financial records and goals.",
+        "Persistent conversation history and small/full chat interfaces."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 53
+      },
+      "not_verified": [
+        "Real customers, financial outcomes, GDPR compliance, bank integration, current deployment health.",
+        "README claims concurrency resolution/security/performance broadly; do not copy without validation."
+      ],
+      "sources": [
+        "https://github.com/qiuethan/RT1M",
+        "https://github.com/qiuethan/RT1M/blob/master/server/functions/handlers/ai_langchain_assistants.js",
+        "https://github.com/qiuethan/RT1M/blob/master/server/functions/handlers/ai_context_assistant_schema.js",
+        "https://github.com/qiuethan/RT1M/blob/master/client/src/services/firestore.ts",
+        "https://www.youtube.com/watch?v=xIbfoLhTojI"
+      ],
+      "draft_bullets": [
+        "Built a personal finance app that turns conversations into updates to assets, debts, expenses, and goals, alongside a live net-worth dashboard.",
+        "Routed messages between general, context-aware, and planning assistants, with structured data extraction and Firebase persistence."
+      ]
+    },
+    {
+      "name": "Shop-Buddy",
+      "priority": "medium",
+      "status": "Personal project Jul 2025",
+      "summary": "Text-based shopping assistant combining practical solutions with product search.",
+      "implemented": [
+        "React 19/TypeScript/Vite client.",
+        "Express backend uses OpenAI for problem analysis and step-by-step solutions, SerpAPI for product search.",
+        "Price/location/store preferences and categorized product results.",
+        "Rate limiting/security middleware and Fly deployment files."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 7
+      },
+      "conflicts": [
+        "Current GitHub profile describes computer-vision grocery/allergy recommendation; repository has no such implementation. Correct to text-based shopping assistant unless there is a separate project/version."
+      ],
+      "sources": [
+        "https://github.com/qiuethan/Shop-Buddy",
+        "https://github.com/qiuethan/Shop-Buddy/blob/master/server/services/openai.service.js",
+        "https://github.com/qiuethan/Shop-Buddy/blob/master/server/services/serpapi.service.js",
+        "https://github.com/qiuethan/Shop-Buddy/blob/master/server/services/solution.service.js"
+      ],
+      "draft_bullets": [
+        "Built an AI shopping assistant that turns a problem description into a step-by-step solution and relevant products, filtered by budget, location, and store.",
+        "Connected OpenAI solution generation to SerpAPI product search through an Express API and React interface."
+      ]
+    },
+    {
+      "name": "Bounce Back (public version)",
+      "priority": "medium",
+      "status": "Mental wellness prototype; public Jun–Jul 2025",
+      "summary": "React Native companion with journaling, mood tracking, activities, avoidance zones, and Mistral chat.",
+      "implemented": [
+        "React Native/Expo UI, Firebase Auth/Firestore/Cloud Functions.",
+        "Written journal submission invokes a Flask/PyTorch model API and saves returned sentence/paragraph analysis.",
+        "BERT-based mood regression, risk scoring, and 12-label emotion classifier architectures/training notebooks.",
+        "Map zones, contacts, chores, workout/outdoor tracking and XP/daily challenges are represented in client/server files.",
+        "Mistral agent chat integration."
+      ],
+      "attribution": {
+        "public_qiuethan_contributions": 3,
+        "note": "Public clean snapshot is not full development history."
+      },
+      "conflicts": [
+        "Chat handler computes behavioral context but calls Mistral with chatHistory only; do not claim all behavior/context is integrated in this public version.",
+        "Risk/emotion notebooks lack saved training outputs; mood has examples. No accuracy benchmark or clinical validation verified.",
+        "Model weights not present in public repo; code assumes external weights.",
+        "Voice journal README claim not sufficiently verified."
+      ],
+      "sources": [
+        "https://github.com/qiuethan/Bounce-Back-Public",
+        "https://github.com/qiuethan/Bounce-Back-Public/blob/master/model-api/interface_service.py",
+        "https://github.com/qiuethan/Bounce-Back-Public/blob/master/firebase/functions/journal/index.js",
+        "https://github.com/qiuethan/Bounce-Back-Public/blob/master/firebase/functions/chat/index.js"
+      ],
+      "draft_bullets": [
+        "Built a React Native wellness companion with journaling, mood tracking, activity goals, and map-based avoidance zones.",
+        "Connected journal entries to a PyTorch/BERT analysis service for mood and emotion signals, with Firebase storage and Mistral chat."
+      ]
+    },
+    {
+      "name": "Hart House Debate Automation",
+      "priority": "high experience-supporting",
+      "status": "Python tournament operations tool; Jun–Aug 2024",
+      "summary": "Payment review and registration-to-Tabbycat automation.",
+      "implemented": [
+        "Google Sheets/Drive ingestion and writes; Google Cloud Vision OCR for image payment proofs, PyPDF2 extraction for PDF proofs.",
+        "Configurable payment checks with manual review fallback.",
+        "Debater/accessibility records compiled into separate spreadsheet sheets.",
+        "Tabbycat API integration for institutions, teams, speakers, eligibility categories; duplicate team checks.",
+        "Multi-tournament configuration and terminal interface; OpenAI produces short institution codes."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 20
+      },
+      "reported_metrics": [
+        {
+          "claim": "240+ participants",
+          "classification": "Public GitHub profile claim; code cannot verify tournament attendance or operational impact"
+        }
+      ],
+      "conflicts": [
+        "README explicitly says in development; current create-new-tournament menu entry simply continues.",
+        "Scheduling, room allocation, and tabulation should not be claimed as custom implemented algorithms: visible code registers data in Tabbycat and organizes sheets.",
+        "No measured time-saving figure from code."
+      ],
+      "sources": [
+        "https://github.com/qiuethan/Hart-House-Debate-Automation",
+        "https://github.com/qiuethan/Hart-House-Debate-Automation/blob/master/pyUtilFiles/googleUtil.py",
+        "https://github.com/qiuethan/Hart-House-Debate-Automation/blob/master/pyUtilFiles/tabbycatUtil.py",
+        "https://github.com/qiuethan/qiuethan/blob/main/README.md"
+      ],
+      "draft_bullets": [
+        "Automated debate tournament registration and payment review with Python, Google Sheets, Drive, and OCR, then synced teams and speakers into Tabbycat.",
+        "Built configurable payment checks, manual review queues, and accessibility records to reduce repetitive tournament administration."
+      ],
+      "optional_scale": "Can append “for 240+ participants” if user confirms profile figure."
+    },
+    {
+      "name": "now",
+      "priority": "medium",
+      "status": "Self-updating personal status page/API; Jun–Oct 2026",
+      "summary": "Scheduled activity collection produces static Markdown and JSON for humans and agents.",
+      "implemented": [
+        "GitHub Actions invokes generate.mjs hourly, fetching GitHub repos/events/contribution calendar and WakaTime.",
+        "Derives project/stack/activity snapshots and optional LLM weekly summary; renders committed public files.",
+        "Vercel rewrites read-only /api routes to static JSON and uses edge caching.",
+        "Last-good-source fallback with stale flags and a max age; no live generation on HTTP requests.",
+        "Private repo summaries intentionally anonymized; never use these to infer or expose unpublished project identities."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 5,
+        "note": "Most daily changes are automated commits, not manual coding activity."
+      },
+      "conflicts": [
+        "README says /now.json works but root verified 404 on custom domain; /api works.",
+        "WakaTime zero seconds does not mean no work; recent snapshot only captured no tracked time.",
+        "Historical writing tool file exists but stale and not currently in main snapshot.",
+        "Contribution counts include automated activity; not quality/productivity metric."
+      ],
+      "sources": [
+        "https://github.com/qiuethan/now",
+        "https://github.com/qiuethan/now/blob/main/scripts/generate.mjs",
+        "https://github.com/qiuethan/now/blob/main/.github/workflows/update.yml",
+        "https://github.com/qiuethan/now/blob/main/vercel.json",
+        "https://now.ethanqiu.ca/api"
+      ],
+      "draft_bullets": [
+        "Built a self-updating status page and JSON API that derives current projects and activity from GitHub and WakaTime on an hourly schedule.",
+        "Served committed snapshots through Vercel’s edge cache, with last-good-data fallbacks when upstream APIs fail."
+      ]
+    },
+    {
+      "name": "GradPath",
+      "priority": "experience-supporting archive",
+      "status": "Tutoring organization website Jun–Dec 2023",
+      "summary": "React tutoring site with Django backend, registration/auth, tutor profiles and appointment dashboard.",
+      "implemented": [
+        "React/Material UI frontend for programs, tutor profiles, registration, account and dashboard.",
+        "Django backend for registration/auth and appointment retrieval from EasyAppointments tables.",
+        "Source identifies Ethan as Co-Founder and Tech Co-Lead."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 32,
+        "876pol_contributions": 31,
+        "evidence": "Ethan commits predominantly frontend versions/updates; avoid taking sole credit for Django backend."
+      },
+      "sources": [
+        "https://github.com/qiuethan/GradPath",
+        "https://github.com/qiuethan/GradPath/blob/main/frontend/src/constants/TutorDetails.js",
+        "https://github.com/qiuethan/GradPath/blob/main/frontend/src/components/Home/Home.js",
+        "https://github.com/qiuethan/GradPath/blob/main/backend/gradpath_backend/appointments/views.py"
+      ],
+      "draft_bullets": [
+        "Co-founded GradPath and built its React frontend for tutoring programs, tutor profiles, registration, and student accounts."
+      ],
+      "not_verified": [
+        "User/student counts, revenue, current organization status."
+      ]
+    },
+    {
+      "name": "Hang",
+      "priority": "archive",
+      "status": "Social scheduling app; May 2022–Jun 2023; repo says permanent hiatus",
+      "summary": "React/Redux/Material UI frontend and Django backend with calendars, event planning, friendships and WebSocket chat.",
+      "implemented": [
+        "Google Calendar OAuth/sync; manual/repeating availability data models.",
+        "Event creation including time/location/attendees, join invitations and event chat.",
+        "Realtime Django Channels chat, reactions and notifications."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 94,
+        "876pol_contributions": 78,
+        "evidence": "Calendar.js explicitly says Author Ethan Qiu; many frontend/chat UI commits."
+      },
+      "sources": [
+        "https://github.com/qiuethan/Hang",
+        "https://github.com/qiuethan/Hang/blob/main/frontend/src/components/Profile/Calendar/Calendar.js",
+        "https://github.com/qiuethan/Hang/blob/main/backend/hang_backend/chats/consumers.py"
+      ],
+      "draft_bullets": [
+        "Built the React interface for a social scheduling app with Google Calendar sync, event planning, and real-time chat."
+      ],
+      "not_verified": [
+        "Production deployment/users, sole ownership of backend scheduling/chat logic."
+      ]
+    },
+    {
+      "name": "AI-Notetaker",
+      "priority": "archive prototype",
+      "status": "Jun–Aug 2024",
+      "summary": "Local audio recording and transcription pipeline.",
+      "implemented": [
+        "PyAudio microphone recording, WAV→MP3 conversion via pydub, local Whisper base transcription to text file."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 6
+      },
+      "conflicts": [
+        "summarize.py is empty. Call it transcription prototype, not full AI note summarization."
+      ],
+      "sources": [
+        "https://github.com/qiuethan/AI-Notetaker",
+        "https://github.com/qiuethan/AI-Notetaker/blob/master/speechtotext.py"
+      ],
+      "draft_bullets": [
+        "Built a Python audio recorder that converts speech to text using a local Whisper model."
+      ]
+    },
+    {
+      "name": "Face-Detection-Model",
+      "priority": "learning archive",
+      "status": "Aug 2024",
+      "summary": "Tutorial-adapted TensorFlow VGG16 face detector with classification and bounding-box heads.",
+      "implemented": [
+        "Dataset splitting/augmentation, VGG16-based classifier/localizer, custom training loss and camera inference notebook."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 5,
+        "note": "Repo description explicitly credits Nicholas Renotte tutorial; describe adaptation, not original detection research."
+      },
+      "sources": [
+        "https://github.com/qiuethan/Face-Detection-Model",
+        "https://github.com/qiuethan/Face-Detection-Model/blob/main/FaceDetection.ipynb"
+      ],
+      "draft_bullets": [
+        "Adapted a TensorFlow face-detection pipeline with VGG16, custom bounding-box loss, and webcam inference."
+      ],
+      "not_verified": [
+        "Accuracy, FPS, new research contribution."
+      ]
+    },
+    {
+      "name": "FRC-Command-Based-2023",
+      "priority": "experience-supporting archive",
+      "status": "Public snapshot Aug 2023",
+      "summary": "Java/WPILib command-based robot control for drivetrain, elevator and intake.",
+      "implemented": [
+        "Joystick/button bindings, separate robot subsystems, encoder/time-based commands.",
+        "Selectable autonomous sequences for cube/cone scoring and mobility.",
+        "Dashboard/chooser and fast/slow drive modes."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 2,
+        "note": "Snapshot ownership supports contributor evidence, not entire robotics team attribution."
+      },
+      "sources": [
+        "https://github.com/qiuethan/FRC-Command-Based-2023",
+        "https://github.com/qiuethan/FRC-Command-Based-2023/blob/main/Command-Based-FRC-2023/src/main/java/frc/robot/RobotContainer.java"
+      ],
+      "draft_bullets": [
+        "Programmed command-based robot controls in Java and WPILib, including drivetrain, elevator, intake, and selectable autonomous routines."
+      ],
+      "not_verified": [
+        "Team number, competition results, exact personal scope beyond repo snapshot."
+      ]
+    },
+    {
+      "name": "Discord-Bots",
+      "priority": "archive",
+      "status": "Snapshot Sep 2022",
+      "summary": "Collection of Python and JavaScript Discord bots.",
+      "implemented": [
+        "Lina mentor matching by subject/availability, DM question relay, ratings and reporting.",
+        "Amy/Fun bots with moderation, economy and utility commands.",
+        "Discord.js Secret Santa registration, pairing and private notifications."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 2
+      },
+      "sources": [
+        "https://github.com/qiuethan/Discord-Bots",
+        "https://github.com/qiuethan/Discord-Bots/blob/main/Lina%20Bot/main.py",
+        "https://github.com/qiuethan/Discord-Bots/blob/main/Secret-Santa-Bot/index.js"
+      ],
+      "draft_bullets": [
+        "Built Discord bots for mentor matching, moderation, and community games using Python and JavaScript."
+      ],
+      "not_verified": [
+        "Server/member counts, current operation."
+      ]
+    },
+    {
+      "name": "Trace-It",
+      "priority": "archive",
+      "status": "Jun 2022–Jan 2023",
+      "summary": "Pygame drawing-replication game with external image-similarity grading.",
+      "implemented": [
+        "Drawing canvas, selection/play UI, previous drawings and custom image support.",
+        "DeepAI image-similarity API compares drawing to target and white-screen control to derive score."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 3
+      },
+      "conflicts": [
+        "Uses external AI API, not a custom ML model; README openly documents inconsistent scores and API credit limits."
+      ],
+      "sources": [
+        "https://github.com/qiuethan/Trace-It",
+        "https://github.com/qiuethan/Trace-It/blob/main/Game/README.md",
+        "https://github.com/qiuethan/Trace-It/blob/main/Game/grade.py"
+      ],
+      "draft_bullets": [
+        "Created a Pygame drawing challenge that scores player sketches against reference images using an image-similarity API."
+      ]
+    },
+    {
+      "name": "v2 / Untitled Coding Tournament",
+      "priority": "early archive",
+      "status": "Nov 2021",
+      "summary": "Static website design for Untitled Coding Tournament.",
+      "implemented": [
+        "HTML/CSS/JavaScript landing, contests, contest agreement, question/login pages; animation/particle effects."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 1
+      },
+      "sources": [
+        "https://github.com/qiuethan/v2",
+        "https://github.com/qiuethan/v2/blob/master/index.html"
+      ],
+      "draft_bullets": [
+        "Designed a static website for Untitled Coding Tournament with contest pages and interactive visual effects."
+      ],
+      "not_verified": [
+        "Contest platform backend or actual competition hosting."
+      ]
+    },
+    {
+      "name": "neetcode-submissions",
+      "priority": "omit from featured projects",
+      "status": "Automated coding-practice archive May–Aug 2026",
+      "summary": "Automatically synced Python interview practice solutions.",
+      "implemented": [
+        "114 Python submission files in snapshot; duplicates per problem, so not 114 unique solved problems."
+      ],
+      "attribution": {
+        "qiuethan_contributions": 15
+      },
+      "sources": [
+        "https://github.com/qiuethan/neetcode-submissions"
+      ],
+      "draft_bullets": [],
+      "note": "Useful skill/practice evidence; generated README is not personal writing style."
+    }
+  ],
+  "profile_only_gaps": [
+    {
+      "name": "Thea",
+      "public_source": "https://github.com/qiuethan/qiuethan/blob/main/README.md",
+      "note": "Public profile description exists; private source findings kept separately."
+    }
+  ],
+  "cross_cutting": [
+    "Use exact git/npm dates over old README dates.",
+    "Site should differentiate ongoing tools, completed hackathons, employment/leadership experience, and early learning archives.",
+    "No user counts or impact numbers should be invented.",
+    "Public GitHub profile was updated today; cached web profile is stale.",
+    "Shop-Buddy profile copy is materially wrong for the public repository."
+  ]
+}

@@ -187,17 +187,17 @@ const Hero: React.FC = () => {
         <p className="kicker">Software Engineer · Toronto · Hopeless Romantic · <b>Currently @ Shopify</b></p>
         <h1>I commit daily,<br />even if they don&apos;t.</h1>
         <p className="lede">
-          I&apos;m Ethan. I build <strong>AI tooling and full-stack systems</strong>.
-          Software engineer intern at Shopify, CS at UofT, previously General Dynamics
-          and leading teams at UTMIST and UofT Blueprint.
+          Hi, I&apos;m Ethan!
+          I build software on Shopify’s Products &amp; Pricing team and lead infrastructure at UTMIST.
+          CS at UofT, class of 2028. Previously General Dynamics and UofT Blueprint.
         </p>
         <div className="cta-row">
-          <PrimaryBtn href="/resume.pdf" target="_blank" rel="noopener">Download resume</PrimaryBtn>
+          <PrimaryBtn href="/resume.pdf" target="_blank" rel="noopener">Resume · Aug 2026</PrimaryBtn>
           <GhostBtn href={portfolioData.contact.github} target="_blank" rel="noopener">GitHub</GhostBtn>
           <GhostBtn href={portfolioData.contact.linkedin} target="_blank" rel="noopener">LinkedIn</GhostBtn>
         </div>
       </div>
-      <PhotoStack aria-label="Photos of Ethan and Toronto">
+      <PhotoStack role="group" aria-label="Photos of Ethan and Toronto">
         <Photo
           className="p3"
           src="/img/photos/doodle.jpg"
@@ -205,6 +205,7 @@ const Hero: React.FC = () => {
         />
         <Photo
           className="p1"
+          loading="eager"
           src="/img/photos/me-toronto.jpg"
           alt="Ethan in front of the Toronto skyline"
         />

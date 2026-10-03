@@ -319,7 +319,7 @@ const FeedCard = styled(Glass)`
     border-color: rgba(109, 74, 167, 0.25);
   }
   .kind.writing {
-    color: #2f8f6b;
+    color: #246c52;
     background: rgba(47, 143, 107, 0.1);
     border-color: rgba(47, 143, 107, 0.25);
   }
@@ -722,7 +722,7 @@ function buildFeed(data: NowData): FeedEntry[] {
     src: { label: 'Substack', llm: false },
   }));
 
-  return [...projects, ...writing].sort((a, b) => b.ts - a.ts).slice(0, 8);
+  return [...projects, ...writing].sort((a, b) => b.ts - a.ts);
 }
 
 const fmtFullDate = (iso: string) =>
@@ -801,7 +801,7 @@ const SK_LANG = ['72%', '54%', '38%', '22%'];
 const SK_STATUS = ['82%', '66%', '74%', '58%'];
 
 const SkeletonFeed: React.FC = () => (
-  <FeedCard aria-busy="true" aria-label="Loading recent activity">
+  <FeedCard role="group" aria-busy="true" aria-label="Loading recent activity">
     <div className="chips">
       {FILTERS.map((f) => (
         <span key={f.key} className="chip" style={{ cursor: 'default' }}>
@@ -828,7 +828,7 @@ const SkeletonFeed: React.FC = () => (
 );
 
 const SkeletonHeatmap: React.FC = () => (
-  <HeatmapCard aria-busy="true" aria-label="Loading contribution calendar">
+  <HeatmapCard role="group" aria-busy="true" aria-label="Loading contribution calendar">
     <Skeleton $w="200px" $h="11px" style={{ marginBottom: 14 }} />
     <div className="heat-body">
       <div className="map skeleton" style={{ aspectRatio: `${HEAT_WEEKS} / 7` }}>
@@ -849,7 +849,7 @@ const SkeletonHeatmap: React.FC = () => (
 );
 
 const SkeletonCoding: React.FC = () => (
-  <CodingCard aria-busy="true" aria-label="Loading coding stats">
+  <CodingCard role="group" aria-busy="true" aria-label="Loading coding stats">
     <Skeleton $w="120px" $h="11px" style={{ marginBottom: 12 }} />
     <div className="top">
       <Skeleton $w="140px" $h="21px" />
@@ -877,7 +877,7 @@ const SkeletonCoding: React.FC = () => (
 );
 
 const SkeletonStatus: React.FC = () => (
-  <StatusCard aria-busy="true" aria-label="Loading status">
+  <StatusCard role="group" aria-busy="true" aria-label="Loading status">
     <Skeleton $w="80px" $h="11px" style={{ marginBottom: 6 }} />
     {SK_STATUS.map((w, i) => (
       <div className="row" key={i}>
@@ -947,7 +947,7 @@ const NowSection: React.FC = () => {
       ? `Last sync ${ago(data!.updated)}`
       : 'Activity feed unavailable';
 
-  const visible = feed.filter((e) => filter === 'all' || e.kind === filter);
+  const visible = feed.filter((e) => filter === 'all' || e.kind === filter).slice(0, 8);
 
   return (
     <NowWrap id="now">
@@ -992,7 +992,7 @@ const NowSection: React.FC = () => {
                   </button>
                 ))}
               </div>
-              <div className="feed">
+              <div className="feed" tabIndex={0} role="region" aria-label="Recent updates">
                 {visible.length === 0 && (
                   <p>No recent updates available here. <a href="https://github.com/qiuethan" target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a></p>
                 )}

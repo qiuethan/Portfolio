@@ -4,7 +4,7 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --ink: #1a2130;
     --ink-soft: #525c6e;
-    --ink-faint: #8793a3;
+    --ink-faint: #596779;
     --accent: #1d4f9e;
     --accent-soft: rgba(29, 79, 158, 0.1);
     --bg: #e6edf5;
@@ -24,6 +24,7 @@ const GlobalStyles = createGlobalStyle`
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
+  main { scroll-margin-top: 100px; }
 
   body {
     font-family: var(--body);

@@ -1,0 +1,394 @@
+{
+  "date": "2026-10-02",
+  "scope": "Current local homepage, full Projects/Experiments library, dialogs, Now integration, structured view, fallback routes, public assets, outbound links, production dependencies, and content consistency against prior research and user corrections.",
+  "fixes": [
+    {
+      "issue": "GameStoppr source link returned 404",
+      "resolution": "Linked NamanBiyani06/gamestoppr, a public copy with matching researched commit history."
+    },
+    {
+      "issue": "Now truncated the combined feed before filtering; quieter categories could disappear",
+      "resolution": "Filter before the eight-entry limit. Reproduced with nine newer projects and an older writing post, then verified the Writing filter shows it."
+    },
+    {
+      "issue": "Small secondary text had 2.64:1 contrast against the page background",
+      "resolution": "Adjusted the secondary text color to 4.89:1 and strengthened white-on-blue button contrast. Updated the green Writing label."
+    },
+    {
+      "issue": "Footer email was plain text and links relied on color alone",
+      "resolution": "Added a mailto link and visible underlines."
+    },
+    {
+      "issue": "Background content remained focusable behind dialogs",
+      "resolution": "Portal dialogs into the body and make the app root inert; restore focus and scrolling on close."
+    },
+    {
+      "issue": "Missing keyboard bypass and ambiguous accessibility labels",
+      "resolution": "Added skip-to-content links, named loading groups and structured-view asides, and a named keyboard-focusable activity feed."
+    },
+    {
+      "issue": "Unknown client routes rendered a blank page",
+      "resolution": "Added a recovery page and emitted dist/404.html for Vercel static 404 handling."
+    },
+    {
+      "issue": "All page photos loaded eagerly",
+      "resolution": "Default below-the-fold photos to lazy loading and async decoding; keep the main portrait eager."
+    },
+    {
+      "issue": "Missing social preview metadata",
+      "resolution": "Added Open Graph title, description, portrait and alt text, plus a large-image Twitter card."
+    },
+    {
+      "issue": "Production dependency audit flagged five affected packages",
+      "resolution": "Updated compatible dependencies within existing ranges. React Router is 7.18.4; styled-components is 6.5.3; PostCSS is 8.5.28; nanoid is 3.3.19. Production audit reports zero vulnerabilities."
+    }
+  ],
+  "verification": {
+    "build": "passed",
+    "lint": {
+      "errors": 0,
+      "existing_warnings": 4,
+      "locations": [
+        "TerminalInterface.tsx:226",
+        "TerminalInterface.tsx:252",
+        "Glass.tsx:4",
+        "Skeleton.tsx:5"
+      ]
+    },
+    "diff_whitespace": "passed",
+    "library": {
+      "projects": 18,
+      "experiments": 4,
+      "all_dialogs_images_titles_focus_restore": "passed",
+      "pagination_and_keyboard_tabs": "passed"
+    },
+    "homepage": {
+      "current_roles": 2,
+      "current_projects": 3,
+      "selected_projects": 6,
+      "past_experience_cards": 4,
+      "all_six_role_dialogs": "passed",
+      "now_precedes_current_work": true,
+      "all_visible_images_decoded_after_scrolling": true
+    },
+    "responsive_widths": [
+      320,
+      390,
+      768,
+      1100,
+      1440
+    ],
+    "horizontal_overflow": false,
+    "off_hours_clipped_text": false,
+    "now_scenarios": [
+      "live sources",
+      "nine newer project updates plus an older writing post",
+      "all endpoints fail",
+      "stale sources omitted while fresh availability remains"
+    ],
+    "legacy_experiment_link": "redirects to /work?tab=experiments while preserving the view override",
+    "not_found": "Recovery UI and Back home link passed; build emits an identical app shell at dist/404.html.",
+    "accessibility": [
+      {
+        "view": "404",
+        "violations": [],
+        "manual_review": [
+          {
+            "count": 16,
+            "id": "color-contrast"
+          }
+        ]
+      },
+      {
+        "view": "agent",
+        "violations": [],
+        "manual_review": []
+      },
+      {
+        "view": "dialog",
+        "violations": [],
+        "manual_review": [
+          {
+            "count": 15,
+            "id": "color-contrast"
+          }
+        ]
+      },
+      {
+        "view": "experiments",
+        "violations": [],
+        "manual_review": [
+          {
+            "count": 31,
+            "id": "color-contrast"
+          }
+        ]
+      },
+      {
+        "view": "home",
+        "violations": [],
+        "manual_review": [
+          {
+            "count": 137,
+            "id": "color-contrast"
+          }
+        ]
+      },
+      {
+        "view": "mobile",
+        "violations": [],
+        "manual_review": [
+          {
+            "count": 83,
+            "id": "color-contrast"
+          }
+        ]
+      }
+    ],
+    "production_dependency_audit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "resume_files": {
+      "valid_pdf_signatures": true,
+      "identical": true,
+      "snapshot": "August 2026"
+    },
+    "outbound_links": [
+      {
+        "url": "https://coherentboi.substack.com/p/the-one-about-thea-pt-the-end",
+        "status": 200,
+        "destination": "https://coherentboi.substack.com/p/the-one-about-thea-pt-the-end",
+        "title": "The one about Thea pt. the end? - Ethan Qiu"
+      },
+      {
+        "url": "https://devpost.com/software/canopy-m01bog",
+        "status": 200,
+        "destination": "https://devpost.com/software/canopy-m01bog",
+        "title": "Canopy | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/crosswalk-of-shame",
+        "status": 200,
+        "destination": "https://devpost.com/software/crosswalk-of-shame",
+        "title": "crosswalk of shame... | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/framed-41c5lm",
+        "status": 200,
+        "destination": "https://devpost.com/software/framed-41c5lm",
+        "title": "Frame | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/gamestoppr",
+        "status": 200,
+        "destination": "https://devpost.com/software/gamestoppr",
+        "title": "GameStoppr | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/hyacinthe",
+        "status": 200,
+        "destination": "https://devpost.com/software/hyacinthe",
+        "title": "hyacinthe | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/idk-evraiq",
+        "status": 200,
+        "destination": "https://devpost.com/software/idk-evraiq",
+        "title": "Heimer Academy | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/ji-review",
+        "status": 200,
+        "destination": "https://devpost.com/software/ji-review",
+        "title": "ChatGPU | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/orbit-59jths",
+        "status": 200,
+        "destination": "https://devpost.com/software/orbit-59jths",
+        "title": "Orbit | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/polaris-vlp1wm",
+        "status": 200,
+        "destination": "https://devpost.com/software/polaris-vlp1wm",
+        "title": "Polaris | Devpost"
+      },
+      {
+        "url": "https://devpost.com/software/temp-sqyptg",
+        "status": 200,
+        "destination": "https://devpost.com/software/temp-sqyptg",
+        "title": "Identity Matrix | Devpost"
+      },
+      {
+        "url": "https://github.com/JavRedstone/canopy",
+        "status": 200,
+        "destination": "https://github.com/JavRedstone/canopy",
+        "title": "GitHub - JavRedstone/canopy: 2026 OpenAI Build Week · GitHub"
+      },
+      {
+        "url": "https://github.com/TeamCybermetrics/Cybermetrics",
+        "status": 200,
+        "destination": "https://github.com/TeamCybermetrics/Cybermetrics",
+        "title": "GitHub - TeamCybermetrics/Cybermetrics: 2025 FTL BaiT Project. · GitHub"
+      },
+      {
+        "url": "https://github.com/UTMIST/Mist",
+        "status": 200,
+        "destination": "https://github.com/UTMIST/Mist",
+        "title": "GitHub - UTMIST/Mist: UTMIST&#39;s Compute Platform · GitHub"
+      },
+      {
+        "url": "https://github.com/UTMIST/Misty",
+        "status": 200,
+        "destination": "https://github.com/UTMIST/Misty",
+        "title": "GitHub - UTMIST/Misty · GitHub"
+      },
+      {
+        "url": "https://github.com/UTMIST/UTMIST",
+        "status": 200,
+        "destination": "https://github.com/UTMIST/UTMIST",
+        "title": "GitHub - UTMIST/UTMIST: UTMIST Website · GitHub"
+      },
+      {
+        "url": "https://github.com/emlyqi/crosswalkofshame",
+        "status": 200,
+        "destination": "https://github.com/emlyqi/crosswalkofshame",
+        "title": "GitHub - emlyqi/crosswalkofshame: Made in 36 hours for Hack the North 2024 · GitHub"
+      },
+      {
+        "url": "https://github.com/haenlonns/hyacinthe",
+        "status": 200,
+        "destination": "https://github.com/haenlonns/hyacinthe",
+        "title": "GitHub - haenlonns/hyacinthe: geesehacks 2025 project · GitHub"
+      },
+      {
+        "url": "https://github.com/ji24077/HTN",
+        "status": 200,
+        "destination": "https://github.com/ji24077/HTN",
+        "title": "GitHub - ji24077/HTN · GitHub"
+      },
+      {
+        "url": "https://github.com/muwasifk/gamestoppr",
+        "status": 404,
+        "resolution": "Updated portfolio to the public repository containing the same project and Ethan commits",
+        "replacement": "https://github.com/NamanBiyani06/gamestoppr",
+        "replacement_status": 200
+      },
+      {
+        "url": "https://github.com/qiuethan",
+        "status": 200,
+        "destination": "https://github.com/qiuethan",
+        "title": "qiuethan (Ethan Qiu) · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/Bounce-Back-Public",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/Bounce-Back-Public",
+        "title": "GitHub - qiuethan/Bounce-Back-Public: Bounce Back – a mental health companion app (public version). Core features available; private logic removed. · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/GenAI-Genesis-Project",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/GenAI-Genesis-Project",
+        "title": "GitHub - qiuethan/GenAI-Genesis-Project · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/Hart-House-Debate-Automation",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/Hart-House-Debate-Automation",
+        "title": "GitHub - qiuethan/Hart-House-Debate-Automation: This project automates various administrative tasks for the Hart House Debate Club, the largest university debate club in Canada. It handles payment confirmation, debater allocation, accessibility allocation, and more. Note: This project is still in development. · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/Heimer-Academy",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/Heimer-Academy",
+        "title": "GitHub - qiuethan/Heimer-Academy: 🏆1st Place Rift Rewind Hackathon (https://riftrewind.devpost.com/), AI coaching from League of Legends Data · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/Identity-Matrix",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/Identity-Matrix",
+        "title": "GitHub - qiuethan/Identity-Matrix: 🏆 1st Place UofTHacks 13. Multi-agent real-time world with persistent, memory-driven AI identities · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/Polaris",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/Polaris",
+        "title": "GitHub - qiuethan/Polaris: 🏆 1st Place – Best Game Hack @ Hack the 6ix 2024, 🎖 Finalist – Overall Top 8 · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/RT1M",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/RT1M",
+        "title": "GitHub - qiuethan/RT1M: A modern personal finance application with AI-powered conversational assistance, built to help users achieve their $1 million net worth goal through intelligent financial planning and management. · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/Shop-Buddy",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/Shop-Buddy",
+        "title": "GitHub - qiuethan/Shop-Buddy: An AI-powered shopping assistant that helps you solve problems by providing complete solutions with integrated product recommendations. · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/archctl",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/archctl",
+        "title": "GitHub - qiuethan/archctl: Enforce clean architecture patterns, dependency rules, and design principles in your codebase with powerful linting and real-time feedback. · GitHub"
+      },
+      {
+        "url": "https://github.com/qiuethan/orbit",
+        "status": 200,
+        "destination": "https://github.com/qiuethan/orbit",
+        "title": "GitHub - qiuethan/Orbit: 🏆 Real-time social intelligence platform, winner at Hack the North 2025. Combines computer vision, Whisper, and LLMs to deliver instant recognition, live transcription, and context-aware conversation insights. · GitHub"
+      },
+      {
+        "url": "https://linkedin.com/in/qiu-ethan",
+        "status": 200,
+        "destination": "https://linkedin.com/in/qiu-ethan",
+        "title": "Checking your browser - reCAPTCHA",
+        "note": "HTTP 200 is a browser-verification page; profile content could not be verified automatically."
+      },
+      {
+        "url": "https://rt1m.ethanqiu.ca",
+        "status": 200,
+        "destination": "https://rt1m.ethanqiu.ca",
+        "title": "RT1M"
+      },
+      {
+        "url": "https://shop-buddy.ethanqiu.ca",
+        "status": 200,
+        "destination": "https://shop-buddy.ethanqiu.ca",
+        "title": "Shop Buddy - Smart Shopping Solutions"
+      },
+      {
+        "url": "https://www.npmjs.com/package/archctl",
+        "status": 403,
+        "note": "Website blocks automated access; npm registry verified archctl 0.4.6."
+      },
+      {
+        "url": "https://www.utmist.ca/",
+        "status": 200,
+        "destination": "https://www.utmist.ca/",
+        "title": "UTMIST"
+      }
+    ]
+  },
+  "remaining_content_or_product_decisions": [
+    "Resume PDF is still the August 2026 snapshot and predates parts of the portfolio update.",
+    "The older UTMIST Machine Learning Engineer end date is unconfirmed; the structured view says Previously.",
+    "Now remains hidden below 701px by the existing design. A compact mobile version would require a product choice.",
+    "Some larger screenshots, especially Frame, could benefit from optimized alternate image formats; lazy loading now defers them."
+  ],
+  "limits": [
+    "No deployment performed; Vercel 404 behavior is configured according to its documentation, not verified in a new deployment.",
+    "Automated accessibility checks report zero violations in tested views, but cannot resolve all contrast cases through translucent gradients and imagery. Text colors and button contrast were also reviewed manually; this is not a full accessibility certification.",
+    "Public link reachability does not establish that every external project backend workflow is operational. LinkedIn and npm website checks were limited by automated-access challenges.",
+    "Employment outcomes remain supported by the supplied resume, research notes and user confirmations; no new dates or impact measurements were invented.",
+    "Dependency scan covered production dependencies; existing development-tool lint warnings are recorded separately."
+  ]
+}

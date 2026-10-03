@@ -11,7 +11,8 @@ const FooterWrap = styled.footer`
 
   a {
     color: var(--accent);
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   a:hover {
@@ -22,7 +23,7 @@ const FooterWrap = styled.footer`
 const SiteFooter: React.FC = () => (
   <FooterWrap>
     <p>
-      {portfolioData.contact.email} ·{' '}
+      <a href={`mailto:${portfolioData.contact.email}`}>{portfolioData.contact.email}</a> ·{' '}
       <a href={portfolioData.contact.github} target="_blank" rel="noopener">GitHub</a> ·{' '}
       <a href={portfolioData.contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
     </p>

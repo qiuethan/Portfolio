@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import styled, { keyframes } from 'styled-components';
 import Glass from './Glass';
 import Photo from './Photo';
@@ -143,13 +144,38 @@ export const ModalActions = styled.div`
 type ModalProps = {
   onClose: () => void;
   children: React.ReactNode;
+  labelledBy?: string;
 };
 
 /** Frosted glass dialog. Closes on Escape, backdrop click, or the × button. */
-const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, children, labelledBy }) => {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef(onClose);
+  useEffect(() => { closeRef.current = onClose; }, [onClose]);
+
   useEffect(() => {
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const appRoot = document.getElementById('root');
+    const previousInert = appRoot?.inert ?? false;
+    if (appRoot) appRoot.inert = true;
+    const focusable = () => Array.from(panelRef.current?.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), a[href], [tabindex="0"]',
+    ) ?? []);
+    focusable()[0]?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') closeRef.current();
+      if (e.key === 'Tab') {
+        const elements = focusable();
+        const first = elements[0];
+        const last = elements[elements.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
     };
     document.addEventListener('keydown', onKey);
     const prevOverflow = document.body.style.overflow;
@@ -157,16 +183,19 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
+      if (appRoot) appRoot.inert = previousInert;
+      previousFocus?.focus();
     };
-  }, [onClose]);
+  }, []);
 
-  return (
-    <Overlay onClick={onClose}>
-      <Panel role="dialog" aria-modal="true" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+  return createPortal(
+    <Overlay ref={panelRef} onClick={onClose}>
+      <Panel role="dialog" aria-modal="true" aria-labelledby={labelledBy} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
         <CloseBtn type="button" aria-label="Close" onClick={onClose}>×</CloseBtn>
         {children}
       </Panel>
-    </Overlay>
+    </Overlay>,
+    document.body,
   );
 };
 

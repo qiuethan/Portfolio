@@ -1,0 +1,96 @@
+{
+  "retrieved": "2026-10-02",
+  "note": "Source assets are copied without pixel edits. Private experiment previews are locally rendered and individually labeled in this manifest. Card crops are CSS; dialogs preserve full images and link to the full local file.",
+  "images": [
+    {
+      "project": "misty",
+      "file": "/img/projects/misty.png",
+      "type": "logo",
+      "source": "https://raw.githubusercontent.com/UTMIST/Misty/main/services/meeting/src/assets/brand/utmist-logo.png",
+      "sha256": "2fefc863144dcca37d7f622d411f0ce12444bc67213ec280e4c83c7605c7d63e",
+      "bytes": 198111
+    },
+    {
+      "project": "archctl",
+      "file": "/img/projects/archctl.png",
+      "type": "logo",
+      "source": "https://github.com/qiuethan/archctl/blob/master/assets/logo.png",
+      "sha256": "dc5fbf323a44e288867aa3ce017b832217446c6696e43b8f43588d218e8172d7",
+      "bytes": 1293142
+    },
+    {
+      "project": "cybermetrics",
+      "file": "/img/projects/cybermetrics.png",
+      "type": "screenshot",
+      "source": "https://github.com/user-attachments/assets/cc78dff5-6d50-434e-b48d-000e3c2b25e1",
+      "sha256": "7f5b9ac00dd0b492eed18612c236e4944e75392e6689db21d283c54d324bb2c9",
+      "bytes": 236457,
+      "context": "https://github.com/TeamCybermetrics/Cybermetrics/pull/173"
+    },
+    {
+      "project": "canopy",
+      "file": "/img/projects/canopy.png",
+      "type": "screenshot",
+      "source": "https://raw.githubusercontent.com/JavRedstone/canopy/main/docs/assets/course_landing_page.png",
+      "sha256": "333a97e476bb51ce2e4c3681ceab2b84e3ffcd744afe696a2efde3759006a7ed",
+      "bytes": 498138
+    },
+    {
+      "project": "chatgpu",
+      "file": "/img/projects/chatgpu.png",
+      "type": "demo screenshot",
+      "source": "https://raw.githubusercontent.com/ji24077/HTN/main/docs/screenshots/01-jobs.png",
+      "sha256": "1dd68e60475a2a2939324eaadb96d234e7e9f229372680bcdb748debf439b7c6",
+      "bytes": 176518
+    },
+    {
+      "project": "frame",
+      "file": "/img/projects/frame.png",
+      "type": "screenshot",
+      "source": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/443/083/datas/original.png",
+      "sha256": "876e261af487408fc08372a717561c029793399bcddf3517608b088ba859bd5c",
+      "bytes": 1525222,
+      "context": "https://devpost.com/software/framed-41c5lm"
+    },
+    {
+      "project": "mist",
+      "file": "/img/projects/mist.png",
+      "type": "GitHub repository preview",
+      "source": "https://opengraph.githubassets.com/8bbf1e4517f67d1f57297360c86a8ad8b1c90953e85e7866a902dc15daa182a3/UTMIST/Mist",
+      "context": "https://github.com/UTMIST/Mist",
+      "sha256": "0b67ccdb696dda4fc6837a6024a7364c355b6332c277a17a6abe419ffe649aeb",
+      "bytes": 50248
+    },
+    {
+      "project": "thea",
+      "file": "/img/experiments/thea.svg",
+      "type": "Locally rendered repository preview",
+      "source": "src/data/experiments.ts",
+      "owner_image_source": "https://avatars.githubusercontent.com/u/78055829?s=400&v=4",
+      "note": "GitHub returned only the owner avatar for this private repository. This preview uses the existing public portfolio description; it is not a GitHub-generated repository card or product screenshot.",
+      "sha256": "8b2c92c5b5e06b3c0ca4fa2485d32e01b6ec3e6279fd60a4b5072de9beab3d85",
+      "bytes": 54419
+    },
+    {
+      "project": "minecraft-harness",
+      "file": "/img/experiments/minecraft-harness.svg",
+      "type": "Locally rendered repository preview",
+      "source": "src/data/experiments.ts",
+      "owner_image_source": "https://avatars.githubusercontent.com/u/78055829?s=400&v=4",
+      "note": "GitHub returned only the owner avatar for this private repository. This preview uses the existing public portfolio description; it is not a GitHub-generated repository card or product screenshot.",
+      "sha256": "e00b383f875af24ca78976ab1966f6add23b6f77f1be86931a9e9ffed9ba8c91",
+      "bytes": 54435
+    },
+    {
+      "project": "idea-factory",
+      "file": "/img/experiments/idea-factory.svg",
+      "type": "Locally rendered repository preview",
+      "source": "src/data/experiments.ts",
+      "owner_image_source": "https://avatars.githubusercontent.com/u/78055829?s=400&v=4",
+      "note": "GitHub returned only the owner avatar for this private repository. This preview uses the existing public portfolio description; it is not a GitHub-generated repository card or product screenshot.",
+      "sha256": "8dfe19f6585450c5d088ef0531d7daa5a0e65221d69e69e73dd4c2a7e0d2c7c1",
+      "bytes": 54435
+    }
+  ],
+  "retained_fallbacks": {}
+}

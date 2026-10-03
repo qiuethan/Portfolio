@@ -15,12 +15,7 @@ const AboutCommand: React.FC<AboutCommandProps> = ({ onNavigate }) => {
   // Top 5 featured projects
   const featuredProjects = portfolioData.projects.slice(0, 5);
   
-  // Top 3 experiences: GDMS, UTMIST Director, UTMIST MLE
-  const currentExperiences = [
-    portfolioData.experience[0], // GDMS
-    portfolioData.experience[1], // Engineering Director
-    portfolioData.experience[2], // ML Engineer
-  ];
+  const currentExperiences = portfolioData.experience.filter((role) => role.featured).slice(0, 3);
 
   return (
     <>
@@ -279,4 +274,4 @@ const AboutCommand: React.FC<AboutCommandProps> = ({ onNavigate }) => {
   );
 };
 
-export default AboutCommand; 
+export default AboutCommand;

@@ -41,11 +41,12 @@ const BlogCommand: React.FC<BlogCommandProps> = ({ onNavigate }) => {
           <BlogDate style={{ marginBottom: '1rem' }}>{post.date}</BlogDate>
           <BlogContent style={{ fontSize: '0.95rem', lineHeight: '1.7' }}>
             {post.content}
+            {' '}<a href={post.url} target="_blank" rel="noopener noreferrer">Read on Substack ↗</a>
           </BlogContent>
         </BlogPost>
       ))}
 
-      {/* Coming Soon Card */}
+      {/* More writing */}
       <div style={{ 
         textAlign: 'center', 
         padding: '2rem', 
@@ -56,10 +57,10 @@ const BlogCommand: React.FC<BlogCommandProps> = ({ onNavigate }) => {
       }}>
         <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚧</div>
         <h3 style={{ color: '#58a6ff', margin: '0 0 0.5rem 0', fontSize: '1.1rem' }}>
-          More Coming Soon
+          More on Substack
         </h3>
         <p style={{ color: '#8b949e', margin: 0, fontSize: '0.9rem', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>
-          Working on posts about AI experiments, hackathon wins, and engineering insights
+          <a href="https://coherentboi.substack.com" target="_blank" rel="noopener noreferrer">Read my essays ↗</a>
         </p>
       </div>
 
@@ -87,4 +88,4 @@ const BlogCommand: React.FC<BlogCommandProps> = ({ onNavigate }) => {
   );
 };
 
-export default BlogCommand; 
+export default BlogCommand;

@@ -1,16 +1,37 @@
 # Ethan Qiu
 
-> Software engineer in Toronto — SWE Intern at Shopify, CS student at the
-> University of Toronto. This is his portfolio site (a JavaScript SPA — for
-> machine-readable info use the links below).
+> Software engineer in Toronto — Software Engineer Intern on Shopify's Products & Pricing
+> team and VP Infrastructure at UTMIST. Computer Science Specialist at the University
+> of Toronto, class of 2028. Portfolio content reviewed October 2026.
 
 ## Resources
 
-- [Resume (PDF)](https://ethanqiu.ca/resume.pdf): canonical resume — start here
+- [Homepage](https://ethanqiu.ca/): Now, current work, selected projects, and past experience
+- [All work](https://ethanqiu.ca/work): complete project library
+- [Experiments](https://ethanqiu.ca/work?tab=experiments): Thea, Minecraft-Harness, Idea Factory, and archctl
+- [Structured portfolio](https://ethanqiu.ca/?view=agent): experience, projects, experiments, and skills (JavaScript required)
+- [Resume (PDF)](https://ethanqiu.ca/resume.pdf): August 2026 snapshot; newer work appears on the portfolio
 - [GitHub](https://github.com/qiuethan): source for the projects below
 - [LinkedIn](https://linkedin.com/in/qiu-ethan): experience and background
 
-## Live status
+## Current work
 
-- [Now page (markdown)](https://now.ethanqiu.ca/now.md): current role, availability, active projects, and this week's coding activity — auto-updated hourly; prefer this for time-sensitive details
-- [Now page (JSON)](https://now.ethanqiu.ca/now.json): the same data, structured
+- Shopify: Software Engineer Intern on the Products & Pricing team (Apr 2026–Present)
+- UTMIST: VP Infrastructure (Jul 2026–Present)
+- Misty: UTMIST internal operations, member verification, and meeting transcription
+- Mist: shared GPU compute infrastructure
+- UTMIST Website: events, recruitment, publishing, and member access
+
+## Selected work
+
+- Canopy: OpenAI Build Week 2026 Education Finalist
+- ChatGPU: Best Use of Sentry at Hack the North 2026
+- Identity Matrix: UofTHacks 13 overall winner and Best UofT Hack
+- Cybermetrics: baseball analytics, caching, and test infrastructure
+- Heimer Academy: League of Legends coaching based on match history
+- Frame: real-time photography coaching
+- Experiments: Thea, Minecraft-Harness, Idea Factory, and archctl. archctl is a published architecture linter with a public repository and VS Code extension; the other three repositories are private.
+
+## Recent activity
+
+- [Now API](https://now.ethanqiu.ca/api): discovery endpoint for activity, projects, contributions, and availability. Check individual freshness fields; it does not establish employment dates or total coding time.

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { glassCss } from './Glass';
 
-const PhotoBox = styled.div<{ $position?: string }>`
+const PhotoBox = styled.div<{ $position?: string; $fit?: 'cover' | 'contain' }>`
   background: var(--photo-bg);
   background-image: var(--hatch);
   border: 1px solid rgba(26, 33, 48, 0.25);
@@ -13,7 +13,7 @@ const PhotoBox = styled.div<{ $position?: string }>`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: ${({ $fit }) => $fit ?? 'cover'};
     object-position: ${({ $position }) => $position ?? 'center'};
     display: block;
   }
@@ -52,12 +52,15 @@ type PhotoProps = React.HTMLAttributes<HTMLDivElement> & {
   caption?: string;
   /** object-position for the image crop (e.g. "center 40%") */
   position?: string;
+  /** Show a whole logo or screenshot without cropping it. */
+  fit?: 'cover' | 'contain';
+  loading?: 'eager' | 'lazy';
 };
 
 /** Photo slot: renders the image when given, otherwise a hatched placeholder. */
-const Photo: React.FC<PhotoProps> = ({ src, alt, label, caption, position, ...rest }) => (
-  <PhotoBox $position={position} {...rest}>
-    {src ? <img src={src} alt={alt ?? ''} /> : label && <span className="slot-label">{label}</span>}
+const Photo: React.FC<PhotoProps> = ({ src, alt, label, caption, position, fit, loading = 'lazy', ...rest }) => (
+  <PhotoBox $position={position} $fit={fit} {...rest}>
+    {src ? <img src={src} alt={alt ?? ''} loading={loading} decoding="async" /> : label && <span className="slot-label">{label}</span>}
     {caption && <Caption>{caption}</Caption>}
   </PhotoBox>
 );

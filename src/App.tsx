@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyles from './styles/GlobalStyles';
 import Home from './pages/Home';
+import Work from './pages/Work';
+import NotFound from './pages/NotFound';
 import AgentView from './components/agent/AgentView';
 import { isAgentVisitor } from './utils/agentDetection';
 
@@ -25,6 +27,8 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>

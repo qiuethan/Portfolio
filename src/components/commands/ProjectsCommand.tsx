@@ -61,7 +61,7 @@ const ProjectsCommand: React.FC<ProjectsCommandProps> = ({ onNavigate }) => {
               marginBottom: '1rem',
               flex: 1
             }}>
-              {project.details.split('🏆')[1]?.split('.')[0] || project.description}
+              {project.description}
             </p>
             
             {/* Tech Stack - Compact */}
@@ -103,7 +103,7 @@ const ProjectsCommand: React.FC<ProjectsCommandProps> = ({ onNavigate }) => {
                   style={{ fontSize: '0.75rem', padding: '0.4rem 0.75rem', flex: 1 }}
                 >
                   <FaExternalLinkAlt size={10} />
-                  Demo
+                  {project.linkLabel ?? 'Visit site'}
                 </ActionButton>
               )}
               {project.github && (
@@ -147,4 +147,4 @@ const ProjectsCommand: React.FC<ProjectsCommandProps> = ({ onNavigate }) => {
   );
 };
 
-export default ProjectsCommand; 
+export default ProjectsCommand;

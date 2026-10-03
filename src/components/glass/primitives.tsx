@@ -15,6 +15,7 @@ export const Page = styled.div`
 
 export const Section = styled.section`
   margin-bottom: 44px;
+  scroll-margin-top: 100px;
 
   @media (max-width: 700px) {
     margin-bottom: 36px;
@@ -23,6 +24,8 @@ export const Section = styled.section`
 
 export const SectionHead = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 14px;
@@ -64,12 +67,12 @@ const btnBase = css`
 export const PrimaryBtn = styled.a`
   ${btnBase}
   /* cobalt-tinted frosted glass */
-  background-color: rgba(29, 79, 158, 0.66);
+  background-color: rgba(29, 79, 158, 0.96);
   background-image: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.12) 0%,
     rgba(255, 255, 255, 0.04) 45%,
-    rgba(255, 255, 255, 0.16) 100%
+    rgba(255, 255, 255, 0.08) 100%
   );
   -webkit-backdrop-filter: blur(12px) saturate(1.4);
   backdrop-filter: blur(12px) saturate(1.4);
@@ -80,7 +83,7 @@ export const PrimaryBtn = styled.a`
     0 10px 24px -12px rgba(29, 79, 158, 0.55);
 
   &:hover {
-    background-color: rgba(29, 79, 158, 0.82);
+    background-color: rgb(29, 79, 158);
   }
 `;
 

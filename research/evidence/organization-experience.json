@@ -1,0 +1,344 @@
+{
+  "researched_at": "2026-10-02",
+  "scope": "Public organization repositories and professional history. Authenticated search results were rerun with is:public; private other-owner evidence is excluded. No application files changed.",
+  "public_pr_inventory": [
+    {
+      "repo": "UTMIST/Misty",
+      "authored_prs": 142,
+      "merged": 134,
+      "open": 2,
+      "reviewed_other_author_prs": 10,
+      "date_first": "2026-07-02T16:25:07Z",
+      "date_last": "2026-09-05T00:23:09Z",
+      "caution": "Counts include documentation, merge/promotion and superseded PRs; not impact metrics."
+    },
+    {
+      "repo": "UTMIST/UTMIST",
+      "authored_prs": 27,
+      "merged": 24,
+      "open": 0,
+      "reviewed_other_author_prs": 29,
+      "date_first": "2025-06-02T04:07:25Z",
+      "date_last": "2026-09-30T00:48:09Z",
+      "caution": "Counts include documentation, merge/promotion and superseded PRs; not impact metrics."
+    },
+    {
+      "repo": "uoftblueprint/made",
+      "authored_prs": 11,
+      "merged": 10,
+      "open": 0,
+      "reviewed_other_author_prs": 18,
+      "date_first": "2025-11-10T23:31:40Z",
+      "date_last": "2026-03-01T22:31:38Z",
+      "caution": "Counts include documentation, merge/promotion and superseded PRs; not impact metrics."
+    },
+    {
+      "repo": "jfishB/bench_analytics",
+      "authored_prs": 2,
+      "merged": 1,
+      "open": 0,
+      "reviewed_other_author_prs": 2,
+      "date_first": "2025-11-06T01:10:00Z",
+      "date_last": "2025-11-06T01:16:54Z",
+      "caution": "Counts include documentation, merge/promotion and superseded PRs; not impact metrics.",
+      "closed_unmerged": 1,
+      "note": "PR #151 merged Nov 6 2025; PR #150 closed without merge. Earlier prose summary mistakenly reported 2 merged."
+    }
+  ],
+  "experiences": [
+    {
+      "name": "VP Infrastructure, UTMIST",
+      "status": "Current title self-reported in qiuethan profile README; user subsequently confirmed July 2026 start. Strong implementation and leadership evidence in public repos.",
+      "sources": [
+        "https://github.com/qiuethan/qiuethan",
+        "https://github.com/UTMIST/UTMIST/pull/243",
+        "https://github.com/UTMIST/UTMIST/pull/266",
+        "https://github.com/UTMIST/UTMIST/pull/357",
+        "https://github.com/UTMIST/Misty/pull/216"
+      ],
+      "draft_bullets": [
+        "Built Misty, UTMIST’s internal operations platform, bringing team records, document ownership, member verification, and AI assistance into Discord.",
+        "Developed live meeting transcription and AI-generated minutes with Amazon Transcribe and Bedrock, preserving speaker attribution and recovering transcripts when voice connections drop.",
+        "Reorganized the website and operations platform around ownership boundaries, code review routing, CI checks, and contributor onboarding to support yearly team handoffs."
+      ],
+      "followups": [
+        "Confirm current team size and which team-size metrics apply to VP versus prior Engineering Director."
+      ]
+    },
+    {
+      "name": "Misty",
+      "status": "6 FastAPI API services in code plus Discord frontend. Precise latest deployment-history documents 5 APIs + bot live; connectors code merged but unprovisioned as of Aug 9. Current operational status not independently accessed.",
+      "tech": [
+        "Python",
+        "FastAPI",
+        "SQLAlchemy Core",
+        "PostgreSQL/Neon",
+        "Alembic",
+        "Node.js",
+        "discord.js",
+        "Amazon Bedrock",
+        "Amazon Transcribe",
+        "Railway",
+        "Docker",
+        "GitHub Actions",
+        "Google Workspace APIs"
+      ],
+      "evidence": [
+        {
+          "claim": "6-service source architecture, each service owns data, shared auth package; team directory supports point-in-time membership and scoped API keys",
+          "urls": [
+            "https://github.com/UTMIST/Misty",
+            "https://github.com/UTMIST/Misty/pull/61"
+          ]
+        },
+        {
+          "claim": "Shared provider-agnostic Bedrock LLM API plus threaded Discord helper with message history",
+          "urls": [
+            "https://github.com/UTMIST/Misty/pull/63",
+            "https://github.com/UTMIST/Misty/pull/69",
+            "https://github.com/UTMIST/Misty/pull/80"
+          ]
+        },
+        {
+          "claim": "Email ownership verification, one-time codes, attempt limits, TTLs and multi-email identity mapping",
+          "urls": [
+            "https://github.com/UTMIST/Misty/pull/64",
+            "https://github.com/UTMIST/Misty/pull/91"
+          ]
+        },
+        {
+          "claim": "On-behalf-of user authorization and document visibility across user/team/org grants; content and metadata share access predicate",
+          "urls": [
+            "https://github.com/UTMIST/Misty/pull/87",
+            "https://github.com/UTMIST/Misty/pull/89",
+            "https://github.com/UTMIST/Misty/pull/155"
+          ]
+        },
+        {
+          "claim": "Live Discord voice to Transcribe to Bedrock minutes PDF; persistent per-speaker streams eliminate repeatedly re-transcribing accumulated audio; timestamps fixed and audio padding removed",
+          "urls": [
+            "https://github.com/UTMIST/Misty/pull/119",
+            "https://github.com/UTMIST/Misty/pull/120",
+            "https://github.com/UTMIST/Misty/pull/136"
+          ]
+        },
+        {
+          "claim": "Recovered transcripts/minutes after unexpected WebSocket disconnect through bounded grace window and bot finalization; linked to actual production incidents",
+          "urls": [
+            "https://github.com/UTMIST/Misty/pull/190"
+          ]
+        },
+        {
+          "claim": "Full document text/hash storage and six native source extractors: Docs, Slides, Sheets, Forms, PDF, DOCX",
+          "urls": [
+            "https://github.com/UTMIST/Misty/pull/155",
+            "https://github.com/UTMIST/Misty/pull/156",
+            "https://github.com/UTMIST/Misty/pull/161",
+            "https://github.com/UTMIST/Misty/pull/163"
+          ]
+        },
+        {
+          "claim": "Security hardening for SSRF redirects, privilege escalation, verification replay, missing LLM scopes and credential redaction",
+          "urls": [
+            "https://github.com/UTMIST/Misty/pull/97",
+            "https://github.com/UTMIST/Misty/pull/98",
+            "https://github.com/UTMIST/Misty/pull/99",
+            "https://github.com/UTMIST/Misty/pull/96",
+            "https://github.com/UTMIST/Misty/pull/166"
+          ]
+        },
+        {
+          "claim": "Deployment runbooks and promotion process; corrected docs distinguish implemented source from provisioned service",
+          "urls": [
+            "https://github.com/UTMIST/Misty/pull/7",
+            "https://github.com/UTMIST/Misty/pull/189",
+            "https://github.com/UTMIST/Misty/pull/196",
+            "https://github.com/UTMIST/Misty/blob/staging/docs/DEPLOYMENT-HISTORY.md"
+          ]
+        }
+      ],
+      "draft_bullets": [
+        "Architected six FastAPI services for UTMIST’s internal operations, with a Discord frontend, shared API-key authentication, and service-owned storage for directory, catalog, and verification data.",
+        "Built a streaming meeting pipeline that turns Discord audio into speaker-attributed transcripts and AI-generated minutes, with recovery for dropped voice connections.",
+        "Implemented member verification and document-level permissions so the catalog resolves member identity and filters document reads as the requesting user.",
+        "Developed Google Workspace, PDF, and DOCX extractors with full-text storage and per-document access checks."
+      ],
+      "do_not_claim": [
+        "Do not call this a shipped RAG system: full-text/semantic search and retrieval remain deferred.",
+        "Do not say six APIs deployed: connectors not provisioned in latest precise deployment record.",
+        "Do not use #136 illustrative 1,800→30 billed minutes as measured spend savings; mathematical scenario only.",
+        "No verified active-user count, time-saved metric, or monthly volume."
+      ],
+      "storage_scope": "Directory, catalog, and verification own PostgreSQL databases; LLM/connectors are stateless, meetings use transient in-memory sessions."
+    },
+    {
+      "name": "UTMIST Website / Infrastructure Developer",
+      "observed_contribution_dates": "2025-06-02 through 2026-09-30 authored public PRs. Dates are code evidence, not role tenure.",
+      "stack_correction": "Production Next.js/React/TypeScript, Supabase Auth, Payload CMS, Vercel. Existing portfolio Django claim is stale: PR #64 explicitly says Django will not be used and #234 removes abandoned Django-era code.",
+      "evidence": [
+        {
+          "claim": "Supabase signup/login, validation, protected routes, session persistence, email confirmation, 39 unit/integration tests documented",
+          "urls": [
+            "https://github.com/UTMIST/UTMIST/pull/64"
+          ]
+        },
+        {
+          "claim": "Admin access guards around applicant pages/API; eliminated public static applicant pages and general-member list access before live applicant data populated; repaired 155 TypeScript errors",
+          "urls": [
+            "https://github.com/UTMIST/UTMIST/pull/234"
+          ]
+        },
+        {
+          "claim": "Website split into feature/shared zones with enforced import boundaries, CODEOWNERS and path labels; onboarding and owner allocation",
+          "urls": [
+            "https://github.com/UTMIST/UTMIST/pull/243",
+            "https://github.com/UTMIST/UTMIST/pull/266",
+            "https://github.com/UTMIST/UTMIST/pull/357"
+          ]
+        },
+        {
+          "claim": "Lint/type/test CI gates and per-PR Vercel previews after build",
+          "urls": [
+            "https://github.com/UTMIST/UTMIST/pull/235",
+            "https://github.com/UTMIST/UTMIST/pull/242"
+          ]
+        },
+        {
+          "claim": "EigenAI production feature flag rollout/rollback, metadata/social previews, responsive animations",
+          "urls": [
+            "https://github.com/UTMIST/UTMIST/pull/472",
+            "https://github.com/UTMIST/UTMIST/pull/473"
+          ]
+        }
+      ],
+      "draft_bullets": [
+        "Built Supabase authentication and protected member flows for UTMIST’s Next.js website, including email verification, session management, and tested signup/login flows.",
+        "Hardened applicant access control and introduced shared authorization guards across recruitment pages and APIs.",
+        "Established CI quality gates and per-PR Vercel previews, then reorganized the codebase into independently owned feature areas with enforced import boundaries."
+      ],
+      "do_not_claim": [
+        "90% fewer deployment errors lacks public measurement evidence.",
+        "1,000+ organization members does not establish site active users.",
+        "GitHub OAuth #143 closed unmerged, so cannot describe that PR as shipped."
+      ]
+    },
+    {
+      "name": "Mist compute platform",
+      "status": "In progress. Main has no qiuethan-attributed commits; one authored public non-main branch commit Sep 11 2026. README main says frontend/CLI mock data and backend execution incomplete.",
+      "source_commit": "https://github.com/UTMIST/Mist/commit/7467f53b53a45d5deb704ef66a8d03a4eb433337",
+      "implementation": "Go + Redis local GPU job runner; fixed PyTorch matrix-multiplication benchmark, NVIDIA hardware detection, web job/result UI, timing and numerical verification, 90s timeout, bounded input sizes, non-root container; single-machine runner, no arbitrary scripts.",
+      "draft_bullet": "Prototyped a Go and Redis GPU job runner with NVIDIA hardware detection, bounded PyTorch benchmarks, and a web interface for verified CPU/GPU results.",
+      "limitations": [
+        "Not merged to main and no PR found.",
+        "No proof of deployed distributed cloud-credit or on-prem job service.",
+        "CLI and distributed worker path remain incomplete.",
+        "Benchmark timing explicitly excludes data transfer; no general hardware speedup claim."
+      ]
+    },
+    {
+      "name": "UofT Blueprint / MADE",
+      "status": "Former role per fresh profile; 10 merged authored public PRs, 18 other-author reviewed PRs, 38 authored default-branch commits Nov 2025–Apr 2026. Role start/end and 10 developers/50,000 artifacts/6-week shipment remain self-reported.",
+      "stack_correction": "React + TypeScript + Vite frontend; Python Django 5.2 / DRF backend. Main currently SQLite; PostgreSQL was bootstrapped then removed in preparation for Supabase, followed by SQLite. No basis to present Node.js + PostgreSQL as current backend.",
+      "evidence": [
+        {
+          "claim": "Authored initial Django/DRF setup and database/model scaffold including custom users/roles/expiry, volunteer applications, inventory locations/boxes/items, approval-oriented movement requests and admin registration",
+          "urls": [
+            "https://github.com/uoftblueprint/made/commit/072e7badc9",
+            "https://github.com/uoftblueprint/made/commit/56f53484e8"
+          ]
+        },
+        {
+          "claim": "Created developer task breakdown and contribution standards; initial React domain-oriented architecture (placeholders, not full implementation)",
+          "urls": [
+            "https://github.com/uoftblueprint/made/blob/main/week1_issues.md",
+            "https://github.com/uoftblueprint/made/pull/17"
+          ]
+        },
+        {
+          "claim": "CI/test infra: pytest, Vitest/RTL, TypeScript/lint/build, Codecov; subsequent CI env repairs",
+          "urls": [
+            "https://github.com/uoftblueprint/made/pull/13",
+            "https://github.com/uoftblueprint/made/pull/14",
+            "https://github.com/uoftblueprint/made/pull/25",
+            "https://github.com/uoftblueprint/made/pull/26"
+          ]
+        },
+        {
+          "claim": "Public code reviews across inventory CRUD, public catalog, JWT/volunteer access, movement tracking and CSV export; teammates authored implementations",
+          "urls": [
+            "https://github.com/uoftblueprint/made/pull/63#pullrequestreview-4017666340",
+            "https://github.com/uoftblueprint/made/pull/44#pullrequestreview-3747641124",
+            "https://github.com/uoftblueprint/made/pull/59",
+            "https://github.com/uoftblueprint/made/pull/61"
+          ]
+        },
+        {
+          "claim": "Current DB main is SQLite, historical PostgreSQL removal",
+          "urls": [
+            "https://github.com/uoftblueprint/made/blob/main/backend/core/settings.py",
+            "https://github.com/uoftblueprint/made/pull/15"
+          ]
+        }
+      ],
+      "draft_bullets": [
+        "Led development of MADE’s collection-management platform, defining the architecture and delivery plan for public browsing, inventory tracking, volunteer access, and movement approvals.",
+        "Built the Django data model and backend foundation for collection items, storage locations, volunteer accounts, and approval workflows.",
+        "Established automated frontend and backend checks with GitHub Actions, Vitest, and pytest, and reviewed delivery across inventory, authentication, and admin workflows."
+      ],
+      "do_not_claim": [
+        "Do not claim personally implementing all teammate PR features; use led/reviewed architecture.",
+        "50,000 artifacts describes partner collection scope only unless actual migration/usage verified.",
+        "First release in 6 weeks not publicly corroborated; first authored setup Nov 10 and public development continues through Apr 2026."
+      ]
+    },
+    {
+      "name": "Bench Analytics",
+      "status": "Overlooked external team contribution, separate from Cybermetrics. 2 authored PRs, 15 default-branch authored commits, Nov 6 2025.",
+      "evidence": [
+        "https://github.com/jfishB/bench_analytics/pull/151",
+        "https://github.com/jfishB/bench_analytics/pull/150",
+        "https://github.com/jfishB/bench_analytics/pull/109"
+      ],
+      "finding": "README credits qiuethan as author. Direct implementation is CI/testing/lint/security tool setup; teammate PR #109 explicitly says Django architecture organized with Ethan’s instructions.",
+      "draft_bullet": "Established CI and testing for a baseball lineup-analytics platform, adding frontend type/build checks and backend pytest, formatting, and security checks.",
+      "caution": "Do not claim the lineup optimization algorithm as personal work from this evidence."
+    },
+    {
+      "name": "Historical roles without new public code corroboration",
+      "roles": [
+        "Engineering Director — Industry Collaborations, UTMIST",
+        "Machine Learning Engineer, UTMIST",
+        "Shopify Software Engineering Intern",
+        "General Dynamics Software Engineer Co-op",
+        "United Coding Tournament Problem Writer",
+        "Ottawa Jay Learning Centre Instructor"
+      ],
+      "finding": "Fresh profile marks director, ML and Blueprint prior and Shopify current. Public searches found no Flybits/Amicare repository or detailed first-party contribution evidence. Employment metrics remain self-reported. No broad established-library OSS contribution found; public external activity is student-org/team projects.",
+      "additional_omission": "LinkedIn self-reports Coding Circle Instructor at Auxilium, Oct 2022–May 2024: free weekly Python classes for middle/high school students. Potential optional volunteering row.",
+      "additional_source": "https://ca.linkedin.com/in/qiu-ethan",
+      "caution": "No VP start date established. Secondary people-directory results rejected as verification. Same-name profiles at Amazon/RBC are different people."
+    }
+  ],
+  "public_pr_total": 230,
+  "public_pr_totals_by_repo": {
+    "UTMIST/UTMIST": 27,
+    "ji24077/HTN": 16,
+    "UTMIST/Misty": 142,
+    "JavRedstone/canopy": 1,
+    "qiuethan/GenAI-Genesis-Project": 1,
+    "uoftblueprint/made": 11,
+    "qiuethan/Identity-Matrix": 1,
+    "qiuethan/archctl": 7,
+    "TeamCybermetrics/Cybermetrics": 17,
+    "qiuethan/Heimer-Academy": 3,
+    "jfishB/bench_analytics": 2,
+    "qiuethan/Orbit": 2
+  },
+  "public_review_total_other_author_prs": 78,
+  "user_confirmed_dates": {
+    "source": "User confirmation in portfolio update conversation on October 2, 2026",
+    "VP Infrastructure, UTMIST": "Jul 2026 - Present",
+    "Software Developer - Infrastructure, UTMIST": "May 2025 - Apr 2026",
+    "note": "User confirmed Infrastructure Developer had the same dates as Engineering Director."
+  }
+}

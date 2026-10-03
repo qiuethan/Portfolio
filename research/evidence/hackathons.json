@@ -1,0 +1,932 @@
+{
+  "research_date": "2026-10-02",
+  "scope": "10 public hackathon projects, source trees, selected implementations, authored commits, prize/event primary sources, and 54 non-default branches",
+  "visibility": "All repositories explicitly confirmed public via GitHub metadata; no private collaborator repositories accessed.",
+  "source_budget_note": "Final user prose should paraphrase each Devpost page under its 200-word source budget and lean on code/commit evidence for added detail.",
+  "methodology": [
+    "GitHub API metadata, recursive trees, contributors, all Ethan commits for large histories, selected full commit file lists and key source downloads.",
+    "Compared 54 non-default branches with default branch; branch audit stored separately. GitHub contributor counts include merges and are not contribution quality metrics.",
+    "Devpost project/event pages cross-checked with official OpenAI winners article for Canopy.",
+    "No keys, environment secrets or credential files intentionally read or printed.",
+    "No app files edited and no runtime/benchmark claims independently executed."
+  ],
+  "projects": [
+    {
+      "name": "ChatGPU",
+      "repo": "ji24077/HTN",
+      "date_label": "September 2026",
+      "event": "Hack the North 2026",
+      "devpost": "https://devpost.com/software/ji-review",
+      "awards": [
+        {
+          "name": "Best Use of Sentry",
+          "status": "verified by Devpost award badge",
+          "source": "https://devpost.com/software/ji-review"
+        }
+      ],
+      "overview": "Distributed compute workspace that plans uploaded Python jobs, assigns compatible workers, validates outputs and preserves execution history.",
+      "team": [
+        "Ethan Qiu",
+        "Phineas Truong",
+        "Jack Le",
+        "ji24077 Han"
+      ],
+      "individual_scope": {
+        "confidence": "high: authored commits and changed files",
+        "facts": [
+          "Created orchestration prototype; Supabase authentication and private worker gateway; bundled Tailscale enrollment.",
+          "Built fleet assistant with separate model adapter and durable tool loop; added job supervisors, execution history and telemetry integration.",
+          "Added agent-planned simulation uploads, CAD usage estimates and soft caps, persistent HTTP service hosting, automatic dependency setup for uploaded Python/PyTorch jobs, verified GPU worker execution and parallel advisory analysis agents.",
+          "Authored native training preparation and CUDA/HIP migration loop in OPEN PR #25; not merged into main."
+        ],
+        "commit_sources": [
+          "https://github.com/ji24077/HTN/commit/d944d0824a64f4e9dd29f28942da52be9c9d6fdc",
+          "https://github.com/ji24077/HTN/commit/e5501d3e44e7149f25bb64007a5fc85efc9b20a6",
+          "https://github.com/ji24077/HTN/commit/d4ea84755bb8b6da7a68a86edeba21ee7094ee74"
+        ]
+      },
+      "implementation_evidence": [
+        "backend/src/orchestrator/agent/loop.py: model-call/tool-call budget, saved caller-owned history, interruption handling, duplicate IDs, 8-step/90-second default limit.",
+        "backend/src/orchestrator/preprocessing/analysis.py: maximum 3 concurrent advisory analysis agents, maximum 6 child calls.",
+        "backend/src/orchestrator/supervisor/tools.py: constrained recovery actions; retry cannot increase max_attempts or edit payloads; reservations bounded to four workers/five minutes.",
+        "backend/src/orchestrator/worker/executors/python_project.py: uploaded projects executed on assigned device, input bundles, preparation/execution handling.",
+        "Repository README: PostgreSQL lease/result state, outbound connections, compatible worker selection, 5-second heartbeat and 45-second lease configuration."
+      ],
+      "metrics": [
+        {
+          "value": "3 concurrent analysis agents; 6 child calls/job; 8 steps and 90 seconds/assistant turn",
+          "classification": "configured bounds observed in code, not throughput measurements"
+        },
+        {
+          "value": "A5000 5.91x and L40S 6.69x accepted; MI300X 4.58x rejected with 13/300 changed answers",
+          "classification": "README-reported, recorded GPUShare experiment evidence from separate work; NOT independently rerun, NOT whole-training or end-to-end ChatGPU speedups"
+        }
+      ],
+      "boundaries": [
+        "Main supports Python/PyTorch, one program on one worker, process isolation without a security sandbox.",
+        "Main workers verify CPU/CUDA/Apple MPS. GPUShare and migration work live on separate branches; README says no original RTX 4090 migration passed the 300-case check.",
+        "PR #25 is open. Scope is native AXPY training pilot, not arbitrary program optimization; synthetic test reports only, live CUDA/HIP validation still pending.",
+        "Main README explicitly excludes GPU rental, marketplace, job splitting across machines and automatic deployment/rollback. Soft CAD caps are estimates; no payment processing.",
+        "Screenshot demo used two CPU workers, with model key absent; do not treat screenshots as proof of live LLM/GPU end-to-end success.",
+        "45 qiuethan main-branch contributor commits is a provenance signal, not a productivity metric; include team work explicitly."
+      ],
+      "draft_bullets": [
+        "Built the orchestration layer for ChatGPU, turning uploaded Python projects into planned, validated jobs across CPU, CUDA and Apple MPS workers.",
+        "Implemented durable agent supervision, worker recovery, execution history and Sentry diagnostics, with bounded tool actions and per-run usage caps.",
+        "Co-built the Hack the North 2026 winner for Best Use of Sentry."
+      ],
+      "in_flight_bullet": "Developed an unmerged native training optimization and CUDA/HIP migration loop with fixed correctness checks, benchmark-based acceptance and restart recovery; live cross-vendor validation remains pending.",
+      "additional_sources": [
+        "https://github.com/ji24077/HTN/blob/main/README.md",
+        "https://github.com/ji24077/HTN/pull/25",
+        "https://github.com/ji24077/HTN/blob/main/docs/validation.md"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2026-09-19T03:08:13Z",
+        "pushed_at": "2026-09-20T13:45:32Z",
+        "updated_at": "2026-09-20T13:45:36Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/ji24077/HTN"
+      },
+      "contributors": [
+        {
+          "login": "notjackl3",
+          "commits": 54
+        },
+        {
+          "login": "qiuethan",
+          "commits": 45
+        },
+        {
+          "login": "notjackl3-aucctus",
+          "commits": 16
+        },
+        {
+          "login": "phintruong",
+          "commits": 13
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/ji24077__HTN/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "Canopy",
+      "repo": "JavRedstone/canopy",
+      "date_label": "July 2026; recognition announced later",
+      "event": "OpenAI Build Week 2026",
+      "devpost": "https://devpost.com/software/canopy-m01bog",
+      "awards": [
+        {
+          "name": "Education Finalist",
+          "status": "independently verified by official OpenAI winners article",
+          "source": "https://developers.openai.com/blog/build-week-winners"
+        }
+      ],
+      "overview": "Source-grounded learning platform that converts papers and notes into lessons, practice and coding labs, and tracks conceptual understanding separately from application.",
+      "team": [
+        "Ethan Qiu",
+        "Javier Huang"
+      ],
+      "individual_scope": {
+        "confidence": "high: authored commits and changed files",
+        "facts": [
+          "Scaffolded source-to-course pipeline across web, API, worker and database.",
+          "Implemented mastery scaffolding and struggle-triggered prerequisite review flows.",
+          "Implemented practice question pool, non-repeating drills and supporting API/worker/tests.",
+          "Implemented course sharing, coursebook PDF renderer, source citations/LaTeX fixes, refreshed product UI, landing page and production configuration."
+        ],
+        "commit_sources": [
+          "https://github.com/JavRedstone/canopy/commit/9ce4180616f0964e8403ea67830ee1ff11f68bbb",
+          "https://github.com/JavRedstone/canopy/commit/c2b53adbcd3c585cfd7153bb8a96d1946584a818",
+          "https://github.com/JavRedstone/canopy/commit/556c981a486bc66060772211449b501ffb6931c3"
+        ]
+      },
+      "implementation_evidence": [
+        "services/api/app/mastery.py implements separate understand/apply estimates with Bayesian Knowledge Tracing, practice cap 0.85, mastery threshold 0.95, prerequisite review below 0.6 and struggle threshold 0.5.",
+        "services/worker/worker/lesson_agent.py defines structured lesson/lab generation and runtime environment constraints.",
+        "services/sandbox_runner/sandbox_runner/runner.py provides disposable Docker execution environments; Devpost describes generate/execute/repair/re-verify flow.",
+        "services/worker/worker/queues.py provides generation/practice enqueue operations.",
+        "Tree contains five services/components: Next.js web, FastAPI API, generation worker, LLM gateway, sandbox runner, plus Supabase migrations and substantial focused tests."
+      ],
+      "metrics": [
+        {
+          "value": "Nearly 47,000 builders, 186 countries, >8,000 projects",
+          "classification": "official OpenAI event-wide participation figures, NOT Canopy users or direct project competitors within Education",
+          "source": "https://developers.openai.com/blog/build-week-winners"
+        },
+        {
+          "value": "Top 20 overall finalists",
+          "classification": "teammate Javier publicly claims this; official page names category finalists but no explicit top-20 sentence was found; safest wording Education Finalist"
+        }
+      ],
+      "boundaries": [
+        "Current system measures mastery and nudges prerequisite review; docs/product/PEDAGOGY_EVALUATION.md explicitly says curriculum does not yet reshape adaptively around mastery.",
+        "Spaced review, learner-calibrated BKT, stronger transfer assessment, full adaptive remediation and repository ingestion are future features.",
+        "UTMIST pilot is planned in Devpost, not evidence of a completed pilot or adoption. No measured learning gain or user count verified.",
+        "Do not claim every generated lab succeeded: Devpost describes one beam-search lab being marked failed after repeated hidden-test failures.",
+        "Public repo confirmed private=false."
+      ],
+      "draft_bullets": [
+        "Co-built Canopy, an OpenAI Build Week Education Finalist that turns technical papers and notes into source-grounded lessons, practice and coding labs.",
+        "Implemented dual-track mastery scoring, practice question pools and prerequisite review prompts that respond to demonstrated learner difficulty.",
+        "Built the source-to-course foundation, course sharing and a citation-aware PDF coursebook export."
+      ],
+      "additional_sources": [
+        "https://github.com/JavRedstone/canopy/blob/main/services/api/app/mastery.py",
+        "https://github.com/JavRedstone/canopy/blob/main/docs/product/PEDAGOGY_EVALUATION.md",
+        "https://www.linkedin.com/posts/javier-huang_canopy-activity-7498931901911425024-pXd2"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2026-07-16T00:13:53Z",
+        "pushed_at": "2026-07-22T00:52:52Z",
+        "updated_at": "2026-09-01T05:43:40Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/JavRedstone/canopy"
+      },
+      "contributors": [
+        {
+          "login": "JavRedstone",
+          "commits": 55
+        },
+        {
+          "login": "qiuethan",
+          "commits": 28
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/JavRedstone__canopy/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "Frame",
+      "repo": "qiuethan/GenAI-Genesis-Project",
+      "date_label": "March 13–15, 2026",
+      "event": "GenAI Genesis 2026",
+      "devpost": "https://devpost.com/software/framed-41c5lm",
+      "awards": [],
+      "award_status": "No award listed on Devpost; participation verified.",
+      "overview": "Mobile photography coach with composition/aesthetics feedback, blur/shake/exposure guidance, photo scoring and a challenge/social layer.",
+      "team": [
+        "Ethan Qiu",
+        "Jessica Chen",
+        "Zachary Tang",
+        "William Bo"
+      ],
+      "individual_scope": {
+        "confidence": "high: authored commits and changed files",
+        "facts": [
+          "Implemented initial app and Supabase authentication, camera prototype, scoring overlays and TANet replacement.",
+          "Implemented historical CoreML object-detection bridge and scan UI; later removed from current main.",
+          "Worked on image scoring, bounding boxes, gallery UI, Gemini integration and saving automatic scan scores."
+        ],
+        "commit_sources": [
+          "https://github.com/qiuethan/GenAI-Genesis-Project/commit/be736ad46d122f08b947d55fa7dcefb69c9c3af8",
+          "https://github.com/qiuethan/GenAI-Genesis-Project/commit/c4056374b1d214543798f38820285320a4e30a67",
+          "https://github.com/qiuethan/GenAI-Genesis-Project/commit/7436d455da50c7df5253e8d03a4975def233f11d"
+        ]
+      },
+      "implementation_evidence": [
+        "server/server.py has EXIF-aware JPEG decode, blur rejection, threaded HTTP serving and shared GPU threading.Lock around model inference.",
+        "server/inference/predictor.py uses PyTorch models and MPS adaptive-pooling compatibility handling.",
+        "app/src/features/camera/hooks/useCompositionScore.ts calls local inference server with cancellation/timeout handling.",
+        "app/src/infra/visionCamera/useAnalysisFrameProcessor.ts processes a 128-pixel ROI for blur/exposure using worklets and skipped frames.",
+        "supabase/migrations/003_schedule_daily_challenge_cron.sql schedules recurring challenge generation."
+      ],
+      "metrics": [
+        {
+          "value": "20–30Hz sensor streams",
+          "classification": "Devpost architecture claim; no runtime profiling independently run"
+        },
+        {
+          "value": "41 qiuethan contributor commits",
+          "classification": "GitHub contributor attribution, not business impact"
+        }
+      ],
+      "boundaries": [
+        "Current main contains NO CoreML, Swift native plugin or YOLO model paths; Devpost and historical commits describe that iteration, but current source uses React Native frame processing plus Python/PyTorch inference.",
+        "Do not call the full scoring pipeline on-device; local server dependency is explicit.",
+        "No model quality, measured FPS, accuracy, training speedup or user study verified.",
+        "Pretrained TANet/SAMP-Net integration is established; avoid claiming original model invention."
+      ],
+      "draft_bullets": [
+        "Built Frame’s camera and scoring pipeline, combining React Native capture with PyTorch aesthetics and composition analysis.",
+        "Added live blur, exposure and motion coaching, and serialized GPU inference to keep the photography workflow responsive.",
+        "Integrated gallery scoring and Supabase-backed photo challenges with a four-person team at GenAI Genesis 2026."
+      ],
+      "additional_sources": [
+        "https://github.com/qiuethan/GenAI-Genesis-Project/blob/main/server/server.py",
+        "https://github.com/qiuethan/GenAI-Genesis-Project/blob/main/README.md"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2026-03-14T05:51:18Z",
+        "pushed_at": "2026-03-15T12:51:58Z",
+        "updated_at": "2026-03-15T12:52:03Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/qiuethan/GenAI-Genesis-Project"
+      },
+      "contributors": [
+        {
+          "login": "qiuethan",
+          "commits": 41
+        },
+        {
+          "login": "e-ndorfin",
+          "commits": 19
+        },
+        {
+          "login": "Williamzhibo",
+          "commits": 10
+        },
+        {
+          "login": "swannercjj",
+          "commits": 1
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/qiuethan__GenAI-Genesis-Project/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "Identity Matrix",
+      "repo": "qiuethan/Identity-Matrix",
+      "date_label": "January 17–18, 2026",
+      "event": "UofTHacks 13",
+      "devpost": "https://devpost.com/software/temp-sqyptg",
+      "awards": [
+        {
+          "name": "Overall 1st place",
+          "status": "verified by Devpost badge"
+        },
+        {
+          "name": "Best UofT Hack",
+          "status": "verified by Devpost badge; omitted in profile highlights"
+        }
+      ],
+      "overview": "Persistent multiplayer simulation where logged-out players become memory-driven AI identities.",
+      "team": [
+        "Ethan Qiu",
+        "Alvina Yang",
+        "William Bo",
+        "Zachary Tang"
+      ],
+      "individual_scope": {
+        "confidence": "high: authored code and commit paths",
+        "facts": [
+          "Established action pipeline, world entities and realtime server foundation.",
+          "Implemented multi-agent pathfinding fixes with flow fields, reservation tables and WHCA-related code.",
+          "Refactored realtime server and FastAPI integration around Supabase persistence.",
+          "Worked on spectator camera controls, conversation disconnect handling, onboarding, sprite validation, UI and social behavior tuning."
+        ],
+        "commit_sources": [
+          "https://github.com/qiuethan/Identity-Matrix/commit/60e5cfb4537afa55940ca1327e22655d2af37bc6",
+          "https://github.com/qiuethan/Identity-Matrix/commit/7f604c1a0222411b261ef7126143abcaeb860197",
+          "https://github.com/qiuethan/Identity-Matrix/commit/d55d868f7c2d16fe5449970c2399b80ba9a0b049"
+        ]
+      },
+      "implementation_evidence": [
+        "api/app/agent_engine.py implements utility-scored action selection with softmax and social preferences.",
+        "api/app/agent_worker.py processes decisions on demand and persists agent state.",
+        "api/app/conversation.py maintains dialogue, sentiment/social memory and conversation lifecycle.",
+        "world/utils/reservations.ts implements tile reservations; realtime-server configuration defines separate world/AI timing.",
+        "React/Phaser client, TypeScript world core, Node/WebSocket authoritative server, FastAPI agent controller, Supabase database/storage."
+      ],
+      "metrics": [
+        {
+          "value": "10Hz server simulation",
+          "classification": "configured architecture reported in README/Devpost; not load-tested throughput"
+        },
+        {
+          "value": "68 qiuethan main contributor commits",
+          "classification": "provenance only"
+        }
+      ],
+      "boundaries": [
+        "Memory/prompt/context updates are not model-weight fine-tuning or proven continual learning in the ML research sense.",
+        "Current engine deliberately disables energy decay and strongly penalizes location-use actions; do not imply all autonomous needs/features in the original story remain active.",
+        "No long-running scale benchmark, user study or production persistence guarantee verified.",
+        "One unmerged barrier-map branch contains Ethan’s map-switch change; most other feature branches are merged/behind."
+      ],
+      "draft_bullets": [
+        "Built the realtime world and persistence layer for Identity Matrix, a multiplayer simulation where AI avatars continue interacting after players log off.",
+        "Implemented multi-agent pathfinding and reservation-based movement to coordinate shared spaces, with spectator tools for observing the simulation.",
+        "Won 1st Place Overall and Best UofT Hack at UofTHacks 13 with a four-person team."
+      ],
+      "additional_sources": [
+        "https://github.com/qiuethan/Identity-Matrix/blob/main/api/app/agent_engine.py",
+        "https://github.com/qiuethan/Identity-Matrix/blob/main/world/utils/reservations.ts"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2026-01-17T04:08:09Z",
+        "pushed_at": "2026-01-18T22:33:47Z",
+        "updated_at": "2026-03-09T02:26:04Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/qiuethan/Identity-Matrix"
+      },
+      "contributors": [
+        {
+          "login": "qiuethan",
+          "commits": 68
+        },
+        {
+          "login": "alvina-yang",
+          "commits": 51
+        },
+        {
+          "login": "Williamzhibo",
+          "commits": 12
+        },
+        {
+          "login": "e-ndorfin",
+          "commits": 11
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/qiuethan__Identity-Matrix/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "Heimer Academy",
+      "repo": "qiuethan/Heimer-Academy",
+      "date_label": "October–November 2025 development; winners recognized January 2026",
+      "event": "Rift Rewind Hackathon (Riot Games × AWS)",
+      "devpost": "https://devpost.com/software/idk-evraiq",
+      "awards": [
+        {
+          "name": "1st Place Overall",
+          "status": "Devpost 1st Place badge; Riot Games announcement embedded in Ethan LinkedIn post independently corroborates overall winner",
+          "source": "https://www.linkedin.com/posts/qiu-ethan_really-grateful-to-everyone-who-helped-make-activity-7415575562553090048-sg0L"
+        }
+      ],
+      "overview": "League of Legends coaching platform combining champion recommendations, ability comparisons and match-aware AI explanations.",
+      "team": [
+        "Ethan Qiu",
+        "Jessica Chen",
+        "William Bo",
+        "Zachary Tang"
+      ],
+      "individual_scope": {
+        "confidence": "high for application/platform; avoid attributing all team ML/data work",
+        "facts": [
+          "Built Riot API rate limiting, match cache, background retrieval queue and initial-game delivery.",
+          "Integrated champion recommendations into backend and frontend.",
+          "Implemented Bedrock-backed coaching, context routing, prompt infrastructure and frontend assistant integration.",
+          "Worked on progress tracking, champion stats, account linking and Vercel/Fly deployment configuration.",
+          "Zachary Devpost role is data; William says match/game analytics. Graph training and pairwise comparison processing are team achievements unless further authorship evidence establishes ownership."
+        ],
+        "commit_sources": [
+          "https://github.com/qiuethan/Heimer-Academy/commit/498053ff37e5696a2d31593eba3aac696bdd0127",
+          "https://github.com/qiuethan/Heimer-Academy/commit/0ec433ae8194e530118fe75fb67e5a2663407689",
+          "https://github.com/qiuethan/Heimer-Academy/commit/5ee1a9ba89dbaf0e775d8d76f75e662e255ffad6"
+        ]
+      },
+      "implementation_evidence": [
+        "services/player_service.py fetches initial 10 matches then background sync; repository/service layering and rate-limit handling present.",
+        "utils/champion_recommender.py loads graph and feature embeddings and combines similarity signals.",
+        "scripts/compute_ability_similarity.py uses ThreadPoolExecutor, few-shot prompt examples, score parsing and failed-pair retries.",
+        "services/llm_service.py uses player/match/champion context and Bedrock repository.",
+        "Committed champion_abilities.csv contains 855 rows (171 champions × five passive/active entries); final comparisons parquet exists twice with identical SHA, 21,775,019 bytes each."
+      ],
+      "metrics": [
+        {
+          "value": "855 ability entries in committed CSV",
+          "classification": "direct artifact row count; 600+ abilities is safe team-data scope, distinct from validated model calls"
+        },
+        {
+          "value": "200,000+ pairwise comparisons; tens of thousands of player profiles",
+          "classification": "Devpost self-report; script and parquet substantiate pipeline existence, but parquet row count/profile volume not independently checked"
+        },
+        {
+          "value": "2,000+ games / 100,000+ calls on old portfolio",
+          "classification": "not independently verified in this research; reconcile against source/export before republishing"
+        },
+        {
+          "value": "104 qiuethan contributor commits",
+          "classification": "provenance only"
+        }
+      ],
+      "boundaries": [
+        "Do not equate possible combinatorial pair counts with actual completed model requests or successful comparisons.",
+        "Devpost’s January 9 update reports user interest and API rate limiting, but no quantified adoption figure.",
+        "No learning efficacy or gameplay improvement experiment found.",
+        "Project build dates are Oct–Nov 2025; award publicization January 2026, so do not date all development to 2026."
+      ],
+      "draft_bullets": [
+        "Built Heimer Academy’s application backend and AI coaching workflow, turning Riot match data into personalized champion recommendations and performance feedback.",
+        "Added rate-limited ingestion, cached match history and background synchronization so players could start with their latest games while the remaining history loaded.",
+        "Won 1st Place Overall at the Riot Games × AWS Rift Rewind Hackathon with a four-person team."
+      ],
+      "additional_sources": [
+        "https://github.com/qiuethan/Heimer-Academy/blob/main/app/backend/services/player_service.py",
+        "https://github.com/qiuethan/Heimer-Academy/blob/main/scripts/compute_ability_similarity.py",
+        "https://www.heimer-academy.ca/"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2025-10-18T01:57:45Z",
+        "pushed_at": "2025-11-10T21:03:09Z",
+        "updated_at": "2026-02-22T21:26:41Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/qiuethan/Heimer-Academy"
+      },
+      "contributors": [
+        {
+          "login": "qiuethan",
+          "commits": 104
+        },
+        {
+          "login": "e-ndorfin",
+          "commits": 27
+        },
+        {
+          "login": "Williamzhibo",
+          "commits": 14
+        },
+        {
+          "login": "swannercjj",
+          "commits": 10
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/qiuethan__Heimer-Academy/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "Orbit",
+      "repo": "qiuethan/Orbit",
+      "date_label": "September 12–14, 2025",
+      "event": "Hack the North 2025",
+      "devpost": "https://devpost.com/software/orbit-59jths",
+      "awards": [
+        {
+          "name": "Windsurf: Best Project built with Windsurf",
+          "status": "verified Devpost badge"
+        },
+        {
+          "name": "Groq",
+          "status": "verified Devpost badge; exact badge text Groq"
+        }
+      ],
+      "overview": "Networking prototype that combines webcam face recognition, public-profile research and conversation history.",
+      "team": [
+        "Ethan Qiu",
+        "James Han",
+        "Alvina Yang",
+        "Paul Chen"
+      ],
+      "individual_scope": {
+        "confidence": "high from commits and Devpost role",
+        "facts": [
+          "Implemented profile search/scraping pipeline and LLM processing.",
+          "Added threaded/queued unknown-person lookup and integrated backend pipeline.",
+          "Implemented audio recording, transcription generation and conversation recorder.",
+          "Worked on structured person schema and backend integration. James explicitly claims entire frontend and video in Devpost; avoid crediting Ethan for all frontend design."
+        ],
+        "commit_sources": [
+          "https://github.com/qiuethan/Orbit/commit/c38ce2ef4c",
+          "https://github.com/qiuethan/Orbit/commit/7ce45d5ae8",
+          "https://github.com/qiuethan/Orbit/commit/5a191cde60"
+        ]
+      },
+      "implementation_evidence": [
+        "backend/recording/transcriber.py invokes Groq Whisper large-v3-turbo.",
+        "backend/recording/recorder.py records on background thread and transcribes AFTER recording stops.",
+        "backend/server.py starts recorder with webcam and returns completed transcription on stop endpoints.",
+        "backend/conversation_tracker.py persists person profiles and links conversation/topic history across sessions.",
+        "backend/analysis_pipeline/main_pipeline.py coordinates recognition and public-profile analysis; README/code establish Cerebras usage."
+      ],
+      "metrics": [
+        {
+          "value": "Sub-second latency",
+          "classification": "Devpost self-reported; no reproducible latency benchmark examined"
+        },
+        {
+          "value": "Top 5 face search matches above threshold 85",
+          "classification": "commit-defined filtering; not recognition accuracy"
+        }
+      ],
+      "boundaries": [
+        "Calling transcription live/streaming is unsupported by current main; use recorded conversation transcription and summaries.",
+        "Relationship graph is a team/frontend contribution.",
+        "No demonstrated recognition accuracy, privacy control implementation or enterprise deployment. Devpost lists opt-in controls as future work."
+      ],
+      "draft_bullets": [
+        "Built Orbit’s profile research and conversation pipeline, connecting face recognition to structured context and persistent conversation history.",
+        "Integrated threaded audio recording, Groq Whisper transcription and Cerebras-powered summaries into the FastAPI backend.",
+        "Won the Groq and Windsurf prizes at Hack the North 2025 with a four-person team."
+      ],
+      "additional_sources": [
+        "https://github.com/qiuethan/Orbit/blob/main/backend/recording/recorder.py",
+        "https://github.com/qiuethan/Orbit/blob/main/backend/conversation_tracker.py"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2025-09-13T04:01:56Z",
+        "pushed_at": "2025-09-14T09:08:19Z",
+        "updated_at": "2026-07-23T20:22:15Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/qiuethan/Orbit"
+      },
+      "contributors": [
+        {
+          "login": "qiuethan",
+          "commits": 28
+        },
+        {
+          "login": "lxyhan",
+          "commits": 18
+        },
+        {
+          "login": "alvina-yang",
+          "commits": 14
+        },
+        {
+          "login": "876pol",
+          "commits": 8
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/qiuethan__Orbit/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "Polaris",
+      "repo": "qiuethan/Polaris",
+      "date_label": "July 18–20, 2025",
+      "event": "Hack the 6ix 2025",
+      "devpost": "https://devpost.com/software/polaris-vlp1wm",
+      "awards": [
+        {
+          "name": "Best Game Hack",
+          "status": "verified Devpost badge"
+        },
+        {
+          "name": "Overall Top 8 finalist",
+          "status": "self-reported GitHub description; no independent event evidence found"
+        }
+      ],
+      "overview": "Two-player fitness game controlled by body poses from a single webcam.",
+      "team": [
+        "Ethan Qiu",
+        "James Han"
+      ],
+      "individual_scope": {
+        "confidence": "high: explicit Devpost attribution and 31 authored commits",
+        "facts": [
+          "Computer vision pipeline, pose classification, WebSocket transport and pose game controller are explicitly Ethan’s Devpost role.",
+          "Commit history implements joint angles, squats, mountain climbers, repetition counts, run/jump detection, sensitivity tuning, WebSocket connection and game controls.",
+          "James explicitly owns 3D world graphics, game design, pixel art, music and video."
+        ],
+        "commit_sources": [
+          "https://github.com/qiuethan/Polaris/commit/c3c7243bf7",
+          "https://github.com/qiuethan/Polaris/commit/2db1ba8a37",
+          "https://github.com/qiuethan/Polaris/commit/f2cd480bd2"
+        ]
+      },
+      "implementation_evidence": [
+        "server/dual_pose_tracker.py implements dual pose processing with MediaPipe/OpenCV.",
+        "server/realtime_action_classifier.py uses buffered temporal features and joint angles.",
+        "server/pose_websocket_server.py uses FastAPI WebSocket connections, JSON serialization and a configured 10 FPS broadcast cadence.",
+        "frontend/src/hooks/useSimpleStats.js stores per-player movement history/calorie/distance/cadence estimates locally."
+      ],
+      "metrics": [
+        {
+          "value": "Two players from one webcam",
+          "classification": "implemented design scope"
+        },
+        {
+          "value": "Sub-300ms latency, 60+ FPS, <16ms frame times",
+          "classification": "Devpost self-report, not independently benchmarked; do not reuse as verified engineering result"
+        },
+        {
+          "value": "30 FPS camera / 10 FPS broadcast",
+          "classification": "server code configuration/comments, not observed runtime"
+        }
+      ],
+      "boundaries": [
+        "GitHub repo description says Hack the 6ix 2024, but repository creation July 19, 2025 and Devpost event/date conclusively support 2025.",
+        "Profile Devpost link /software/polaris points to unrelated older project; correct /software/polaris-vlp1wm.",
+        "Devpost binary-protocol claim conflicts with current JSON send_text implementation.",
+        "Calorie/distance outputs are heuristic estimates; no actual heart-rate sensor or validated biometric measurement found."
+      ],
+      "draft_bullets": [
+        "Built a single-camera, two-player pose controller for Polaris, translating joint angles and motion patterns into running, jumping and crouching controls.",
+        "Integrated the vision pipeline with the game over WebSockets and added per-player movement tracking.",
+        "Won Best Game Hack at Hack the 6ix 2025 with James Han."
+      ],
+      "additional_sources": [
+        "https://github.com/qiuethan/Polaris/blob/main/server/pose_websocket_server.py",
+        "https://github.com/qiuethan/Polaris/blob/main/server/realtime_action_classifier.py"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2025-07-19T04:24:04Z",
+        "pushed_at": "2025-08-08T19:44:40Z",
+        "updated_at": "2025-08-08T19:44:43Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/qiuethan/Polaris"
+      },
+      "contributors": [
+        {
+          "login": "qiuethan",
+          "commits": 31
+        },
+        {
+          "login": "lxyhan",
+          "commits": 5
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/qiuethan__Polaris/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "Hyacinthe",
+      "repo": "haenlonns/hyacinthe",
+      "date_label": "January 25–26, 2025",
+      "event": "GeeseHacks 2025",
+      "devpost": "https://devpost.com/software/hyacinthe",
+      "awards": [
+        {
+          "name": "1st Place Overall",
+          "status": "verified Devpost badge"
+        },
+        {
+          "name": "Best Non-AI Wrapper Hack Sponsored by Hack the 6ix",
+          "status": "verified Devpost badge; omitted in profile highlights"
+        }
+      ],
+      "overview": "Assistive indoor navigation prototype that reads signage and gives spoken direction without preloaded floor plans.",
+      "individual_scope": {
+        "confidence": "high from commits and training artifact",
+        "facts": [
+          "Created YOLO model-training notebook and committed trained models.",
+          "Implemented object/ID tracking and camera processing.",
+          "Built DecisionManager, navigation and vision/STT/TTS thread integration.",
+          "Integrated OpenAI-based room information parsing during development."
+        ],
+        "commit_sources": [
+          "https://github.com/haenlonns/hyacinthe/commit/b83eca59e251c8f5d959cd30c611f2ef3785a569",
+          "https://github.com/haenlonns/hyacinthe/commit/a4022b2f93570caedeb2bb1679429be816c5c27a"
+        ]
+      },
+      "implementation_evidence": [
+        "model_training/SignDetection.ipynb trains YOLO11n with a 20-epoch configuration at image size 640 and batch size 8.",
+        "vision.py combines sign.pt YOLO model, docTR OCR, image preprocessing, an OCR thread pool and text queue.",
+        "decision.py interprets room/location information, manages navigation cancellation and speech input.",
+        "main.py starts decision/vision/speech work on threads."
+      ],
+      "metrics": [
+        {
+          "value": "Hundreds of self-collected signage images",
+          "classification": "team Devpost self-report; dataset count not independently validated"
+        },
+        {
+          "value": "20 epochs / 640 image size / batch 8",
+          "classification": "training notebook configuration, not accuracy proof"
+        }
+      ],
+      "boundaries": [
+        "Public project prototype, not a validated navigation aid; no blind-user trial or navigation-accuracy benchmark found.",
+        "Devpost lists Tesseract, but active vision source uses docTR OCR as well; describe OCR generally if brevity needed.",
+        "Do not label all system logic non-AI just because prize name says Non-AI Wrapper; code includes OpenAI utilities and trained CV."
+      ],
+      "draft_bullets": [
+        "Trained a YOLO11 signage detector and built the vision pipeline for Hyacinthe, an indoor navigation prototype for visually impaired users.",
+        "Connected sign detection and OCR with speech input and spoken directions through concurrent vision and navigation workers.",
+        "Won 1st Place Overall and Best Non-AI Wrapper Hack at GeeseHacks 2025."
+      ],
+      "additional_sources": [
+        "https://github.com/haenlonns/hyacinthe/blob/main/vision.py",
+        "https://github.com/haenlonns/hyacinthe/blob/main/model_training/SignDetection.ipynb"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2025-01-25T16:06:09Z",
+        "pushed_at": "2025-01-26T13:35:54Z",
+        "updated_at": "2026-05-10T02:05:21Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/haenlonns/hyacinthe"
+      },
+      "contributors": [
+        {
+          "login": "qiuethan",
+          "commits": 24
+        },
+        {
+          "login": "haenlonns",
+          "commits": 18
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/haenlonns__hyacinthe/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "Crosswalk of Shame",
+      "repo": "emlyqi/crosswalkofshame",
+      "date_label": "September 13–15, 2024",
+      "event": "Hack the North 2024",
+      "devpost": "https://devpost.com/software/crosswalk-of-shame",
+      "awards": [],
+      "award_status": "No award listed.",
+      "overview": "Computer-vision prototype detecting distracted pedestrians, capturing incidents and presenting crossing statistics.",
+      "team": [
+        "Ethan Qiu",
+        "Hannalee Wu",
+        "Emily Qi",
+        "Alice Gao"
+      ],
+      "individual_scope": {
+        "confidence": "high: explicit Devpost role and notebooks committed by Ethan",
+        "facts": [
+          "Trained custom YOLOv8 models, created tracking software and helped frontend/backend integration according to Devpost.",
+          "Authored model/training notebook additions and camera/photo capabilities. Hannalee explicitly owns Convex backend."
+        ],
+        "commit_sources": [
+          "https://github.com/emlyqi/crosswalkofshame/commit/6d89d7640a18d76c12796852a1cf50cb8df08ca8",
+          "https://github.com/emlyqi/crosswalkofshame/commit/ff2e69d07ea1cbd42615e780f7829b47afe1ce6b"
+        ]
+      },
+      "implementation_evidence": [
+        "ai-training/HumanDetections.ipynb uses YOLOv8n and a person-viewing-cell-phone dataset, with 100-epoch/640-size/batch-8 training configuration.",
+        "device/Human-Detection.ipynb uses trained model and defined crossing areas in webcam processing.",
+        "Repository contains trained person/phone models and React/Convex application with incident/gallery/statistics schemas."
+      ],
+      "boundaries": [
+        "No verified accuracy/false-positive rate or real-world safety improvement.",
+        "Devpost explicitly says Raspberry Pi warning hardware integration was unsuccessful.",
+        "Current model limitations include overload crashes and missed distracted walking when people face away; do not imply deployable traffic infrastructure."
+      ],
+      "draft_bullets": [
+        "Trained YOLOv8 models and built webcam tracking for Crosswalk of Shame, detecting phone use during crossings and capturing incidents for a live dashboard.",
+        "Integrated the vision prototype with a React and Convex application showing crossing activity and incident statistics."
+      ],
+      "additional_sources": [
+        "https://github.com/emlyqi/crosswalkofshame/blob/main/ai-training/HumanDetections.ipynb"
+      ],
+      "repository_metadata": {
+        "private": false,
+        "created_at": "2024-09-14T04:08:59Z",
+        "pushed_at": "2024-09-28T16:13:42Z",
+        "updated_at": "2024-09-28T16:13:45Z",
+        "default_branch": "main",
+        "html_url": "https://github.com/emlyqi/crosswalkofshame"
+      },
+      "contributors": [
+        {
+          "login": "emlyqi",
+          "commits": 21
+        },
+        {
+          "login": "hwu164",
+          "commits": 15
+        },
+        {
+          "login": "qiuethan",
+          "commits": 10
+        },
+        {
+          "login": "zixin-gao",
+          "commits": 1
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/emlyqi__crosswalkofshame/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    },
+    {
+      "name": "GameStoppr",
+      "repo": "muwasifk/gamestoppr",
+      "date_label": "September 2023",
+      "event": "Hack the North 2023",
+      "devpost": "https://devpost.com/software/gamestoppr",
+      "awards": [],
+      "award_status": "No verified prize; event gallery lists submission without Winner badge.",
+      "overview": "Desktop game-blocking prototype with a web dashboard and local Ethereum token rewards for time away from blocked applications.",
+      "individual_scope": {
+        "confidence": "high for backend/auth; other components team scope",
+        "facts": [
+          "Built Django authentication, block/device registration, server blockchain integration and frontend auth integration.",
+          "Authored later desktop blocking changes and authentication completion."
+        ],
+        "commit_sources": [
+          "https://github.com/muwasifk/gamestoppr/commit/363165b093709a558af4e01bfd525e8f7825e23d",
+          "https://github.com/muwasifk/gamestoppr/commit/407a6d6a6871dae719c185529a0b610dcbe004ee"
+        ]
+      },
+      "implementation_evidence": [
+        "Django REST authentication/device/block apps, login/register endpoints and user/device heartbeat models.",
+        "desktop/block.py provides process/app blocking; desktop/main.py runs GUI/server-check coordination.",
+        "blockchain/contracts/GTC.sol implements token contract; project README describes Ganache/Truffle local Ethereum and ERC20 rewards.",
+        "React web authentication/dashboard/store components."
+      ],
+      "metrics": [
+        {
+          "value": "20M GTC initial token mint",
+          "classification": "local prototype token supply per README; not financial value, users or real economic impact"
+        }
+      ],
+      "boundaries": [
+        "Current profile calls it a browser extension, but repository implements desktop + web app + Django backend + local blockchain; no browser-extension implementation found.",
+        "Do not imply production crypto economics or actual reward payouts.",
+        "Direct Devpost page blocked by robots in browsing; primary HTN 2023 gallery confirms submission and public repo provides implementation."
+      ],
+      "draft_bullets": [
+        "Built GameStoppr’s Django authentication and device-registration backend, connecting desktop app blocking with a React dashboard.",
+        "Integrated local Ethereum token rewards for time away from blocked games in a Hack the North 2023 prototype."
+      ],
+      "additional_sources": [
+        "https://github.com/muwasifk/gamestoppr/blob/master/README.md",
+        "https://hackthenorth2023.devpost.com/submissions/search"
+      ],
+      "repository_metadata": {
+        "private": true,
+        "created_at": "2023-09-16T04:04:24Z",
+        "pushed_at": "2023-09-18T17:17:24Z",
+        "updated_at": "2026-01-02T02:44:50Z",
+        "default_branch": "master",
+        "html_url": "https://github.com/muwasifk/gamestoppr"
+      },
+      "contributors": [
+        {
+          "login": "jdaii",
+          "commits": 12
+        },
+        {
+          "login": "qiuethan",
+          "commits": 11
+        },
+        {
+          "login": "muwasifk",
+          "commits": 1
+        }
+      ],
+      "evidence_source_directory": "/tmp/portfolio-research/hackathons/muwasifk__gamestoppr/sources",
+      "evidence_quality": "Source code and authored commits verify implementation/provenance; Devpost verifies team descriptions and prize badges. No project was run, benchmarked or deployed during this research."
+    }
+  ],
+  "artifacts": [
+    "/tmp/portfolio-research/hackathons/branch_audit.json",
+    "/tmp/portfolio-research/hackathons/commit_evidence.json"
+  ],
+  "recommended_feature_order": [
+    "ChatGPU",
+    "Canopy",
+    "Identity Matrix",
+    "Heimer Academy",
+    "Frame",
+    "Orbit",
+    "Polaris",
+    "Hyacinthe"
+  ],
+  "corrections": [
+    "Polaris belongs to Hack the 6ix 2025 and correct Devpost is /software/polaris-vlp1wm.",
+    "Add previously omitted Identity Matrix Best UofT Hack and Hyacinthe Best Non-AI Wrapper Hack awards.",
+    "Separate ChatGPU main, unmerged PR25 and separate GPUShare recorded experiments.",
+    "Frame historical CoreML implementation is absent from current main.",
+    "Orbit current recording pipeline transcribes after stop, not continuous live transcription.",
+    "GameStoppr is a desktop/web prototype, not a verified browser extension."
+  ],
+  "needs_user_clarification": [
+    "Latest status and live deployment/user metrics for ChatGPU and Canopy; any later private work should be handled separately.",
+    "Whether Polaris Top 8 finalist has an event announcement/certificate.",
+    "Which measured Heimer game/profile/model-call counts can be substantiated by logs or data exports.",
+    "Whether Frame current portfolio should describe hackathon prototype or later iteration and which native components remain in active use."
+  ]
+}
