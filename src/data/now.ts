@@ -5,7 +5,7 @@
 // We fetch the handful of tools the Now section renders, in parallel, and tolerate
 // partial failure so one slow/broken endpoint can't blank the whole section.
 
-const NOW_API = 'https://now.ethanqiu.ca/api';
+const NOW_API = import.meta.env.VITE_NOW_API_URL || 'https://now.ethanqiu.ca/api';
 
 interface Envelope<T> {
   schema_version: number;
@@ -20,6 +20,8 @@ export interface NowProject {
   pushed_at: string;
   // public repos only
   name?: string;
+  full_name?: string;
+  last_activity_at?: string;
   description?: string;
   language?: string;
   url?: string;
@@ -50,21 +52,24 @@ export interface NowContributions {
 
 export interface NowStack {
   languages: Array<{ name: string; repos: number }>;
-  from_wakatime: string[];
   stale: boolean;
+}
+
+export interface NowCoding {
+  source: 'activitywatch';
+  total_seconds: number;
+  apps: Array<{ name: 'Orca' | 'VS Code'; seconds: number }>;
+  fetched_at: string;
+  stale: boolean;
+  window_start: string;
+  window_end: string;
 }
 
 export interface NowActivity {
   window: string;
-  github: { totalCommits: number };
-  wakatime: {
-    total: string;
-    dailyAverage: string;
-    seconds: number;
-    projectCount: number;
-    languages: string[];
-  };
-  summary: string;
+  github: { totalCommits: number | null } | null;
+  coding: NowCoding | null;
+  summary: string | null;
 }
 
 /** Everything the Now section needs, plus when the source data was last refreshed. */
@@ -79,9 +84,11 @@ export interface NowData {
 }
 
 async function getTool<T>(path: string): Promise<Envelope<T>> {
-  const res = await fetch(`${NOW_API}${path}`);
+  const res = await fetch(`${NOW_API}${path}`, { signal: AbortSignal.timeout(8000) });
   if (!res.ok) throw new Error(`${path} → ${res.status}`);
-  return res.json() as Promise<Envelope<T>>;
+  const result: Envelope<T & { stale?: boolean }> = await res.json();
+  if (result.data.stale) throw new Error(`${path} is stale`);
+  return result;
 }
 
 /**
@@ -103,7 +110,7 @@ export async function fetchNow(): Promise<NowData> {
   const ok = <T>(r: PromiseSettledResult<Envelope<T>>): T | null =>
     r.status === 'fulfilled' ? r.value.data : null;
 
-  // every endpoint failing is a real error — let the caller fall back to samples
+  // Every endpoint failing is a real error; show unavailable states in the UI.
   if (
     [projects, writing, contributions, stack, activity, availability].every(
       (r) => r.status === 'rejected',

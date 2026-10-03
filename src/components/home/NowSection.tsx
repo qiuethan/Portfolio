@@ -147,14 +147,14 @@ const LeftStack = styled.div`
   }
 `;
 
-const SidePanel = styled.div`
+const SidePanel = styled.div<{ $compact?: boolean }>`
   display: grid;
   gap: 14px;
   align-content: start;
 
   /* the side rail drives the row height; the left column matches it */
   @media (min-width: 1100px) {
-    min-height: 480px;
+    min-height: ${({ $compact }) => $compact ? '260px' : '480px'};
   }
 `;
 
@@ -474,7 +474,7 @@ const HeatmapCard = styled(Glass)`
   }
 `;
 
-const WakaCard = styled(Glass)`
+const CodingCard = styled(Glass)`
   padding: 18px 22px;
 
   .cap {
@@ -638,12 +638,13 @@ type FeedEntry = {
 
 type HeatCell = { level: number; title: string };
 type StatusRow = { key: string; val: string };
-type WakaView = {
+type CodingView = {
   total: string;
-  dailyAverage: string;
+  fetchedAt: string;
+  stale: boolean;
   projects: Array<{ name: string; url?: string }>;
   privateCount: number;
-  langs: Array<{ name: string; pct: number }>;
+  apps: Array<{ name: string; pct: number; time: string }>;
 } | null;
 
 const FILTERS: Array<{ key: Kind | 'all'; label: string }> = [
@@ -684,15 +685,15 @@ function buildFeed(data: NowData): FeedEntry[] {
     .map((p) =>
       p.private
         ? {
-            ts: Date.parse(p.pushed_at),
-            date: fmtDate(p.pushed_at),
+            ts: Date.parse(p.last_activity_at ?? p.pushed_at),
+            date: fmtDate(p.last_activity_at ?? p.pushed_at),
             kind: 'hacking' as const,
             body: clip(p.summary ?? 'Private project in progress.'),
-            src: { label: 'Private repo · summarized by an LLM', llm: true },
+            src: { label: 'Private repo · anonymized', llm: false },
           }
         : {
-            ts: Date.parse(p.pushed_at),
-            date: fmtDate(p.pushed_at),
+            ts: Date.parse(p.last_activity_at ?? p.pushed_at),
+            date: fmtDate(p.last_activity_at ?? p.pushed_at),
             kind: 'shipping' as const,
             body: (
               <>
@@ -744,7 +745,7 @@ function buildCurrently(data: NowData): StatusRow[] {
   const latest = data.projects.find((p) => p.recently_active) ?? data.projects[0];
   if (latest) {
     rows.push({
-      key: 'Building',
+      key: 'Recent repo',
       val: latest.private
         ? clip(latest.summary ?? 'Something private', 90)
         : clip(`${latest.name}${latest.description ? ` — ${latest.description}` : ''}`, 90),
@@ -754,7 +755,7 @@ function buildCurrently(data: NowData): StatusRow[] {
     rows.push({ key: 'Stack', val: data.stack.languages.slice(0, 4).map((l) => l.name).join(' · ') });
   }
   if (data.writing[0]) {
-    rows.push({ key: 'Writing', val: data.writing[0].title });
+    rows.push({ key: 'Latest post', val: data.writing[0].title });
   }
   if (data.availability) {
     rows.push({ key: 'Open to', val: data.availability });
@@ -762,105 +763,34 @@ function buildCurrently(data: NowData): StatusRow[] {
   return rows;
 }
 
-// WakaTime tracks active coding time (what's actually being worked on),
-// independent of commits. Labels arrive as "TypeScript (47%)".
-function parseLangs(raw: string[]): Array<{ name: string; pct: number }> {
-  return raw
-    .map((s) => {
-      const m = s.match(/^(.*?)\s*\((\d+(?:\.\d+)?)%\)$/);
-      return m ? { name: m[1].trim(), pct: parseFloat(m[2]) } : null;
-    })
-    .filter((x): x is { name: string; pct: number } => x !== null);
+function formatCodingTime(seconds: number): string {
+  if (seconds > 0 && seconds < 60) return '<1 min';
+  const minutes = Math.floor(seconds / 60);
+  return minutes >= 60 ? `${Math.floor(minutes / 60)} hr ${minutes % 60} min` : `${minutes} min`;
 }
 
-function buildWaka(data: NowData): WakaView {
-  const wt = data.activity?.wakatime;
-  if (!wt || !wt.total || wt.seconds <= 0) return null;
-  // WakaTime only reports a project *count*; the named repos come from
-  // /projects (recently_active). Private repos withhold names, so collapse
-  // them into a count.
+function buildCoding(data: NowData): CodingView {
+  const coding = data.activity?.coding;
+  if (!coding || coding.source !== 'activitywatch') return null;
   const active = data.projects.filter((p) => p.recently_active);
   return {
-    total: wt.total,
-    dailyAverage: wt.dailyAverage,
-    projects: active
-      .filter((p) => !p.private)
-      .slice(0, 4)
-      .map((p) => ({ name: p.name ?? 'Repo', url: p.url })),
+    total: formatCodingTime(coding.total_seconds),
+    fetchedAt: coding.fetched_at,
+    stale: coding.stale || Date.now() - Date.parse(coding.fetched_at) > 2 * 60 * 60 * 1000,
+    projects: active.filter((p) => !p.private).slice(0, 4)
+      .map((p) => ({ name: p.full_name ?? p.name ?? 'Repo', url: p.url })),
     privateCount: active.filter((p) => p.private).length,
-    langs: parseLangs(wt.languages).slice(0, 5),
+    apps: coding.apps.map((app) => ({
+      name: app.name,
+      pct: coding.total_seconds > 0 ? (app.seconds / coding.total_seconds) * 100 : 0,
+      time: formatCodingTime(app.seconds),
+    })),
   };
 }
 
-// --- sample fallback (shown only if the API can't be reached) --------------
-
-const SAMPLE_FEED: FeedEntry[] = [
-  {
-    ts: 0,
-    date: 'Jun 08',
-    kind: 'shipping',
-    body: (
-      <>
-        Building Shopify&apos;s Managed Markets publishing experience: sellability
-        status, restriction reasons, and AI-powered explanations across 190+ countries.
-      </>
-    ),
-    src: { label: 'Private repo · summarized by an LLM', llm: true },
-  },
-  {
-    ts: 0,
-    date: 'Jun 04',
-    kind: 'hacking',
-    body: (
-      <>
-        Polishing <a href="https://github.com/qiuethan/Identity-Matrix" target="_blank" rel="noopener">Identity Matrix</a> after
-        the UofT Hacks win. Avatars keep living as AI agents after you log off.
-      </>
-    ),
-    src: { label: 'Public · GitHub', llm: false },
-  },
-  {
-    ts: 0,
-    date: 'May 27',
-    kind: 'writing',
-    body: <>The one about maturity — notes on growing up faster than the room expects.</>,
-    src: { label: 'Substack', llm: false },
-  },
-];
-
-// Deterministic sample pattern, repeated to fill the grid.
-const HEAT_PATTERN = [0, 1, 2, 1, 0, 3, 2, 1, 2, 0, 1, 3, 3, 2, 1, 0, 2, 1, 3, 2, 0, 1, 2, 3, 1, 2, 0, 1];
-const SAMPLE_HEAT: HeatCell[] = Array.from({ length: HEAT_DAYS }, (_, i) => {
-  const level = HEAT_PATTERN[(i + (i % 5)) % HEAT_PATTERN.length];
-  return { level, title: `${level * 3} commits (sample)` };
-});
-
-const SAMPLE_CURRENTLY: StatusRow[] = [
-  { key: 'Building', val: 'Agentic product-details prototype @ Shopify' },
-  { key: 'Hacking on', val: 'Identity Matrix v2: smarter agents, bigger world' },
-  { key: 'Writing', val: 'The one about maturity' },
-  { key: 'Open to', val: 'Interesting opportunities and conversations' },
-];
-
-const SAMPLE_WAKA: WakaView = {
-  total: '12 hrs 40 mins',
-  dailyAverage: '1 hr 48 mins',
-  projects: [
-    { name: 'Identity-Matrix', url: 'https://github.com/qiuethan/Identity-Matrix' },
-    { name: 'Portfolio', url: 'https://github.com/qiuethan/Portfolio' },
-  ],
-  privateCount: 2,
-  langs: [
-    { name: 'TypeScript', pct: 46 },
-    { name: 'Python', pct: 27 },
-    { name: 'CSS', pct: 14 },
-    { name: 'Other', pct: 13 },
-  ],
-};
-
 // --- loading skeletons -----------------------------------------------------
 // Shown while the API is in flight, so the first paint is the real card frames
-// (not sample data that then swaps under the visitor). Each mirrors the shape
+// Each mirrors the shape
 // of the card it stands in for to avoid layout shift when data lands.
 
 // Per-entry body widths, so the feed placeholder looks like text, not bars.
@@ -918,8 +848,8 @@ const SkeletonHeatmap: React.FC = () => (
   </HeatmapCard>
 );
 
-const SkeletonWaka: React.FC = () => (
-  <WakaCard aria-busy="true" aria-label="Loading coding stats">
+const SkeletonCoding: React.FC = () => (
+  <CodingCard aria-busy="true" aria-label="Loading coding stats">
     <Skeleton $w="120px" $h="11px" style={{ marginBottom: 12 }} />
     <div className="top">
       <Skeleton $w="140px" $h="21px" />
@@ -943,7 +873,7 @@ const SkeletonWaka: React.FC = () => (
         </div>
       </div>
     ))}
-  </WakaCard>
+  </CodingCard>
 );
 
 const SkeletonStatus: React.FC = () => (
@@ -993,38 +923,29 @@ const NowSection: React.FC = () => {
     };
   }, []);
 
-  const liveFeed = data ? buildFeed(data) : [];
-  const feed = liveFeed.length ? liveFeed : SAMPLE_FEED;
-  const heat = data?.contributions ? buildHeat(data.contributions) : SAMPLE_HEAT;
-  const liveCurrently = data ? buildCurrently(data) : [];
-  const currently = liveCurrently.length ? liveCurrently : SAMPLE_CURRENTLY;
-  // live coding time if available; otherwise the sample (but never sample over real)
-  const waka = (data ? buildWaka(data) : null) ?? (data ? null : SAMPLE_WAKA);
-  const isLive = load === 'live' && liveFeed.length > 0;
-
+  const feed = data ? buildFeed(data) : [];
+  const heat = data?.contributions ? buildHeat(data.contributions) : [];
+  const currently = data ? buildCurrently(data) : [];
+  const coding = data ? buildCoding(data) : null;
   const contrib = data?.contributions;
   const heatCap = contrib
     ? `GitHub contributions · last ${HEAT_WEEKS} weeks`
-    : `Sample contributions · last ${HEAT_WEEKS} weeks`;
+    : 'Contribution data unavailable';
   const heatStats = contrib
     ? [
         { num: String(contrib.current_streak), lbl: 'day streak' },
         { num: contrib.last_30_days.toLocaleString(), lbl: 'last 30d' },
-        { num: contrib.total_past_year.toLocaleString(), lbl: 'this year' },
+        { num: contrib.total_past_year.toLocaleString(), lbl: 'past year' },
       ]
-    : [
-        { num: '8', lbl: 'day streak' },
-        { num: '175', lbl: 'last 30d' },
-        { num: '1,336', lbl: 'this year' },
-      ];
+    : [];
 
   const loading = load === 'loading';
-  const status = loading ? 'loading' : isLive ? 'live' : 'error';
+  const status = load;
   const note = loading
     ? 'Syncing…'
-    : isLive
-      ? `Live · synced ${ago(data!.updated)}`
-      : 'Sample data · API offline';
+    : load === 'live'
+      ? `Last sync ${ago(data!.updated)}`
+      : 'Activity feed unavailable';
 
   const visible = feed.filter((e) => filter === 'all' || e.kind === filter);
 
@@ -1037,9 +958,8 @@ const NowSection: React.FC = () => {
           <InfoTip tabIndex={0} role="note" aria-label="What is Now?">
             i
             <span className="tip">
-              A live feed of what I&apos;m shipping, hacking, and writing — auto-pulled hourly from my
-              GitHub repos, commits, and Substack. Private work is anonymized and summarized by an LLM.
-              Falls back to sample data if the API is offline.
+              Recent activity from my public status API. Each source updates on its own schedule.
+              Private work may appear as an anonymized AI summary. Unavailable or stale sources are omitted.
             </span>
           </InfoTip>
         </div>
@@ -1059,12 +979,13 @@ const NowSection: React.FC = () => {
             ) : (
               <>
             <FeedCard>
-              <div className="chips" role="tablist" aria-label="Filter the feed">
+              <div className="chips" role="group" aria-label="Filter the feed">
                 {FILTERS.map((f) => (
                   <button
                     key={f.key}
                     type="button"
                     className={filter === f.key ? 'chip active' : 'chip'}
+                    aria-pressed={filter === f.key}
                     onClick={() => setFilter(f.key)}
                   >
                     {f.label}
@@ -1072,6 +993,9 @@ const NowSection: React.FC = () => {
                 ))}
               </div>
               <div className="feed">
+                {visible.length === 0 && (
+                  <p>No recent updates available here. <a href="https://github.com/qiuethan" target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a></p>
+                )}
                 {visible.map((entry, i) => (
                   <div className="entry" data-kind={entry.kind} key={`${entry.kind}-${entry.date}-${i}`}>
                     <span className="date">{entry.date}</span>
@@ -1091,7 +1015,7 @@ const NowSection: React.FC = () => {
             </FeedCard>
             <HeatmapCard>
               <p className="cap">{heatCap}</p>
-              <div className="heat-body">
+              {contrib ? <div className="heat-body">
                 <div
                   className="map"
                   role="img"
@@ -1123,7 +1047,7 @@ const NowSection: React.FC = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> : <p>Check back later for the contribution calendar.</p>}
               {tip && (
                 <span className="celltip" style={{ left: tip.x, top: tip.y }}>
                   {tip.text}
@@ -1134,30 +1058,30 @@ const NowSection: React.FC = () => {
             )}
           </LeftStack>
         </LeftCol>
-        <SidePanel>
+        <SidePanel $compact={load === 'error'}>
           {loading ? (
             <>
-              <SkeletonWaka />
+              <SkeletonCoding />
               <SkeletonStatus />
             </>
           ) : (
             <>
-          {waka && (
-            <WakaCard>
-              <p className="cap">Coding this week</p>
+          {coding && (
+            <CodingCard>
+              <p className="cap">Coding · last 7 days (UTC)</p>
               <div className="top">
-                <span className="total">{waka.total}</span>
-                <span className="avg">
-                  {waka.dailyAverage}/day
+                <span className="total">{coding.total}</span>
+                <span className="avg" title={`Last synced: ${coding.fetchedAt}`}>
+                  via ActivityWatch
                   <br />
-                  via WakaTime
+                  {coding.stale ? 'Sync overdue' : `Synced ${ago(coding.fetchedAt)}`}
                 </span>
               </div>
-              {(waka.projects.length > 0 || waka.privateCount > 0) && (
+              {(coding.projects.length > 0 || coding.privateCount > 0) && (
                 <>
-                  <p className="sub">Working on</p>
+                  <p className="sub">Recent GitHub projects</p>
                   <div className="projects">
-                    {waka.projects.map((p) =>
+                    {coding.projects.map((p) =>
                       p.url ? (
                         <a className="proj" href={p.url} target="_blank" rel="noopener" key={p.name}>
                           {p.name}
@@ -1168,30 +1092,31 @@ const NowSection: React.FC = () => {
                         </span>
                       ),
                     )}
-                    {waka.privateCount > 0 && (
+                    {coding.privateCount > 0 && (
                       <span className="proj muted">
-                        +{waka.privateCount} private
+                        +{coding.privateCount} private
                       </span>
                     )}
                   </div>
                 </>
               )}
-              <p className="sub">Languages</p>
-              {waka.langs.map((l) => (
+              <p className="sub">Active apps</p>
+              {coding.apps.map((l) => (
                 <div className="lang" key={l.name}>
                   <div className="lang-head">
                     <span className="lang-name">{l.name}</span>
-                    <span className="lang-pct">{l.pct}%</span>
+                    <span className="lang-pct">{l.time}</span>
                   </div>
                   <div className="bar">
                     <span style={{ width: `${l.pct}%` }} />
                   </div>
                 </div>
               ))}
-            </WakaCard>
+            </CodingCard>
           )}
           <StatusCard>
             <p className="cap">Currently</p>
+            {currently.length === 0 && <p>Current status is unavailable. The projects and experience below have the latest curated details.</p>}
             {currently.map((row) => (
               <div className="row" key={row.key}>
                 <span className="key">{row.key}</span>
