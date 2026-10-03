@@ -4,7 +4,7 @@ import Glass from '../glass/Glass';
 import { Skeleton, skeletonPulse } from '../glass/Skeleton';
 import { Section, SectionHead } from '../glass/primitives';
 import { fetchNow } from '../../data/now';
-import type { NowContributions, NowData } from '../../data/now';
+import type { NowContributions, NowData, SourceFreshness } from '../../data/now';
 
 // The Now section is dense (feed + calendar + stats) and not worth the
 // vertical cost on phones — hide it there. The nav link is already hidden too.
@@ -637,7 +637,7 @@ type FeedEntry = {
 };
 
 type HeatCell = { level: number; title: string };
-type StatusRow = { key: string; val: string };
+type StatusRow = { key: string; val: string; cached?: string };
 type CodingView = {
   total: string;
   fetchedAt: string;
@@ -677,23 +677,33 @@ const ago = (iso: string) => {
 
 const countToLevel = (n: number) => (n === 0 ? 0 : n <= 3 ? 1 : n <= 8 ? 2 : 3);
 
+const cachedNote = (source: SourceFreshness | null) => {
+  if (!source?.stale) return '';
+  const time = source.fetched_at && Number.isFinite(Date.parse(source.fetched_at))
+    ? ` · updated ${ago(source.fetched_at)}` : '';
+  return `Cached${time}`;
+};
+
 // --- live → view-model adapters -------------------------------------------
 
 function buildFeed(data: NowData): FeedEntry[] {
+  const projectCache = cachedNote(data.freshness.projects);
+  const writingCache = cachedNote(data.freshness.writing);
+  const projectSource = (label: string) => ({ label: projectCache ? `${label} · ${projectCache}` : label, llm: false });
   const projects: FeedEntry[] = data.projects
-    .filter((p) => p.pushed_at)
+    .filter((p) => p.last_activity_at)
     .map((p) =>
       p.private
         ? {
-            ts: Date.parse(p.last_activity_at ?? p.pushed_at),
-            date: fmtDate(p.last_activity_at ?? p.pushed_at),
+            ts: Date.parse(p.last_activity_at!),
+            date: fmtDate(p.last_activity_at!),
             kind: 'hacking' as const,
             body: clip(p.summary ?? 'Private project in progress.'),
-            src: { label: 'Private repo · anonymized', llm: false },
+            src: projectSource('Private repo · anonymized'),
           }
         : {
-            ts: Date.parse(p.last_activity_at ?? p.pushed_at),
-            date: fmtDate(p.last_activity_at ?? p.pushed_at),
+            ts: Date.parse(p.last_activity_at!),
+            date: fmtDate(p.last_activity_at!),
             kind: 'shipping' as const,
             body: (
               <>
@@ -705,7 +715,7 @@ function buildFeed(data: NowData): FeedEntry[] {
                 {p.description ? ` — ${p.description}` : ''}
               </>
             ),
-            src: { label: p.language ? `Public · ${p.language}` : 'Public · GitHub', llm: false },
+            src: projectSource(p.language ? `Public · ${p.language}` : 'Public · GitHub'),
           },
     );
 
@@ -719,7 +729,7 @@ function buildFeed(data: NowData): FeedEntry[] {
         {w.excerpt ? ` — ${clip(w.excerpt, 120)}` : ''}
       </>
     ),
-    src: { label: 'Substack', llm: false },
+    src: { label: writingCache ? `Substack · ${writingCache}` : 'Substack', llm: false },
   }));
 
   return [...projects, ...writing].sort((a, b) => b.ts - a.ts);
@@ -749,13 +759,14 @@ function buildCurrently(data: NowData): StatusRow[] {
       val: latest.private
         ? clip(latest.summary ?? 'Something private', 90)
         : clip(`${latest.name}${latest.description ? ` — ${latest.description}` : ''}`, 90),
+      cached: cachedNote(data.freshness.projects),
     });
   }
   if (data.stack?.languages.length) {
-    rows.push({ key: 'Stack', val: data.stack.languages.slice(0, 4).map((l) => l.name).join(' · ') });
+    rows.push({ key: 'Stack', val: data.stack.languages.slice(0, 4).map((l) => l.name).join(' · '), cached: cachedNote(data.freshness.stack) });
   }
   if (data.writing[0]) {
-    rows.push({ key: 'Latest post', val: data.writing[0].title });
+    rows.push({ key: 'Latest post', val: data.writing[0].title, cached: cachedNote(data.freshness.writing) });
   }
   if (data.availability) {
     rows.push({ key: 'Open to', val: data.availability });
@@ -928,6 +939,7 @@ const NowSection: React.FC = () => {
   const currently = data ? buildCurrently(data) : [];
   const coding = data ? buildCoding(data) : null;
   const contrib = data?.contributions;
+  const heatCache = data ? cachedNote(data.freshness.contributions) : '';
   const heatCap = contrib
     ? `GitHub contributions · last ${HEAT_WEEKS} weeks`
     : 'Contribution data unavailable';
@@ -940,11 +952,12 @@ const NowSection: React.FC = () => {
     : [];
 
   const loading = load === 'loading';
-  const status = load;
+  const hasCachedData = data && (Object.values(data.freshness).some((source) => source?.stale) || coding?.stale);
+  const status = hasCachedData ? 'cached' : load;
   const note = loading
     ? 'Syncing…'
     : load === 'live'
-      ? `Last sync ${ago(data!.updated)}`
+      ? hasCachedData ? 'Using cached data' : `Last sync ${ago(data!.updated)}`
       : 'Activity feed unavailable';
 
   const visible = feed.filter((e) => filter === 'all' || e.kind === filter).slice(0, 8);
@@ -959,7 +972,7 @@ const NowSection: React.FC = () => {
             i
             <span className="tip">
               Recent activity from my public status API. Each source updates on its own schedule.
-              Private work may appear as an anonymized AI summary. Unavailable or stale sources are omitted.
+              Private work may appear as an anonymous summary. Cached sources stay visible with their last successful update.
             </span>
           </InfoTip>
         </div>
@@ -1015,6 +1028,7 @@ const NowSection: React.FC = () => {
             </FeedCard>
             <HeatmapCard>
               <p className="cap">{heatCap}</p>
+              {heatCache && <p className="cap" title={data?.freshness.contributions?.fetched_at ?? undefined}>{heatCache}</p>}
               {contrib ? <div className="heat-body">
                 <div
                   className="map"
@@ -1079,7 +1093,7 @@ const NowSection: React.FC = () => {
               </div>
               {(coding.projects.length > 0 || coding.privateCount > 0) && (
                 <>
-                  <p className="sub">Recent GitHub projects</p>
+                  <p className="sub">Recent GitHub projects{data && data.freshness.projects?.stale ? ` · ${cachedNote(data.freshness.projects)}` : ''}</p>
                   <div className="projects">
                     {coding.projects.map((p) =>
                       p.url ? (
@@ -1120,7 +1134,7 @@ const NowSection: React.FC = () => {
             {currently.map((row) => (
               <div className="row" key={row.key}>
                 <span className="key">{row.key}</span>
-                <span className="val">{row.val}</span>
+                <span className="val">{row.val}{row.cached && <><br /><small>{row.cached}</small></>}</span>
               </div>
             ))}
           </StatusCard>

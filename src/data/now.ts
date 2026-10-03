@@ -5,30 +5,37 @@
 // We fetch the handful of tools the Now section renders, in parallel, and tolerate
 // partial failure so one slow/broken endpoint can't blank the whole section.
 
-const NOW_API = import.meta.env.VITE_NOW_API_URL || 'https://now.ethanqiu.ca/api';
+const NOW_API = import.meta.env?.VITE_NOW_API_URL || 'https://now.ethanqiu.ca/api';
+
+export interface SourceFreshness {
+  stale: boolean;
+  fetched_at: string | null;
+}
+
+type Source = 'projects' | 'writing' | 'contributions' | 'stack' | 'activity';
 
 interface Envelope<T> {
   schema_version: number;
   tool: string;
   updated: string;
-  data: T;
+  data: T & { stale?: boolean; fetched_at?: string };
 }
 
 export interface NowProject {
   private: boolean;
   recently_active: boolean;
   pushed_at: string;
+  last_activity_at?: string;
   // public repos only
   name?: string;
   full_name?: string;
-  last_activity_at?: string;
   description?: string;
   language?: string;
   url?: string;
   homepage?: string;
   stars?: number;
   topics?: string[];
-  // private repos only — name/links withheld, replaced by an LLM summary
+  // private repos only — name/links withheld, replaced by an anonymous summary
   id?: number;
   summary?: string;
 }
@@ -75,6 +82,7 @@ export interface NowActivity {
 /** Everything the Now section needs, plus when the source data was last refreshed. */
 export interface NowData {
   updated: string;
+  freshness: Record<Source, SourceFreshness | null>;
   projects: NowProject[];
   writing: NowWritingPost[];
   contributions: NowContributions | null;
@@ -86,8 +94,7 @@ export interface NowData {
 async function getTool<T>(path: string): Promise<Envelope<T>> {
   const res = await fetch(`${NOW_API}${path}`, { signal: AbortSignal.timeout(8000) });
   if (!res.ok) throw new Error(`${path} → ${res.status}`);
-  const result: Envelope<T & { stale?: boolean }> = await res.json();
-  if (result.data.stale) throw new Error(`${path} is stale`);
+  const result: Envelope<T> = await res.json();
   return result;
 }
 
@@ -126,8 +133,19 @@ export async function fetchNow(): Promise<NowData> {
       .map(updatedAt)
       .find((u): u is string => u !== null) ?? '';
 
+  // Envelope.updated is the build time. Retain the original source timestamp
+  // when the backend serves its last good data after a failed collection.
+  const freshness = (r: PromiseSettledResult<Envelope<unknown>>): SourceFreshness | null =>
+    r.status === 'fulfilled'
+      ? { stale: Boolean(r.value.data.stale), fetched_at: r.value.data.fetched_at ?? null }
+      : null;
+
   return {
     updated,
+    freshness: {
+      projects: freshness(projects), writing: freshness(writing),
+      contributions: freshness(contributions), stack: freshness(stack), activity: freshness(activity),
+    },
     projects: ok(projects)?.projects ?? [],
     writing: ok(writing)?.posts ?? [],
     contributions: ok(contributions),
