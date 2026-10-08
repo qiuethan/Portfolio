@@ -3,6 +3,7 @@ import Modal, { ModalImage, ModalKicker, ModalTitle, ModalText, ModalList, ChipR
 import { PrimaryBtn, GhostBtn } from '../glass/primitives';
 import type { WorkItem } from '../../data/projects';
 import WorkVisual from '../home/WorkVisual';
+import { ProjectTimeline } from './ProjectProgress';
 
 export default function WorkDialog({ project, onClose }: { project: WorkItem; onClose: () => void }) {
   const titleId = useId();
@@ -23,6 +24,7 @@ export default function WorkDialog({ project, onClose }: { project: WorkItem; on
       <ChipRow>
         {project.tech.map((tech) => <Chip key={tech}>{tech}</Chip>)}
       </ChipRow>
+      <ProjectTimeline id={project.id} />
       {(project.live || project.github) && (
         <ModalActions>
           {project.live && (

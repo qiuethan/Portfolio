@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "projects": {
+    "misty": {
+      "repo": "UTMIST/Misty",
+      "stage": "building",
+      "focus": "Keeping team knowledge useful beyond the next leadership handoff.",
+      "milestones": []
+    },
+    "mist": {
+      "repo": "UTMIST/Mist",
+      "stage": "building",
+      "focus": "Building UTMIST’s computing infrastructure.",
+      "milestones": []
+    },
+    "utmist": {
+      "repo": "UTMIST/UTMIST",
+      "stage": "building",
+      "focus": "Working on UTMIST’s home on the web.",
+      "milestones": []
+    }
+  }
+}
