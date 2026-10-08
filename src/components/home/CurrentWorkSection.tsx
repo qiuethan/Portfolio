@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Glass from '../glass/Glass';
 import Photo from '../glass/Photo';
@@ -6,7 +6,7 @@ import { Section, SectionHead } from '../glass/primitives';
 import ExperienceCards from '../work/ExperienceCards';
 import WorkDialog from '../work/WorkDialog';
 import { currentProjects, currentRoles } from '../../data/home';
-import type { Project } from '../../data/projects';
+import { ProjectProgress } from '../work/ProjectProgress';
 
 const ProjectHeading = styled.h3`
   margin: 30px 6px 16px;
@@ -70,7 +70,13 @@ const ProjectLink = styled(Glass)`
 `;
 
 export default function CurrentWorkSection() {
-  const [selected, setSelected] = useState<Project | null>(null);
+  const [params, setParams] = useSearchParams();
+  const selected = currentProjects.find((project) => project.id === params.get('project'));
+  const select = (id: string | null) => {
+    const next = new URLSearchParams(params);
+    if (id) next.set('project', id); else next.delete('project');
+    setParams(next, { replace: !id });
+  };
 
   return (
     <Section id="current">
@@ -88,17 +94,18 @@ export default function CurrentWorkSection() {
             key={project.id}
             aria-label={`Read about ${project.name}`}
             aria-haspopup="dialog"
-            onClick={() => setSelected(project)}
+            onClick={() => select(project.id)}
           >
             <Photo className="thumb" src={project.image} alt="" fit="contain" />
             <span>
               <span className="name">{project.name} ↗</span>
               <span className="description">{project.description}</span>
             </span>
+            <ProjectProgress id={project.id} />
           </ProjectLink>
         ))}
       </ProjectGrid>
-      {selected && <WorkDialog project={selected} onClose={() => setSelected(null)} />}
+      {selected && <WorkDialog project={selected} onClose={() => select(null)} />}
     </Section>
   );
 }

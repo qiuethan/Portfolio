@@ -79,12 +79,16 @@ type WorkTab = typeof TABS[number];
 
 const WorkLibrary: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const activeTab: WorkTab = searchParams.get('tab') === 'experiments' ? 'experiments' : 'projects';
+  const linkedExperiment = EXPERIMENTS.some((item) => item.id === searchParams.get('project'));
+  const linkedProject = portfolioData.projects.some((item) => item.id === searchParams.get('project'));
+  const activeTab: WorkTab = linkedExperiment || (!linkedProject && searchParams.get('tab') === 'experiments') ? 'experiments' : 'projects';
   const collection = COLLECTIONS[activeTab];
 
   const selectTab = (tab: WorkTab) => {
     setSearchParams((current) => {
       const next = new URLSearchParams(current);
+      next.delete('project');
+      next.delete('page');
       if (tab === 'projects') next.delete('tab');
       else next.set('tab', tab);
       return next;

@@ -1,10 +1,12 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Glass from '../glass/Glass';
 import Photo from '../glass/Photo';
 import type { WorkItem } from '../../data/projects';
 import WorkVisual from '../home/WorkVisual';
 import WorkDialog from './WorkDialog';
+import { ProjectProgress } from './ProjectProgress';
 
 const Gallery = styled.div`
   scroll-margin-top: 100px;
@@ -137,13 +139,26 @@ const PER_PAGE = 6;
 
 export default function WorkGallery({ items, paginated = false }: { items: WorkItem[]; paginated?: boolean }) {
   const galleryRef = useRef<HTMLDivElement>(null);
-  const [page, setPage] = useState(0);
-  const [selected, setSelected] = useState<WorkItem | null>(null);
+  const [params, setParams] = useSearchParams();
+  const selectedIndex = items.findIndex((item) => item.id === params.get('project'));
+  const selected = items[selectedIndex];
   const pageCount = paginated ? Math.ceil(items.length / PER_PAGE) : 1;
+  const requestedPage = Number(params.get('page') ?? 1) - 1;
+  const page = selectedIndex >= 0 && paginated ? Math.floor(selectedIndex / PER_PAGE) : Math.max(0, Math.min(Number.isInteger(requestedPage) ? requestedPage : 0, pageCount - 1));
   const visible = paginated ? items.slice(page * PER_PAGE, (page + 1) * PER_PAGE) : items;
 
+  const select = (id: string | null) => {
+    const next = new URLSearchParams(params);
+    if (id) next.set('project', id);
+    else { next.delete('project'); if (paginated) next.set('page', String(page + 1)); }
+    setParams(next, { replace: !id });
+  };
+
   const changePage = (next: number) => {
-    setPage(next);
+    const nextParams = new URLSearchParams(params);
+    nextParams.delete('project');
+    nextParams.set('page', String(next + 1));
+    setParams(nextParams);
     galleryRef.current?.focus({ preventScroll: true });
     galleryRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
   };
@@ -158,7 +173,7 @@ export default function WorkGallery({ items, paginated = false }: { items: WorkI
             key={project.id}
             aria-label={`Read about ${project.name}`}
             aria-haspopup="dialog"
-            onClick={() => setSelected(project)}
+            onClick={() => select(project.id)}
           >
             {project.image ? (
               <Photo className="thumb" src={project.image} alt="" fit={project.imageFit} position={project.imagePosition} />
@@ -166,6 +181,7 @@ export default function WorkGallery({ items, paginated = false }: { items: WorkI
             <p className="award">{project.award}</p>
             <p className="title">{project.name}</p>
             <p className="desc">{project.description}</p>
+            <ProjectProgress id={project.id} />
             <span className="go">Explore ↗</span>
           </ProjectCard>
         ))}
@@ -189,7 +205,7 @@ export default function WorkGallery({ items, paginated = false }: { items: WorkI
           >›</button>
         </Pager>
       )}
-      {selected && <WorkDialog project={selected} onClose={() => setSelected(null)} />}
+      {selected && <WorkDialog project={selected} onClose={() => select(null)} />}
     </>
   );
 }
