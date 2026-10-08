@@ -16,8 +16,27 @@
     "utmist": {
       "repo": "UTMIST/UTMIST",
       "stage": "building",
-      "focus": "Working on UTMIST’s home on the web.",
-      "milestones": []
+      "focus": "Member-facing website work plus the repo structure, review routing, and CI that keep it maintainable.",
+      "milestones": [
+        {
+          "id": "053ddfebee9a1b87",
+          "date": "2026-09-30",
+          "title": "EigenAI rollout, zone ownership, and CI hardening",
+          "summary": "A member-facing Next.js site with ongoing work on auth, content, and release flow. Recent commits focus on the EigenAI redesign, rollback controls, zone-based ownership, CODEOWNERS, and setup/docs fixes that make the repo easier to navigate and review.",
+          "sources": [
+            "https://github.com/UTMIST/UTMIST/commit/2acb98064d5fcaa98a6d5af0e96d77aa5685bed0",
+            "https://github.com/UTMIST/UTMIST/commit/a9751fcafdc9481f171e199c2ac1362dddb01cfe",
+            "https://github.com/UTMIST/UTMIST/commit/4ffe1a6e61f16750e780dbc1f824f1e17d0d9efd",
+            "https://github.com/UTMIST/UTMIST/commit/d0d2f4b7349d205d6391a2db19cdaa1241022951",
+            "https://github.com/UTMIST/UTMIST/commit/d26165c02d29fe5cfd2cf0375d8109a33fb31031",
+            "https://github.com/UTMIST/UTMIST/commit/10a0f2dc1028af70d88d0791b73837c7bd20c9ec",
+            "https://github.com/UTMIST/UTMIST/commit/5c17b29cd0b7131316256d610531f50284d01180",
+            "https://github.com/UTMIST/UTMIST/commit/d2de010b9053cea5b6b299235604fea4bbe16b1c",
+            "https://github.com/UTMIST/UTMIST/commit/257c5b8f06ea2ac21501553d368b8f53c812448d",
+            "https://github.com/UTMIST/UTMIST/commit/d4dd51e631c21d2008c1dcb5b51bf67343127ecc"
+          ]
+        }
+      ]
     }
   }
 }

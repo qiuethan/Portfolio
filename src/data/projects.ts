@@ -357,7 +357,7 @@ export const projects: Project[] = [
   },
   {
     "name": "UTMIST Website",
-    "description": "The club’s front door: events, recruitment, publishing, and a place for members to land.",
+    "description": "The club’s front door for events, recruitment, publishing, and member access.",
     "tech": [
       "Next.js",
       "TypeScript",
@@ -368,15 +368,18 @@ export const projects: Project[] = [
     ],
     "github": "https://github.com/UTMIST/UTMIST",
     "live": "https://www.utmist.ca/",
-    "details": "UTMIST’s Next.js website, built with Supabase and Payload CMS. My work spans authentication, recruitment access control, code ownership, and the checks that make changes easier to review and release.",
+    "details": "UTMIST’s Next.js website, built with Supabase and Payload CMS. Recent work includes feature-flagged EigenAI pages and mobile UI fixes, plus repository structure and review plumbing for zones, areas, and CODEOWNERS. Older work established auth, recruitment access control, and CI gates that make changes easier to review and release.",
     "id": "utmist",
     "award": "UTMIST · Web infrastructure",
     "image": "/img/projects/utmist.png",
     "linkLabel": "Visit site",
     "highlights": [
-      "Built signup, login, email verification, session management, and protected member flows.",
-      "Added shared authorization guards around recruitment pages and APIs.",
-      "Established CI gates and per-PR previews, then organized features around enforced import boundaries."
+      "Added EigenAI metadata and mobile UI fixes.",
+      "Restored the production rollback path behind feature flags.",
+      "Split issue areas from PR zones and repaired CODEOWNERS review routing.",
+      "Moved shared platform and UI code behind stable barrels.",
+      "Added onboarding docs and CI checks for contributors.",
+      "Fixed Maps and Supabase env fallbacks so builds pass."
     ]
   },
   {
