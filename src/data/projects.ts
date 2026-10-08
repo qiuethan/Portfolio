@@ -368,7 +368,7 @@ export const projects: Project[] = [
     ],
     "github": "https://github.com/UTMIST/UTMIST",
     "live": "https://www.utmist.ca/",
-    "details": "UTMIST’s Next.js website, built with Supabase and Payload CMS. Recent work includes feature-flagged EigenAI pages and mobile UI fixes, plus repository structure and review plumbing for zones, areas, and CODEOWNERS. Older work established auth, recruitment access control, and CI gates that make changes easier to review and release. Evidence: commit:2acb98064d5fcaa98a6d5af0e96d77aa5685bed0, commit:a9751fcafdc9481f171e199c2ac1362dddb01cfe, commit:4ffe1a6e61f16750e780dbc1f824f1e17d0d9efd, commit:d0d2f4b7349d205d6391a2db19cdaa1241022951, commit:d26165c02d29fe5cfd2cf0375d8109a33fb31031, commit:10a0f2dc1028af70d88d0791b73837c7bd20c9ec, commit:5c17b29cd0b7131316256d610531f50284d01180, commit:d2de010b9053cea5b6b299235604fea4bbe16b1c, commit:257c5b8f06ea2ac21501553d368b8f53c812448d, commit:d4dd51e631c21d2008c1dcb5b51bf67343127ecc",
+    "details": "UTMIST’s Next.js website, built with Supabase and Payload CMS. Recent work includes feature-flagged EigenAI pages and mobile UI fixes, plus repository structure and review plumbing for zones, areas, and CODEOWNERS. Older work established auth, recruitment access control, and CI gates that make changes easier to review and release.",
     "id": "utmist",
     "award": "UTMIST · Web infrastructure",
     "image": "/img/projects/utmist.png",
