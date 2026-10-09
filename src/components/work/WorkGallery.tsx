@@ -6,7 +6,6 @@ import Photo from '../glass/Photo';
 import type { WorkItem } from '../../data/projects';
 import WorkVisual from '../home/WorkVisual';
 import WorkDialog from './WorkDialog';
-import { ProjectProgress } from './ProjectProgress';
 
 const Gallery = styled.div`
   scroll-margin-top: 100px;
@@ -181,7 +180,6 @@ export default function WorkGallery({ items, paginated = false }: { items: WorkI
             <p className="award">{project.award}</p>
             <p className="title">{project.name}</p>
             <p className="desc">{project.description}</p>
-            <ProjectProgress id={project.id} />
             <span className="go">Explore ↗</span>
           </ProjectCard>
         ))}
