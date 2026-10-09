@@ -3,7 +3,8 @@ import { activityIsStale, authorPullsUrl, githubSource, projectDate, pullDate, p
 import { useProjectTracking } from '../../hooks/useProjectTracking';
 
 const Summary = styled.span`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
   padding-top: 12px;
   margin: 4px 0 10px;
@@ -11,10 +12,10 @@ const Summary = styled.span`
   .stage { display: flex; align-items: center; gap: 7px; color: var(--accent); font: 500 11px var(--mono); }
   .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: 0 0 auto; }
   .work-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--ink-soft); font: 13px/1.5 var(--body); overflow-wrap: anywhere; }
-  a.work-title { text-decoration: none; }
-  a.work-title:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .work-link { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px; align-items: start; color: var(--ink-soft); font: 13px/1.5 var(--body); text-decoration: none; }
+  .work-link:hover .work-title { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
   .stamp { color: var(--ink-faint); font: 10px/1.5 var(--mono); }
-  .all-prs { color: var(--accent); font: 11px/1.5 var(--mono); text-underline-offset: 3px; justify-self: start; }
+  .all-prs { margin-top: auto; align-self: flex-start; color: var(--accent); font: 11px/1.5 var(--mono); text-underline-offset: 3px; }
 `;
 
 export function ProjectProgress({ id, interactive = false }: { id: string; interactive?: boolean }) {
@@ -29,13 +30,13 @@ export function ProjectProgress({ id, interactive = false }: { id: string; inter
     <Summary className="progress">
       <span className="stage"><span className="dot" aria-hidden="true" />{stageNames[tracker.stage]}</span>
       {latest ? <>
-        {interactive ? <a className="work-title" href={latest.url} target="_blank" rel="noopener noreferrer">{latest.title} ↗</a> : <span className="work-title">{latest.title}</span>}
+        {interactive ? <a className="work-link" href={latest.url} target="_blank" rel="noopener noreferrer"><span className="work-title">{latest.title}</span><span aria-hidden="true">↗</span></a> : <span className="work-title">{latest.title}</span>}
         <span className="stamp">{latest.label} · {projectDate(latest.date)}{stale}</span>
       </> : <>
         {tracker.milestones[0] && <span className="stamp">Latest milestone · {tracker.milestones[0].title}</span>}
         {activity?.lastActivity && <span className="stamp">Repo activity · {projectDate(activity.lastActivity)}{stale}</span>}
       </>}
-      {interactive && activity?.work && (activity.work.pullRequests.length ? <a className="all-prs" href={authorPullsUrl(tracker.repo, activity.work.author)} target="_blank" rel="noopener noreferrer">View my PRs ↗</a> : <a className="all-prs" href={`https://github.com/${tracker.repo}`} target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>)}
+      {interactive && (activity?.work?.pullRequests.length ? <a className="all-prs" href={authorPullsUrl(tracker.repo, activity.work.author)} target="_blank" rel="noopener noreferrer">View my PRs ↗</a> : <a className="all-prs" href={`https://github.com/${tracker.repo}`} target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>)}
     </Summary>
   );
 }
