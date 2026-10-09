@@ -16,17 +16,8 @@ export default function WorkDialog({ project, onClose }: { project: WorkItem; on
       ) : project.visual ? <WorkVisual visual={project.visual} /> : null}
       <ModalKicker>{project.award}</ModalKicker>
       <ModalTitle id={titleId}>{project.name}</ModalTitle>
-      {project.question && <ModalText><strong>{project.question}</strong></ModalText>}
-      <ModalText>{project.details}</ModalText>
-      <ModalList>
-        {project.highlights.map((line) => <li key={line}>{line}</li>)}
-      </ModalList>
-      <ChipRow>
-        {project.tech.map((tech) => <Chip key={tech}>{tech}</Chip>)}
-      </ChipRow>
-      <ProjectTimeline id={project.id} />
       {(project.live || project.github) && (
-        <ModalActions>
+        <ModalActions style={{ marginBottom: 18 }}>
           {project.live && (
             <PrimaryBtn href={project.live} target="_blank" rel="noopener noreferrer">
               {project.linkLabel ?? 'Visit site'} ↗
@@ -37,6 +28,15 @@ export default function WorkDialog({ project, onClose }: { project: WorkItem; on
           )}
         </ModalActions>
       )}
+      {project.question && <ModalText><strong>{project.question}</strong></ModalText>}
+      <ModalText>{project.details}</ModalText>
+      <ModalList>
+        {project.highlights.map((line) => <li key={line}>{line}</li>)}
+      </ModalList>
+      <ChipRow>
+        {project.tech.map((tech) => <Chip key={tech}>{tech}</Chip>)}
+      </ChipRow>
+      <ProjectTimeline id={project.id} />
     </Modal>
   );
 }
