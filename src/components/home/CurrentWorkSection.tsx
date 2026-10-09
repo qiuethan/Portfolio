@@ -39,7 +39,7 @@ const ProjectCard = styled(Glass)`
   color: var(--ink);
   .progress { margin: auto 0 0; }
   @media (min-width: 700px) {
-    .progress { min-height: 132px; align-content: start; }
+    .progress { min-height: 132px; }
     .work-title { min-height: 39px; }
   }
 `;
