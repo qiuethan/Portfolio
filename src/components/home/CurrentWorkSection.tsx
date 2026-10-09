@@ -27,20 +27,34 @@ const ProjectGrid = styled.div`
   }
 `;
 
-const ProjectLink = styled(Glass)`
+const ProjectCard = styled(Glass)`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 18px;
   width: 100%;
-  padding: 24px;
+  min-width: 0;
+  padding: 20px;
   text-align: left;
   font-family: var(--body);
   color: var(--ink);
-  cursor: pointer;
-  transition: transform 0.15s;
+  .progress { margin: auto 0 0; }
+  @media (min-width: 700px) {
+    .progress { min-height: 132px; align-content: start; }
+    .work-title { min-height: 39px; }
+  }
+`;
 
-  &:hover { transform: translateY(-3px); }
+const ProjectLink = styled.button`
+  display: block;
+  width: 100%;
+  padding: 0 0 16px;
+  text-align: left;
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  &:hover .name { text-decoration: underline; text-underline-offset: 4px; }
   &:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 4px;
@@ -48,24 +62,24 @@ const ProjectLink = styled(Glass)`
 
   .thumb {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    flex-shrink: 0;
+    height: 144px;
+    margin-bottom: 14px;
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid var(--glass-edge);
   }
 
   .name {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     color: var(--accent);
-    font: 600 22px var(--display);
+    font: 600 20px var(--display);
   }
 
   .description {
     display: block;
     color: var(--ink-soft);
-    font-size: 14.5px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.55;
   }
 `;
 
@@ -88,21 +102,21 @@ export default function CurrentWorkSection() {
       <ProjectHeading>Currently building</ProjectHeading>
       <ProjectGrid>
         {currentProjects.map((project) => (
-          <ProjectLink
-            forwardedAs="button"
-            type="button"
-            key={project.id}
-            aria-label={`Read about ${project.name}`}
-            aria-haspopup="dialog"
-            onClick={() => select(project.id)}
-          >
-            <Photo className="thumb" src={project.image} alt="" fit="contain" />
-            <span>
-              <span className="name">{project.name} ↗</span>
-              <span className="description">{project.description}</span>
-            </span>
-            <ProjectProgress id={project.id} />
-          </ProjectLink>
+          <ProjectCard forwardedAs="article" key={project.id} aria-label={project.name}>
+            <ProjectLink
+              type="button"
+              aria-label={`Read about ${project.name}`}
+              aria-haspopup="dialog"
+              onClick={() => select(project.id)}
+            >
+              <Photo className="thumb" src={project.image} alt="" fit="contain" />
+              <span>
+                <span className="name">{project.name} ↗</span>
+                <span className="description">{project.description}</span>
+              </span>
+            </ProjectLink>
+            <ProjectProgress id={project.id} interactive />
+          </ProjectCard>
         ))}
       </ProjectGrid>
       {selected && <WorkDialog project={selected} onClose={() => select(null)} />}

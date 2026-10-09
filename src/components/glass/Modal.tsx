@@ -31,14 +31,21 @@ const Overlay = styled.div`
 const Panel = styled(Glass)`
   width: min(620px, 100%);
   max-height: 84vh;
-  overflow-y: auto;
-  padding: 30px 32px;
+  overflow: hidden;
   background-color: var(--glass-strong);
   animation: ${rise} 0.22s ease-out;
 `;
 
+const ScrollContent = styled.div`
+  max-height: 84vh;
+  overflow-y: auto;
+  padding: 30px 32px;
+  @media (max-width: 700px) { padding: 24px 20px; }
+`;
+
 const CloseBtn = styled.button`
   position: absolute;
+  z-index: 2;
   top: 16px;
   right: 16px;
   width: 32px;
@@ -192,7 +199,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, children, labelledBy }) => {
     <Overlay ref={panelRef} onClick={onClose}>
       <Panel role="dialog" aria-modal="true" aria-labelledby={labelledBy} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
         <CloseBtn type="button" aria-label="Close" onClick={onClose}>×</CloseBtn>
-        {children}
+        <ScrollContent>{children}</ScrollContent>
       </Panel>
     </Overlay>,
     document.body,

@@ -4,7 +4,14 @@ test.beforeEach(async ({ page }) => {
   await page.route('https://now.ethanqiu.ca/api/**', (route) => route.fulfill({ status: 503, body: '{}' }));
   await page.route('**/portfolio-sync/activity.json', (route) => route.fulfill({ json: {
     version: 1, checkedAt: new Date().toISOString(), projects: {
-      misty: { repo: 'UTMIST/Misty', checkedAt: new Date().toISOString(), lastActivity: '2026-10-01T12:00:00Z', commitUrl: 'https://github.com/UTMIST/Misty/commit/abc', release: null },
+      misty: { repo: 'UTMIST/Misty', checkedAt: new Date().toISOString(), lastActivity: '2026-10-01T12:00:00Z', commitUrl: 'https://github.com/UTMIST/Misty/commit/abc', release: null,
+        work: { author: 'qiuethan', pullRequests: [
+          { number: 255, title: 'Group backend clients and application services', url: 'https://github.com/UTMIST/Misty/pull/255', state: 'open', draft: false, updatedAt: '2026-10-08T12:00:00Z', mergedAt: null },
+          { number: 246, title: 'Register slash commands before deployment', url: 'https://github.com/UTMIST/Misty/pull/246', state: 'merged', draft: false, updatedAt: '2026-10-05T12:00:00Z', mergedAt: '2026-10-05T11:00:00Z' },
+          { number: 217, title: 'Add license', url: 'https://github.com/UTMIST/Misty/pull/217', state: 'closed', draft: false, updatedAt: '2026-09-05T12:00:00Z', mergedAt: null },
+          { number: 9, title: 'Unsafe link', url: 'javascript:alert(1)', state: 'open', draft: false, updatedAt: '2026-10-01T12:00:00Z', mergedAt: null },
+        ], commits: [] },
+      },
     },
   } }));
 });
@@ -12,13 +19,20 @@ test.beforeEach(async ({ page }) => {
 test('home tracker opens a shareable dialog, preserves focus, and supports back/forward', async ({ page }) => {
   await page.goto('/?view=human');
   const card = page.getByRole('button', { name: 'Read about Misty', exact: true });
-  await expect(card.getByText('Building', { exact: true })).toBeVisible();
-  await expect(card.getByText('Repo activity', { exact: false })).toBeVisible();
+  const article = page.getByRole('article', { name: 'Misty', exact: true });
+  await expect(article.getByText('Building', { exact: true })).toBeVisible();
+  await expect(article.getByText(/Open PR #255/)).toBeVisible();
+  await expect(article.getByRole('link', { name: /Group backend/ })).toHaveAttribute('href', 'https://github.com/UTMIST/Misty/pull/255');
+  await expect(card.locator('a')).toHaveCount(0);
+  await expect(article.getByRole('link', { name: /View my PRs/ })).toHaveAttribute('href', /author%3Aqiuethan/);
   await card.click();
   await expect(page).toHaveURL(/project=misty/);
   const dialog = page.getByRole('dialog', { name: 'Misty', exact: true });
   await expect(dialog.getByRole('heading', { name: 'Project log' })).toBeVisible();
-  await expect(dialog.getByRole('link', { name: /Latest commit/ })).toHaveAttribute('href', /UTMIST\/Misty\/commit/);
+  await expect(dialog.getByRole('link', { name: /Register slash commands/ })).toHaveAttribute('href', 'https://github.com/UTMIST/Misty/pull/246');
+  await expect(dialog.getByText('Merged', { exact: true })).toBeVisible();
+  await expect(dialog.getByText('Closed', { exact: true })).toBeVisible();
+  await expect(page.getByText('Unsafe link')).toHaveCount(0);
   await page.goBack();
   await expect(dialog).not.toBeVisible();
   await page.goForward();
@@ -67,4 +81,9 @@ test('mobile project log stays inside the viewport', async ({ page }) => {
   await dialog.getByRole('heading', { name: 'Project log' }).scrollIntoViewIfNeeded();
   await expect(dialog.getByRole('heading', { name: 'Project log' })).toBeVisible();
   await page.screenshot({ path: 'test-results/project-log-mobile.png' });
+  await dialog.getByRole('link', { name: /Add license/ }).scrollIntoViewIfNeeded();
+  const close = dialog.getByRole('button', { name: 'Close', exact: true });
+  await expect(close).toBeInViewport();
+  await close.click();
+  await expect(dialog).not.toBeVisible();
 });
